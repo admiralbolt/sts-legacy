@@ -1,5 +1,7 @@
 *.class
 
+libs/
+
 # IntelliJ
 .idea/
 out/

@@ -1,4 +1,8 @@
 {
+  "legacy:anathema": {
+    "NAME": "Anathema",
+    "DESCRIPTION": "Deal !D! Damage. NL [#eeee00]Permanently[] increase damage by !M! . NL [#ff0000]Lose[] 1 Max Hp."
+  },
   "legacy:DefaultCommonAttack": {
     "NAME": "Strike",
     "DESCRIPTION": "Deal !D! Damage. NL [#0000ff]This[] [#ff0000]Is[] [#ffff00]How[] [#88888]color[] [#ff00ff]works.[]"

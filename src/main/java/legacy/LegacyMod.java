@@ -70,9 +70,15 @@ public class LegacyMod implements
     public static boolean enablePlaceholder = true; // The boolean we'll be setting on/off (true/false)
 
     //This is for the in-game mod settings panel.
-    private static final String MODNAME = "Default Mod";
-    private static final String AUTHOR = "Gremious"; // And pretty soon - You!
+    private static final String MODNAME = "StS Legacy";
+    private static final String AUTHOR = "admiralbolt";
     private static final String DESCRIPTION = "A base for Slay the Spire to start your own mod from, feat. the Default.";
+
+    // I can't think of a better way of doing this in the 10 seconds that I have spent thinking about it, so,
+    // We'll be tracking sqlite3 db changes statically on the mod instance. This can then be imported and used
+    // anywhere else in the app, would prefer to not do this statically, but unsure if we can get an instance of the
+    // LegacyMod somewhere else.
+    public static LegacyDb LEGACY_DB = new LegacyDb();
     
     // =============== INPUT TEXTURE LOCATION =================
     
@@ -185,7 +191,11 @@ public class LegacyMod implements
             e.printStackTrace();
         }
         logger.info("Done adding mod settings");
-        
+
+        logger.info("Initializing permanent changes db.");
+        LEGACY_DB.initialize();
+        logger.info("Done initializing permanent changes db.");
+
     }
     
     // ====== NO EDIT AREA ======
@@ -394,6 +404,8 @@ public class LegacyMod implements
         BaseMod.addCard(new DefaultAttackWithVariable());
         BaseMod.addCard(new DefaultSecondMagicNumberSkill());
         BaseMod.addCard(new OrbSkill());
+
+        BaseMod.addCard(new Anathema());
 
 //        new AutoAdd("LegacyMod")
 //            .packageFilter("legacy.cards")

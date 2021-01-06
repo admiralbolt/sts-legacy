@@ -33,7 +33,7 @@ public class DefaultCommonAttack extends CustomCard {
 
     // TEXT DECLARATION
 
-    public static final String ID = LegacyMod.makeID(DefaultCommonAttack.class.getSimpleName());
+    public static final String ID = LegacyMod.makeID("default_common_attack");
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
 
     public static final String IMG = makeCardPath("Attack.png");
