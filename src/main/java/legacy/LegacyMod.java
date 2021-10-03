@@ -1,7 +1,6 @@
 package legacy;
 
 import basemod.*;
-import basemod.abstracts.CustomCard;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
@@ -19,6 +18,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import legacy.cards.*;
+import legacy.db.LegacyDb;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import legacy.characters.TheDefault;
@@ -36,7 +36,6 @@ import legacy.variables.DefaultSecondMagicNumber;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
 import java.util.Properties;
 
 /*

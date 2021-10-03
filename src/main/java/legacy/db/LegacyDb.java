@@ -1,15 +1,13 @@
-package legacy;
+package legacy.db;
 
 import basemod.abstracts.CustomCard;
-import com.badlogic.gdx.Game;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import legacy.cards.Anathema;
+import legacy.enchantments.Enchantment;
 
-import javax.swing.plaf.nimbus.AbstractRegionPainter;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,15 +18,13 @@ import java.util.Map;
 public class LegacyDb {
 
   private static final String db_path = SpireConfig.makeFilePath("legacy", "legacy", "db");
-  private static final String connection_string = "jdbc:sqlite:" + db_path;
-
-  public static List<CustomCard> modifiableCards;
+  public static final String connection_string = "jdbc:sqlite:" + db_path;
 
   private Map<String, Integer> changeSet;
 
   public LegacyDb() {
-    // I have NO idea why, but it's necessary to try and hotload this class first before accesing the DB in order
-    // to make sure that it loads correctly. WTF.
+    // I have NO idea why, but it's necessary to try and hotload this class first
+    // before accessing the DB in order to make sure that it loads correctly. WTF.
     try {
       Class<?> cls = Class.forName("org.sqlite.JDBC");
     } catch (ClassNotFoundException e) {
@@ -38,24 +34,17 @@ public class LegacyDb {
     this.changeSet = new HashMap<>();
   }
 
-  // Initializes the sqlite database connection. Creates the db file if it doesn't exist, as well as the base tables.
+  /**
+   * Initialize the database.
+   * Creates the file if it doesn't exist, as well as default values for
+   * each table. This is broken out into a separate class for sanity.
+   */
   public void initialize() {
-    try (Connection connection = DriverManager.getConnection(connection_string)) {
-      if (connection != null) {
-        DatabaseMetaData meta = connection.getMetaData();
-        String sql = "CREATE TABLE IF NOT EXISTS cards (cardId text PRIMARY KEY, damage int);";
-        Statement stmt = connection.createStatement();
-        stmt.execute(sql);
+    DBInitializer.initialize();
+  }
 
-        // Insert base values for our cards.
-        Statement stmt2 = connection.createStatement();
-        System.out.println(DBInitializer.getInsertString());
-        stmt2.execute(DBInitializer.getInsertString());
-      }
-    } catch (SQLException e) {
-      System.out.println("It's java you fucking idiot");
-      System.out.println(e.getMessage());
-    }
+  public List<Enchantment> loadCardEnchantments(String cardId) {
+    return new ArrayList<>();
   }
 
   // Gets damage for a particular card.
@@ -89,6 +78,8 @@ public class LegacyDb {
       }
     } catch (SQLException e) {
       System.out.println(e.getMessage());
+    } finally {
+      this.changeSet.clear();
     }
 
     // Sus.

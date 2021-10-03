@@ -33,6 +33,7 @@ public class Anathema extends BaseLegacyCard {
     AbstractDungeon.player.decreaseMaxHealth(1);
     AbstractDungeon.actionManager.addToBottom(new PermanentBuffAction(this.cardID, this.magicNumber));
     AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HEAVY));
+    super.use(p, m);
   }
 
   // Upgraded stats.
