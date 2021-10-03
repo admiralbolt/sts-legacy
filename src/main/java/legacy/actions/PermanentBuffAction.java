@@ -6,6 +6,14 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import legacy.LegacyMod;
 import legacy.util.GetAllCardsById;
 
+/**
+ * Permanently increase the base damage of a card.
+ *
+ * This is done by doing two things:
+ * 1. Modifying all base damage instances of cards with the same id. This will modify the damage for a card within
+ *    the context of the current loaded game.
+ * 2. Queue a change to update the DB. This will save the current damage value which gets loaded during the
+ */
 public class PermanentBuffAction extends AbstractGameAction {
 
   private final String cardId;

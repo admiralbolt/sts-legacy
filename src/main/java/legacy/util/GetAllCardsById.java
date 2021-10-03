@@ -3,10 +3,14 @@ package legacy.util;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.UUID;
+import java.util.List;
 
+/**
+ * Utility class to get all cards by ID. This searches draw, discard, exhaust, limbo, and deck.
+ */
 public class GetAllCardsById {
 
   public static HashSet<AbstractCard> get(String cardId) {
@@ -15,49 +19,22 @@ public class GetAllCardsById {
       cards.add(AbstractDungeon.player.cardInUse);
     }
 
-    Iterator var2 = AbstractDungeon.player.drawPile.group.iterator();
+    List<Iterator<AbstractCard>> iterators = new ArrayList<Iterator<AbstractCard>>() {{
+      add(AbstractDungeon.player.drawPile.group.iterator());
+      add(AbstractDungeon.player.discardPile.group.iterator());
+      add(AbstractDungeon.player.limbo.group.iterator());
+      add(AbstractDungeon.player.exhaustPile.group.iterator());
+      add(AbstractDungeon.player.hand.group.iterator());
+    }};
 
     AbstractCard c;
-    while (var2.hasNext()) {
-      c = (AbstractCard) var2.next();
-      if (c.cardID.equals(cardId)) {
-        cards.add(c);
-      }
-    }
 
-    var2 = AbstractDungeon.player.discardPile.group.iterator();
-
-    while (var2.hasNext()) {
-      c = (AbstractCard) var2.next();
-      if (c.cardID.equals(cardId)) {
-        cards.add(c);
-      }
-    }
-
-    var2 = AbstractDungeon.player.exhaustPile.group.iterator();
-
-    while (var2.hasNext()) {
-      c = (AbstractCard) var2.next();
-      if (c.cardID.equals(cardId)) {
-        cards.add(c);
-      }
-    }
-
-    var2 = AbstractDungeon.player.limbo.group.iterator();
-
-    while (var2.hasNext()) {
-      c = (AbstractCard) var2.next();
-      if (c.cardID.equals(cardId)) {
-        cards.add(c);
-      }
-    }
-
-    var2 = AbstractDungeon.player.hand.group.iterator();
-
-    while (var2.hasNext()) {
-      c = (AbstractCard) var2.next();
-      if (c.cardID.equals(cardId)) {
-        cards.add(c);
+    for (Iterator<AbstractCard> iterator : iterators) {
+      while (iterator.hasNext()) {
+        c = iterator.next();
+        if (c.cardID.equals(cardId)) {
+          cards.add(c);
+        }
       }
     }
 

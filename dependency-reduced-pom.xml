@@ -4,8 +4,8 @@
   <groupId>legacymod</groupId>
   <artifactId>LegacyMod</artifactId>
   <name>Legacy</name>
-  <version>0.0.1</version>
-  <description>A default base to start your own mod from.</description>
+  <version>0.0.2</version>
+  <description>A mod without perma-death.</description>
   <build>
     <resources>
       <resource>
@@ -68,13 +68,31 @@
       </plugin>
     </plugins>
   </build>
+  <profiles>
+    <profile>
+      <id>Windows</id>
+      <properties>
+        <Jar.path>common/SlayTheSpire/</Jar.path>
+        <working_dir>C:\Users\avikn\git\sts-legacy</working_dir>
+        <Steam.path>C:\Program Files (x86)/Steam/steamapps</Steam.path>
+      </properties>
+    </profile>
+    <profile>
+      <id>Mac</id>
+      <properties>
+        <Jar.path>common/SlayTheSpire/SlayTheSpire.app/Contents/Resources</Jar.path>
+        <working_dir>/Users/admiralbolt/git/sts-legacy</working_dir>
+        <Steam.path>/Users/admiralbolt/Library/Application Support/Steam/steamapps</Steam.path>
+      </properties>
+    </profile>
+  </profiles>
   <dependencies>
     <dependency>
       <groupId>com.megacrit.cardcrawl</groupId>
       <artifactId>slaythespire</artifactId>
       <version>${SlayTheSpire.version}</version>
       <scope>system</scope>
-      <systemPath>${Steam.path}/common/SlayTheSpire/desktop-1.0.jar</systemPath>
+      <systemPath>${Steam.path}/${Jar.path}/desktop-1.0.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>com.evacipated.cardcrawl</groupId>
@@ -99,9 +117,10 @@
     </dependency>
   </dependencies>
   <properties>
+    <Jar.path>common/SlayTheSpire/SlayTheSpire.app/Contents/Resources</Jar.path>
     <ModTheSpire.version>3.8.0</ModTheSpire.version>
-    <working_dir>C:\Users\avikn\git\sts-legacy</working_dir>
-    <Steam.path>C:\Program Files (x86)/Steam/steamapps</Steam.path>
+    <working_dir>/Users/admiralbolt/git/sts-legacy</working_dir>
+    <Steam.path>/Users/admiralbolt/Library/Application Support/Steam/steamapps</Steam.path>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <SlayTheSpire.version>10-23-2020</SlayTheSpire.version>

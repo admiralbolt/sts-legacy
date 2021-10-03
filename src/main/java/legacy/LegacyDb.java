@@ -1,5 +1,6 @@
 package legacy;
 
+import basemod.abstracts.CustomCard;
 import com.badlogic.gdx.Game;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -10,6 +11,7 @@ import legacy.cards.Anathema;
 import javax.swing.plaf.nimbus.AbstractRegionPainter;
 import java.sql.*;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,8 +19,10 @@ import java.util.Map;
  */
 public class LegacyDb {
 
-  private static final String db_path = SpireConfig.makeFilePath("legacy", "permanent_settings", "db");
+  private static final String db_path = SpireConfig.makeFilePath("legacy", "legacy", "db");
   private static final String connection_string = "jdbc:sqlite:" + db_path;
+
+  public static List<CustomCard> modifiableCards;
 
   private Map<String, Integer> changeSet;
 
@@ -26,12 +30,12 @@ public class LegacyDb {
     // I have NO idea why, but it's necessary to try and hotload this class first before accesing the DB in order
     // to make sure that it loads correctly. WTF.
     try {
-      Class cls = Class.forName("org.sqlite.JDBC");
+      Class<?> cls = Class.forName("org.sqlite.JDBC");
     } catch (ClassNotFoundException e) {
       e.printStackTrace();
     }
 
-    this.changeSet = new HashMap<String, Integer>();
+    this.changeSet = new HashMap<>();
   }
 
   // Initializes the sqlite database connection. Creates the db file if it doesn't exist, as well as the base tables.
@@ -39,15 +43,14 @@ public class LegacyDb {
     try (Connection connection = DriverManager.getConnection(connection_string)) {
       if (connection != null) {
         DatabaseMetaData meta = connection.getMetaData();
-        System.out.println("The driver name is: " + meta.getDriverName());
         String sql = "CREATE TABLE IF NOT EXISTS cards (cardId text PRIMARY KEY, damage int);";
         Statement stmt = connection.createStatement();
         stmt.execute(sql);
 
-        // Insert base damage for anathema.
-        // String sql2 = "INSERT INTO cards (cardId, damage) VALUES ('legacy:anathema', 15);";
-        // Statement stmt2 = connection.createStatement();
-        // stmt2.execute(sql2);
+        // Insert base values for our cards.
+        Statement stmt2 = connection.createStatement();
+        System.out.println(DBInitializer.getInsertString());
+        stmt2.execute(DBInitializer.getInsertString());
       }
     } catch (SQLException e) {
       System.out.println("It's java you fucking idiot");
