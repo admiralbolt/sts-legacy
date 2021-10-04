@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import legacy.cards.*;
 import legacy.db.LegacyDb;
+import legacy.enchantments.EnchantmentsManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import legacy.characters.TheDefault;
@@ -199,6 +200,7 @@ public class LegacyMod implements
         }
         logger.info("Done adding mod settings");
 
+        EnchantmentsManager.initialize();
         logger.info("Initializing permanent changes db.");
         LEGACY_DB.initialize();
         logger.info("Done initializing permanent changes db.");

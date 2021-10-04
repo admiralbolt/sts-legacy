@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import legacy.LegacyMod;
 import legacy.characters.TheDefault;
-import legacy.db.LegacyDb;
 import legacy.enchantments.Enchantment;
 
 import java.util.List;
@@ -16,7 +15,7 @@ import java.util.List;
  */
 public class BaseLegacyCard extends CustomCard {
 
-  private List<Enchantment> enchantments;
+  private final List<Enchantment> enchantments;
 
   public BaseLegacyCard(String id, CardStrings cardStrings, int cost, CardType type, CardRarity rarity, CardTarget target) {
     super(
@@ -24,7 +23,7 @@ public class BaseLegacyCard extends CustomCard {
             LegacyMod.LEGACY_DB.getName(id, cardStrings.NAME),
             LegacyMod.makeCardPathFromId(id),
             cost,
-            cardStrings.DESCRIPTION,
+            LegacyMod.LEGACY_DB.getCardDescription(id, cardStrings.DESCRIPTION),
             type,
             TheDefault.Enums.COLOR_GRAY,
             rarity,
