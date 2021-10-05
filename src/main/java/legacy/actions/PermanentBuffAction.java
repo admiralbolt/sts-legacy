@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import legacy.LegacyMod;
-import legacy.util.GetAllCardsById;
+import legacy.util.CardUtils;
 
 /**
  * Permanently increase the base damage of a card.
@@ -33,7 +33,7 @@ public class PermanentBuffAction extends AbstractGameAction {
       newBaseDamage = card.baseDamage;
     }
 
-    for (AbstractCard card : GetAllCardsById.get(this.cardId)) {
+    for (AbstractCard card : CardUtils.getAllInstancesOfCard(this.cardId)) {
       card.baseDamage += this.increase;
       newBaseDamage = card.baseDamage;
     }

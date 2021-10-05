@@ -19,6 +19,8 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import legacy.cards.weapons.Anathema;
+import legacy.cards.weapons.Rapier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import legacy.LegacyMod;
@@ -28,6 +30,7 @@ import legacy.relics.PlaceholderRelic;
 import legacy.relics.PlaceholderRelic2;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static legacy.LegacyMod.*;
 import static legacy.characters.TheDefault.Enums.COLOR_GRAY;
@@ -152,26 +155,14 @@ public class TheDefault extends CustomPlayer {
     // Starting Deck
     @Override
     public ArrayList<String> getStartingDeck() {
-        ArrayList<String> retVal = new ArrayList<>();
+        ArrayList<String> deck = new ArrayList<>();
 
-        logger.info("Begin loading starter Deck Strings");
+        deck.add(Anathema.ID);
 
-        retVal.add(DefaultCommonAttack.ID);
-        retVal.add(DefaultUncommonAttack.ID);
-        retVal.add(DefaultRareAttack.ID);
+        deck.add(Rapier.ID);
+        deck.add(Rapier.ID);
 
-        retVal.add(DefaultCommonSkill.ID);
-        retVal.add(DefaultUncommonSkill.ID);
-        retVal.add(DefaultRareSkill.ID);
-
-        retVal.add(DefaultCommonPower.ID);
-        retVal.add(DefaultUncommonPower.ID);
-        retVal.add(DefaultRarePower.ID);
-
-        retVal.add(DefaultAttackWithVariable.ID);
-        retVal.add(DefaultSecondMagicNumberSkill.ID);
-        retVal.add(OrbSkill.ID);
-        return retVal;
+        return deck;
     }
 
     // Starting Relics	
@@ -238,7 +229,7 @@ public class TheDefault extends CustomPlayer {
     //Which card should be obtainable from the Match and Keep event?
     @Override
     public AbstractCard getStartCardForEvent() {
-        return new DefaultCommonAttack();
+        return new Anathema();
     }
 
     // The class name as it appears next to your player name in-game

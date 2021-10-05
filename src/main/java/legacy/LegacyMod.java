@@ -11,19 +11,19 @@ import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.TheCity;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import legacy.cards.*;
+import legacy.cards.LegacyCards;
+import legacy.cards.weapons.*;
 import legacy.db.LegacyDb;
 import legacy.enchantments.EnchantmentsManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import legacy.characters.TheDefault;
-import legacy.events.IdentityCrisisEvent;
 import legacy.potions.PlaceholderPotion;
 import legacy.relics.BottledPlaceholderRelic;
 import legacy.relics.DefaultClickableRelic;
@@ -31,8 +31,6 @@ import legacy.relics.PlaceholderRelic;
 import legacy.relics.PlaceholderRelic2;
 import legacy.util.IDCheckDontTouchPls;
 import legacy.util.TextureLoader;
-import legacy.variables.DefaultCustomVariable;
-import legacy.variables.DefaultSecondMagicNumber;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -200,6 +198,7 @@ public class LegacyMod implements
         }
         logger.info("Done adding mod settings");
 
+        LegacyCards.initialize();
         EnchantmentsManager.initialize();
         logger.info("Initializing permanent changes db.");
         LEGACY_DB.initialize();
@@ -319,8 +318,7 @@ public class LegacyMod implements
         // part of the game, simply don't include the dungeon ID
         // If you want to have a character-specific event, look at slimebound (CityRemoveEventPatch).
         // Essentially, you need to patch the game and say "if a player is not playing my character class, remove the event from the pool"
-        BaseMod.addEvent(IdentityCrisisEvent.ID, IdentityCrisisEvent.class, TheCity.ID);
-        
+
         // =============== /EVENTS/ =================
         logger.info("Done loading badge Image and mod options");
     }
@@ -383,9 +381,7 @@ public class LegacyMod implements
         // Add the Custom Dynamic Variables
         logger.info("Add variables");
         // Add the Custom Dynamic variables
-        BaseMod.addDynamicVariable(new DefaultCustomVariable());
-        BaseMod.addDynamicVariable(new DefaultSecondMagicNumber());
-        
+
         logger.info("Adding cards");
         // Add the cards
         // Don't delete these default cards yet. You need 1 of each type and rarity (technically) for your game not to crash
@@ -398,28 +394,14 @@ public class LegacyMod implements
         // The ID for this function isn't actually your modid as used for prefixes/by the getModID() method.
         // It's the mod id you give MTS in ModTheSpire.json - by default your artifact ID in your pom.xml
 
-        BaseMod.addCard(new DefaultCommonAttack());
-        BaseMod.addCard(new DefaultUncommonAttack());
-        BaseMod.addCard(new DefaultRareAttack());
+        for (AbstractCard c : LegacyCards.getAllCards()) {
+            BaseMod.addCard(c);
+        }
 
-        BaseMod.addCard(new DefaultCommonSkill());
-        BaseMod.addCard(new DefaultUncommonSkill());
-        BaseMod.addCard(new DefaultRareSkill());
-
-        BaseMod.addCard(new DefaultCommonPower());
-        BaseMod.addCard(new DefaultUncommonPower());
-        BaseMod.addCard(new DefaultRarePower());
-
-        BaseMod.addCard(new DefaultAttackWithVariable());
-        BaseMod.addCard(new DefaultSecondMagicNumberSkill());
-        BaseMod.addCard(new OrbSkill());
-
-        BaseMod.addCard(new Anathema());
-
-//        new AutoAdd("LegacyMod")
-//            .packageFilter("legacy.cards")
-//            .setDefaultSeen(true)
-//            .cards();
+        // new AutoAdd("LegacyMod")
+        //    .packageFilter("legacy.cards")
+        //    .setDefaultSeen(true)
+        //    .cards();
 
         // .setDefaultSeen(true) unlocks the cards
         // This is so that they are all "seen" in the library,

@@ -2,7 +2,9 @@ package legacy.db;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
-import legacy.cards.Anathema;
+import legacy.cards.LegacyCards;
+import legacy.cards.weapons.Anathema;
+import legacy.cards.weapons.Rapier;
 import legacy.enchantments.Enchantment;
 import legacy.enchantments.EnchantmentsManager;
 
@@ -22,7 +24,8 @@ public class LegacyDb {
   public static final String CARD_ENCHANTMENT_JOIN_TABLE = "enchantments_cards_join";
 
   // So that I don't have to dig in the future:
-  // Mac - /Users/<username>/Library/Application Support/Steam/steamapps/common/SlayTheSpire/SlayTheSpire.app/Contents/Resources
+  // Mac     - /Users/<username>/Library/Preferences/ModTheSpire/legacy/
+  // Windows - /mnt/c/Users/<username>/AppData/Local/ModTheSpire/legacy/
   private static final String DB_PATH = SpireConfig.makeFilePath("legacy", "legacy", "db");
   public static final String CONNECTION_STRING = "jdbc:sqlite:" + DB_PATH;
 
@@ -78,19 +81,38 @@ public class LegacyDb {
     return enchantments;
   }
 
-  // Gets damage for a particular card.
-  public int getCardDamage(String cardId) {
+  public DBCardInfo getCardInfo(String cardId) {
     try (Connection connection = DriverManager.getConnection(CONNECTION_STRING)) {
-      String sql = "SELECT damage FROM " + CARDS_TABLE + " WHERE cardId = ?";
+      String sql = "SELECT damage, numUpgrades FROM " + CARDS_TABLE + " WHERE cardId = ?";
       PreparedStatement stmt = connection.prepareStatement(sql);
       stmt.setString(1, cardId);
       ResultSet result = stmt.executeQuery();
       result.next();
-      return result.getInt("damage");
+      return new DBCardInfo(cardId, result.getInt("damage"), result.getInt("numUpgrades"));
     } catch (SQLException e) {
       System.out.println(e.getMessage());
     }
-    return 0;
+
+    return null;
+  }
+
+  /**
+   * Upgrades a card and persists the value to the database.
+   */
+  public void upgradeCard(String cardId) {
+    DBCardInfo info = getCardInfo(cardId);
+    try (Connection connection = DriverManager.getConnection(CONNECTION_STRING)) {
+      String sql = "UPDATE " + CARDS_TABLE + " SET damage = ?, numUpgrades = ? WHERE cardId = ?";
+      PreparedStatement stmt = connection.prepareStatement(sql);
+      stmt.setInt(1, info.damage + 1);
+      stmt.setInt(2,info.numUpgrades + 1);
+      stmt.setString(3, cardId);
+      stmt.execute();
+
+      CardLibrary.add(LegacyCards.getInstanceById(cardId));
+    } catch (SQLException e) {
+      System.out.println(e.getMessage());
+    }
   }
 
   public void queueChange(String cardId, int damage) {
@@ -117,8 +139,19 @@ public class LegacyDb {
     CardLibrary.add(new Anathema());
   }
 
+  /**
+   * Returns a nicely formatted cardname i.e.:
+   * +2 Corrosive Rapier
+   */
   public String getName(String cardId, String baseName) {
     StringBuilder builder = new StringBuilder();
+    DBCardInfo info = getCardInfo(cardId);
+    if (info.numUpgrades > 0) {
+      builder.append("+");
+      builder.append(info.numUpgrades);
+      builder.append(" ");
+    }
+
     List<Enchantment> enchantments = loadCardEnchantments(cardId);
     for (Enchantment enchantment : enchantments) {
       builder.append(enchantment.name);

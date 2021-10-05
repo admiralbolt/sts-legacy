@@ -22,30 +22,11 @@ import java.util.stream.Collectors;
  */
 public class DBInitializer {
 
-  private static final String CARD_TABLE_SQL = "CREATE TABLE IF NOT EXISTS " + LegacyDb.CARDS_TABLE + " (cardId text PRIMARY KEY, damage int);";
+  private static final String CARD_TABLE_SQL = "CREATE TABLE IF NOT EXISTS " + LegacyDb.CARDS_TABLE + " (cardId text PRIMARY KEY, damage int, numUpgrades int);";
   private static final String ENCHANTMENT_TABLE_SQL = "CREATE TABLE IF NOT EXISTS " + LegacyDb.ENCHANTMENTS_TABLE + " (enchantmentId text PRIMARY KEY, name text, description text);";
   private static final String CARD_ENCHANTMENT_JOIN_SQL = "CREATE TABLE IF NOT EXISTS " + LegacyDb.CARD_ENCHANTMENT_JOIN_TABLE + " (cardId text, enchantmentId text, FOREIGN KEY(cardId) REFERENCES cards(cardId), FOREIGN KEY(enchantmentId) REFERENCES enchantments(enchantmentId));";
 
-  public static class DBCardInfo {
 
-    public String id;
-    public int damage;
-
-    public DBCardInfo(String id, int damage) {
-      this.id = id;
-      this.damage = damage;
-    }
-
-    public String toDatabaseString() {
-      return String.format("('%s', %d)", id, damage);
-    }
-  }
-
-  public static List<DBCardInfo> getCards() {
-    List<DBCardInfo> cards = new ArrayList<>();
-    cards.add(new DBCardInfo("legacy:anathema", 15));
-    return cards;
-  }
 
   public static void initialize() {
     try (Connection connection = DriverManager.getConnection(LegacyDb.CONNECTION_STRING)) {
@@ -68,7 +49,7 @@ public class DBInitializer {
   }
 
   public static String getCardDataSQL() {
-    return "INSERT OR IGNORE INTO cards (cardId, damage) VALUES " + getCards().stream().map(DBCardInfo::toDatabaseString).collect(Collectors.joining(", ")) + ";";
+    return "INSERT OR IGNORE INTO cards (cardId, damage, numUpgrades) VALUES " + DBCardInfo.getAllCards().stream().map(DBCardInfo::toDatabaseString).collect(Collectors.joining(", ")) + ";";
   }
 
   public static String getEnchantmentDataSQL() {
