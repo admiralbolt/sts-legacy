@@ -1,37 +1,28 @@
 package legacy.db;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * Card info stored in the DB. This is:
+ * - the "value" of the card aka the damage or block.
+ * - the number of times the card has been upgraded.
+ */
 public class DBCardInfo {
 
   public String id;
-  public int damage;
+  public int value;
   public int numUpgrades = 0;
 
-  public DBCardInfo(String id, int damage) {
+  public DBCardInfo(String id, int value) {
     this.id = id;
-    this.damage = damage;
+    this.value = value;
   }
 
-  public DBCardInfo(String id, int damage, int numUpgrades) {
+  public DBCardInfo(String id, int value, int numUpgrades) {
     this.id = id;
-    this.damage = damage;
+    this.value = value;
     this.numUpgrades = numUpgrades;
   }
 
   public String toDatabaseString() {
-    return String.format("('%s', %d, %d)", id, damage, numUpgrades);
-  }
-
-  public static List<DBCardInfo> getAllCards() {
-    List<DBCardInfo> cards = new ArrayList<>();
-    cards.add(new DBCardInfo("legacy:anathema", 15));
-    cards.add(new DBCardInfo("legacy:dagger", 2));
-    cards.add(new DBCardInfo("legacy:longsword", 6));
-    cards.add(new DBCardInfo("legacy:mace", 5));
-    cards.add(new DBCardInfo("legacy:rapier", 4));
-    cards.add(new DBCardInfo("legacy:whip", 2));
-    return cards;
+    return String.format("('%s', %d, %d)", id, value, numUpgrades);
   }
 }

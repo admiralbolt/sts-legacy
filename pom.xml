@@ -15,9 +15,9 @@
         <SlayTheSpire.version>10-23-2020</SlayTheSpire.version>
         <ModTheSpire.version>3.8.0</ModTheSpire.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <Steam.path>C:\Program Files (x86)/Steam/steamapps</Steam.path>
-        <working_dir>C:\Users\avikn\git\sts-legacy</working_dir>
-        <Jar.path>common/SlayTheSpire/</Jar.path>
+        <Steam.path>/Users/admiralbolt/Library/Application Support/Steam/steamapps</Steam.path>
+        <working_dir>/Users/admiralbolt/git/sts-legacy</working_dir>
+        <Jar.path>common/SlayTheSpire/SlayTheSpire.app/Contents/Resources</Jar.path>
     </properties>
 
     <profiles>

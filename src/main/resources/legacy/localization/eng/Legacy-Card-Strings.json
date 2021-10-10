@@ -15,9 +15,17 @@
     "NAME": "Mace",
     "DESCRIPTION": "Deal !D! Damage."
   },
+  "legacy:padded_armor": {
+    "NAME": "Padded Armor",
+    "DESCRIPTION": "Gain !B! Block.  NL Gain !M! Temporary Dexterity."
+  },
   "legacy:rapier": {
     "NAME": "Rapier",
     "DESCRIPTION": "Deal !D! Damage."
+  },
+  "legacy:steel_shield": {
+    "NAME": "Steel Shield",
+    "DESCRIPTION": "Gain !B! Block. NL Gain !M! Temporary HP."
   },
   "legacy:whip": {
     "NAME": "Whip",

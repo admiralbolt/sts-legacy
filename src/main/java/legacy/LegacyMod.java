@@ -198,12 +198,10 @@ public class LegacyMod implements
         }
         logger.info("Done adding mod settings");
 
+        logger.info("Initializing Legacy Mod Specific Shtuff.");
         LegacyCards.initialize();
         EnchantmentsManager.initialize();
-        logger.info("Initializing permanent changes db.");
         LEGACY_DB.initialize();
-        logger.info("Done initializing permanent changes db.");
-
     }
     
     // ====== NO EDIT AREA ======
@@ -375,37 +373,14 @@ public class LegacyMod implements
     
     @Override
     public void receiveEditCards() {
-        logger.info("Adding variables");
         //Ignore this
         pathCheck();
-        // Add the Custom Dynamic Variables
-        logger.info("Add variables");
-        // Add the Custom Dynamic variables
 
         logger.info("Adding cards");
-        // Add the cards
-        // Don't delete these default cards yet. You need 1 of each type and rarity (technically) for your game not to crash
-        // when generating card rewards/shop screen items.
-
-        // This method automatically adds any cards inside the cards package, found under yourModName.cards.
-        // For more specific info, including how to exclude classes from being added:
-        // https://github.com/daviscook477/BaseMod/wiki/AutoAdd
-
-        // The ID for this function isn't actually your modid as used for prefixes/by the getModID() method.
-        // It's the mod id you give MTS in ModTheSpire.json - by default your artifact ID in your pom.xml
 
         for (AbstractCard c : LegacyCards.getAllCards()) {
             BaseMod.addCard(c);
         }
-
-        // new AutoAdd("LegacyMod")
-        //    .packageFilter("legacy.cards")
-        //    .setDefaultSeen(true)
-        //    .cards();
-
-        // .setDefaultSeen(true) unlocks the cards
-        // This is so that they are all "seen" in the library,
-        // for people who like to look at the card list before playing your mod
 
         logger.info("Done adding cards!");
     }

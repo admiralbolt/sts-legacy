@@ -1,5 +1,6 @@
 package legacy.db;
 
+import legacy.cards.LegacyCards;
 import legacy.enchantments.Enchantment;
 import legacy.enchantments.EnchantmentsManager;
 
@@ -7,8 +8,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -25,7 +24,6 @@ public class DBInitializer {
   private static final String CARD_TABLE_SQL = "CREATE TABLE IF NOT EXISTS " + LegacyDb.CARDS_TABLE + " (cardId text PRIMARY KEY, damage int, numUpgrades int);";
   private static final String ENCHANTMENT_TABLE_SQL = "CREATE TABLE IF NOT EXISTS " + LegacyDb.ENCHANTMENTS_TABLE + " (enchantmentId text PRIMARY KEY, name text, description text);";
   private static final String CARD_ENCHANTMENT_JOIN_SQL = "CREATE TABLE IF NOT EXISTS " + LegacyDb.CARD_ENCHANTMENT_JOIN_TABLE + " (cardId text, enchantmentId text, FOREIGN KEY(cardId) REFERENCES cards(cardId), FOREIGN KEY(enchantmentId) REFERENCES enchantments(enchantmentId));";
-
 
 
   public static void initialize() {
@@ -49,7 +47,7 @@ public class DBInitializer {
   }
 
   public static String getCardDataSQL() {
-    return "INSERT OR IGNORE INTO cards (cardId, damage, numUpgrades) VALUES " + DBCardInfo.getAllCards().stream().map(DBCardInfo::toDatabaseString).collect(Collectors.joining(", ")) + ";";
+    return "INSERT OR IGNORE INTO cards (cardId, damage, numUpgrades) VALUES " + LegacyCards.getAllCardsDbInfo().stream().map(DBCardInfo::toDatabaseString).collect(Collectors.joining(", ")) + ";";
   }
 
   public static String getEnchantmentDataSQL() {

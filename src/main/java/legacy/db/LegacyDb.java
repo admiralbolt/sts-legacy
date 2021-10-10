@@ -4,7 +4,6 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import legacy.cards.LegacyCards;
 import legacy.cards.weapons.Anathema;
-import legacy.cards.weapons.Rapier;
 import legacy.enchantments.Enchantment;
 import legacy.enchantments.EnchantmentsManager;
 
@@ -104,7 +103,7 @@ public class LegacyDb {
     try (Connection connection = DriverManager.getConnection(CONNECTION_STRING)) {
       String sql = "UPDATE " + CARDS_TABLE + " SET damage = ?, numUpgrades = ? WHERE cardId = ?";
       PreparedStatement stmt = connection.prepareStatement(sql);
-      stmt.setInt(1, info.damage + 1);
+      stmt.setInt(1, info.value + 1);
       stmt.setInt(2,info.numUpgrades + 1);
       stmt.setString(3, cardId);
       stmt.execute();

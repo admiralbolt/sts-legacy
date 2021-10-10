@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import legacy.cards.armor.PaddedArmor;
 import legacy.cards.weapons.Anathema;
 import legacy.cards.weapons.Rapier;
 import org.apache.logging.log4j.LogManager;
@@ -158,9 +159,10 @@ public class TheDefault extends CustomPlayer {
         ArrayList<String> deck = new ArrayList<>();
 
         deck.add(Anathema.ID);
-
         deck.add(Rapier.ID);
         deck.add(Rapier.ID);
+        deck.add(PaddedArmor.ID);
+        deck.add(PaddedArmor.ID);
 
         return deck;
     }

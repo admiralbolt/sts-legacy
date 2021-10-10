@@ -1,4 +1,4 @@
-package legacy.cards.weapons;
+package legacy.cards.armor;
 
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -18,19 +18,19 @@ import java.util.List;
 /**
  * Default base case to abstract some things...
  */
-public class LegacyWeapon extends CustomCard {
+public class LegacyArmor extends CustomCard {
 
   private final List<Enchantment> enchantments;
   private final CardStrings cardStrings;
 
-  public LegacyWeapon(String id, CardStrings cardStrings, int cost, CardRarity rarity, CardTarget target) {
+  public LegacyArmor(String id, CardStrings cardStrings, int cost, CardRarity rarity, CardTarget target) {
     super(
             id,
             LegacyMod.LEGACY_DB.getName(id, cardStrings.NAME),
             LegacyMod.makeCardPathFromId(id),
             cost,
             LegacyMod.LEGACY_DB.getCardDescription(id, cardStrings.DESCRIPTION),
-            CardType.ATTACK,
+            CardType.SKILL,
             TheDefault.Enums.COLOR_GRAY,
             rarity,
             target
@@ -42,10 +42,9 @@ public class LegacyWeapon extends CustomCard {
       this.upgraded = true;
       this.initializeTitle();
     }
-    this.baseDamage = info.value;
 
-    this.magicNumber = 1;
-    this.baseMagicNumber = 1;
+    this.baseBlock = this.block = info.value;
+    this.baseMagicNumber = this.magicNumber = 1;
     this.cardStrings = cardStrings;
     this.enchantments = LegacyMod.LEGACY_DB.loadCardEnchantments(id);
   }
@@ -68,7 +67,7 @@ public class LegacyWeapon extends CustomCard {
   }
 
   public void upgradeStats() {
-    this.upgradeDamage(1);
+    this.upgradeBlock(1);
     this.upgraded = true;
     ++this.timesUpgraded;
     this.name = this.getFormattedName();
@@ -100,9 +99,9 @@ public class LegacyWeapon extends CustomCard {
     for (AbstractCard card : AbstractDungeon.player.masterDeck.group) {
       if (card.uuid.equals(this.uuid)) continue;
       if (!card.cardID.equals(this.cardID)) continue;
-      if (!(card instanceof LegacyWeapon)) continue;
+      if (!(card instanceof LegacyArmor)) continue;
 
-      ((LegacyWeapon) card).upgradeStats();
+      ((LegacyArmor) card).upgradeStats();
     }
 
     LegacyMod.LEGACY_DB.upgradeCard(this.cardID);
