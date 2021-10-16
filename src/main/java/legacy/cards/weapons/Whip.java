@@ -17,7 +17,7 @@ public class Whip extends LegacyWeapon {
   public static final int COST = 1;
 
   public Whip() {
-    super(ID, cardStrings, COST, CardRarity.UNCOMMON, CardTarget.ENEMY);
+    super(ID, cardStrings, COST, CardRarity.UNCOMMON, CardTarget.ENEMY, WeaponTrait.FINESSE);
   }
 
   @Override

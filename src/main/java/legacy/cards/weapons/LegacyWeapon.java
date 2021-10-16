@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import legacy.LegacyMod;
 import legacy.characters.TheDefault;
@@ -13,17 +14,30 @@ import legacy.db.DBCardInfo;
 import legacy.enchantments.Enchantment;
 import legacy.util.CardUtils;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Default base case to abstract some things...
  */
 public class LegacyWeapon extends CustomCard {
 
+  public enum WeaponTrait {
+    FINESSE,
+    RANGED
+  }
+
+  private final Set<WeaponTrait> traits;
   private final List<Enchantment> enchantments;
   private final CardStrings cardStrings;
 
   public LegacyWeapon(String id, CardStrings cardStrings, int cost, CardRarity rarity, CardTarget target) {
+    this(id, cardStrings, cost, rarity, target, new WeaponTrait[]{});
+  }
+
+  public LegacyWeapon(String id, CardStrings cardStrings, int cost, CardRarity rarity, CardTarget target, WeaponTrait... weaponTraits) {
     super(
             id,
             LegacyMod.LEGACY_DB.getName(id, cardStrings.NAME),
@@ -35,6 +49,7 @@ public class LegacyWeapon extends CustomCard {
             rarity,
             target
     );
+
 
     DBCardInfo info = LegacyMod.LEGACY_DB.getCardInfo(id);
     if (info.numUpgrades > 0) {
@@ -48,8 +63,16 @@ public class LegacyWeapon extends CustomCard {
     this.baseMagicNumber = 1;
     this.cardStrings = cardStrings;
     this.enchantments = LegacyMod.LEGACY_DB.loadCardEnchantments(id);
+
+    this.traits = new HashSet<>();
+    this.traits.addAll(Arrays.asList(weaponTraits));
   }
 
+    /**
+     * Returns a nicely formatted name based on upgrades & enchantments.
+     *
+     * Ex: +2 Corrosive Returning Greatsword
+     */
   public String getFormattedName() {
     StringBuilder builder = new StringBuilder();
     if (this.timesUpgraded > 0) {
@@ -120,6 +143,73 @@ public class LegacyWeapon extends CustomCard {
   public void use(AbstractPlayer p, AbstractMonster m) {
     for (Enchantment enchantment : this.enchantments) {
       enchantment.apply(p, m);
+    }
+  }
+
+  @Override
+  public void applyPowers() {
+    int strengthAmount = 0;
+    AbstractPower strength = AbstractDungeon.player.getPower("Strength");
+
+    if (this.traits.contains(WeaponTrait.FINESSE) || this.traits.contains(WeaponTrait.RANGED)) {
+      if (strength != null) {
+        strengthAmount = strength.amount;
+        strength.amount = 0;
+      }
+    }
+
+    super.applyPowers();
+
+    if (strength != null && strengthAmount != 0) {
+      strength.amount = strengthAmount;
+    }
+
+    if (this.traits.contains(WeaponTrait.FINESSE)) {
+      AbstractPower dexterity = AbstractDungeon.player.getPower("Dexterity");
+      if (dexterity != null && dexterity.amount != 0) {
+        if (this.isMultiDamage && this.multiDamage != null) {
+          for (int i = 0; i < this.multiDamage.length; ++i) {
+            this.multiDamage[i] += dexterity.amount;
+          }
+        }
+        System.out.println("Dexterity Amount: " + dexterity.amount);
+        this.damage += dexterity.amount;
+        this.isDamageModified = true;
+      }
+    }
+  }
+
+  @Override
+  public void calculateCardDamage(AbstractMonster mo) {
+    int strengthAmount = 0;
+    AbstractPower strength = AbstractDungeon.player.getPower("Strength");
+
+    if (this.traits.contains(WeaponTrait.FINESSE)) {
+      if (strength != null) {
+        strengthAmount = strength.amount;
+        strength.amount = 0;
+      }
+    }
+
+    super.calculateCardDamage(mo);
+
+    if (this.traits.contains(WeaponTrait.FINESSE)) {
+      if (strength != null && strengthAmount != 0) {
+        strength.amount = strengthAmount;
+      }
+
+      // Then, we apply damage from Dexterity.
+      AbstractPower dexterity = AbstractDungeon.player.getPower("Dexterity");
+      if (dexterity != null && dexterity.amount != 0) {
+        if (this.isMultiDamage && this.multiDamage != null) {
+          for (int i = 0; i < this.multiDamage.length; ++i) {
+            this.multiDamage[i] += dexterity.amount;
+          }
+        }
+        System.out.println("Dexterity Amount: " + dexterity.amount);
+        this.damage += dexterity.amount;
+        this.isDamageModified = true;
+      }
     }
   }
 }

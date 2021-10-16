@@ -1,5 +1,12 @@
 [
   {
+    "PROPER_NAME": "Finesse",
+    "NAMES": [
+      "Finesse"
+    ],
+    "DESCRIPTION": "Damage scales with Dexterity instead of Strength"
+  },
+  {
     "NAMES": [
       "keyword",
       "keywords"

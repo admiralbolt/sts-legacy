@@ -17,7 +17,7 @@ public class Dagger extends LegacyWeapon {
   public static final int COST = 1;
 
   public Dagger() {
-    super(ID, cardStrings, COST, CardRarity.COMMON, CardTarget.ENEMY);
+    super(ID, cardStrings, COST, CardRarity.COMMON, CardTarget.ENEMY, WeaponTrait.FINESSE);
   }
 
   @Override
