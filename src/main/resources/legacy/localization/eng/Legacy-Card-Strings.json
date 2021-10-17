@@ -5,7 +5,7 @@
   },
   "legacy:dagger": {
     "NAME": "Dagger",
-    "DESCRIPTION": "Deal !D! Damage.  NL Finesse"
+    "DESCRIPTION": "Deal !D! Damage.  NL legacy:Finesse"
   },
   "legacy:longsword": {
     "NAME": "Longsword",
@@ -21,7 +21,7 @@
   },
   "legacy:rapier": {
     "NAME": "Rapier",
-    "DESCRIPTION": "Deal !D! Damage. NL Finesse"
+    "DESCRIPTION": "Deal !D! Damage. NL legacy:Finesse"
   },
   "legacy:steel_shield": {
     "NAME": "Steel Shield",
@@ -29,6 +29,6 @@
   },
   "legacy:whip": {
     "NAME": "Whip",
-    "DESCRIPTION": "Deal !D! Damage.  NL Finesse"
+    "DESCRIPTION": "Deal !D! Damage.  NL legacy:Finesse legacy:Ranged"
   }
 }

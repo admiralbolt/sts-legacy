@@ -20,7 +20,7 @@ public class PaddedArmor extends LegacyArmor {
   public PaddedArmor() {
     super(ID, cardStrings, COST, CardRarity.COMMON, CardTarget.SELF);
 
-    this.baseMagicNumber = this.magicNumber = 2;
+    this.baseMagicNumber = this.magicNumber = 1;
   }
 
   @Override

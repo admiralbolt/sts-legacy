@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import legacy.LegacyMod;
+import legacy.actions.PiercingDamageAction;
 
 public class Whip extends LegacyWeapon {
 
@@ -17,12 +18,12 @@ public class Whip extends LegacyWeapon {
   public static final int COST = 1;
 
   public Whip() {
-    super(ID, cardStrings, COST, CardRarity.UNCOMMON, CardTarget.ENEMY, WeaponTrait.FINESSE);
+    super(ID, cardStrings, COST, CardRarity.UNCOMMON, CardTarget.ENEMY, WeaponTrait.FINESSE, WeaponTrait.RANGED);
   }
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+    AbstractDungeon.actionManager.addToBottom(new PiercingDamageAction(m, p, damage));
     super.use(p, m);
   }
 

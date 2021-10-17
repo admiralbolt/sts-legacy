@@ -2,16 +2,18 @@
   {
     "PROPER_NAME": "Finesse",
     "NAMES": [
-      "Finesse"
+      "Finesse",
+      "finesse"
     ],
     "DESCRIPTION": "Damage scales with Dexterity instead of Strength"
   },
   {
+    "PROPER_NAME": "Ranged",
     "NAMES": [
-      "keyword",
-      "keywords"
+      "Ranged",
+      "ranged"
     ],
-    "DESCRIPTION": "Whenever you play a card, gain 1 dexterity this turn only."
+    "DESCRIPTION": "Damage ignores Block, Curl Up, Sharp Hide, Malleable, and Thorns. NL Does not scale with Strength."
   },
   {
     "PROPER_NAME": "Multiword Keyword",
