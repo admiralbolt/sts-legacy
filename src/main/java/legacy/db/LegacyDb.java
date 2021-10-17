@@ -63,7 +63,6 @@ public class LegacyDb {
       ResultSet result = stmt.executeQuery();
       while (result.next()) {
         String enchantmentId = result.getString("enchantmentId");
-        System.out.println(enchantmentId);
         Enchantment enchantment = EnchantmentsManager.getEnchantment(enchantmentId);
         if (enchantment == null) {
           System.out.println("Could not find enchantment with id: " + enchantmentId);

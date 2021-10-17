@@ -8,6 +8,14 @@
     "DESCRIPTION": "Damage scales with Dexterity instead of Strength"
   },
   {
+    "PROPER_NAME": "Paired",
+    "NAMES": [
+      "Paired",
+      "paired"
+    ],
+    "DESCRIPTION": "Subsequent Paired weapons deal bonus damage."
+  },
+  {
     "PROPER_NAME": "Ranged",
     "NAMES": [
       "Ranged",

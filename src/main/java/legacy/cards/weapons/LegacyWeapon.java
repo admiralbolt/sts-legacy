@@ -1,6 +1,7 @@
 package legacy.cards.weapons;
 
 import basemod.abstracts.CustomCard;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -12,6 +13,7 @@ import legacy.LegacyMod;
 import legacy.characters.TheDefault;
 import legacy.db.DBCardInfo;
 import legacy.enchantments.Enchantment;
+import legacy.powers.FlurryPower;
 import legacy.util.CardUtils;
 
 import java.util.Arrays;
@@ -26,6 +28,7 @@ public class LegacyWeapon extends CustomCard {
 
   public enum WeaponTrait {
     FINESSE,
+    PAIRED,
     RANGED
   }
 
@@ -141,6 +144,9 @@ public class LegacyWeapon extends CustomCard {
    */
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
+    if (this.traits.contains(WeaponTrait.PAIRED)) {
+      AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new FlurryPower(p, 1)));
+    }
     for (Enchantment enchantment : this.enchantments) {
       enchantment.apply(p, m);
     }
@@ -172,8 +178,21 @@ public class LegacyWeapon extends CustomCard {
             this.multiDamage[i] += dexterity.amount;
           }
         }
-        System.out.println("Dexterity Amount: " + dexterity.amount);
         this.damage += dexterity.amount;
+        this.isDamageModified = true;
+      }
+    }
+
+    // Paired weapons deal bonus damage based on the amount of flurry stacks.
+    if (this.traits.contains(WeaponTrait.PAIRED)) {
+      AbstractPower flurry = AbstractDungeon.player.getPower("legacy:flurry");
+      if (flurry != null && flurry.amount != 0) {
+        if (this.isMultiDamage && this.multiDamage != null) {
+          for (int i = 0; i < this.multiDamage.length; ++i) {
+            this.multiDamage[i] += flurry.amount;
+          }
+        }
+        this.damage += flurry.amount;
         this.isDamageModified = true;
       }
     }
@@ -206,8 +225,21 @@ public class LegacyWeapon extends CustomCard {
             this.multiDamage[i] += dexterity.amount;
           }
         }
-        System.out.println("Dexterity Amount: " + dexterity.amount);
         this.damage += dexterity.amount;
+        this.isDamageModified = true;
+      }
+    }
+
+    // Paired weapons deal bonus damage based on the amount of flurry stacks.
+    if (this.traits.contains(WeaponTrait.PAIRED)) {
+      AbstractPower flurry = AbstractDungeon.player.getPower("legacy:flurry");
+      if (flurry != null && flurry.amount != 0) {
+        if (this.isMultiDamage && this.multiDamage != null) {
+          for (int i = 0; i < this.multiDamage.length; ++i) {
+            this.multiDamage[i] += flurry.amount;
+          }
+        }
+        this.damage += flurry.amount;
         this.isDamageModified = true;
       }
     }

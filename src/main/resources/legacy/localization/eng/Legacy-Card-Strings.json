@@ -5,7 +5,11 @@
   },
   "legacy:dagger": {
     "NAME": "Dagger",
-    "DESCRIPTION": "Deal !D! Damage.  NL legacy:Finesse"
+    "DESCRIPTION": "Deal !D! Damage. NL legacy:Paired"
+  },
+  "legacy:kukri": {
+    "NAME": "Kukri",
+    "DESCRIPTION": "Deal !D! Damage. NL legacy:Finesse legacy:Paired"
   },
   "legacy:longsword": {
     "NAME": "Longsword",

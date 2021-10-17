@@ -14,10 +14,10 @@ public class Dagger extends LegacyWeapon {
 
   public static final String ID = LegacyMod.makeID("dagger");
   private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-  public static final int COST = 1;
+  public static final int COST = 0;
 
   public Dagger() {
-    super(ID, cardStrings, COST, CardRarity.COMMON, CardTarget.ENEMY, WeaponTrait.FINESSE);
+    super(ID, cardStrings, COST, CardRarity.COMMON, CardTarget.ENEMY, WeaponTrait.PAIRED);
   }
 
   @Override

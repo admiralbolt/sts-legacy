@@ -1,10 +1,6 @@
 {
-"legacy:CommonPower": {
-        "NAME": "Placeholder Power",
-        "DESCRIPTIONS": ["You applied #b", " keyword.", " keywords."]
-},
-"legacy:RarePower": {
-        "NAME": "Placeholder Power",
-        "DESCRIPTIONS": ["At the start of your turn, TOUCH #b", " enemy." , " enemies."]
-}
+  "legacy:flurry": {
+    "NAME": "Flurry",
+    "DESCRIPTIONS": ["Paired weapons deal #b", " bonus damage."]
+  }
 }
