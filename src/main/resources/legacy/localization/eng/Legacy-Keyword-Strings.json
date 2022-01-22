@@ -24,6 +24,14 @@
     "DESCRIPTION": "Damage ignores Block, Curl Up, Sharp Hide, Malleable, and Thorns. NL Does not scale with Strength."
   },
   {
+    "PROPER_NAME": "Two Handed",
+    "NAMES": [
+      "Two Handed",
+      "two_handed",
+    ],
+    "DESCRIPTION": "Scales with Strength x2. Cannot play shields."
+  },
+  {
     "PROPER_NAME": "Multiword Keyword",
     "NAMES": [
       "Multiword Keyword",

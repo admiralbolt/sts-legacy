@@ -29,7 +29,8 @@ public class LegacyWeapon extends CustomCard {
   public enum WeaponTrait {
     FINESSE,
     PAIRED,
-    RANGED
+    RANGED,
+    TWO_HANDED
   }
 
   private final Set<WeaponTrait> traits;
@@ -154,14 +155,15 @@ public class LegacyWeapon extends CustomCard {
 
   @Override
   public void applyPowers() {
-    int strengthAmount = 0;
     AbstractPower strength = AbstractDungeon.player.getPower("Strength");
+    int strengthAmount = (strength == null) ? 0 : strength.amount;
 
-    if (this.traits.contains(WeaponTrait.FINESSE) || this.traits.contains(WeaponTrait.RANGED)) {
-      if (strength != null) {
-        strengthAmount = strength.amount;
-        strength.amount = 0;
-      }
+    if (strength != null) {
+      // Two handed weapons scale with strength twice as much.
+      if (this.traits.contains(WeaponTrait.TWO_HANDED)) strength.amount *= 2;
+      // Finesse and ranged weapons don't scale with strength UNLESS
+      // they are also marked as two handed weapons.
+      else if (this.traits.contains(WeaponTrait.FINESSE) || this.traits.contains(WeaponTrait.RANGED)) strength.amount -= strengthAmount;
     }
 
     super.applyPowers();
