@@ -10,7 +10,7 @@ import java.util.*;
  */
 public class CardUtils {
 
-  public static boolean isCardInstanceInDeck(UUID uuid) {
+  public static boolean isCardInstanceInMasterDeck(UUID uuid) {
     if (AbstractDungeon.player == null || AbstractDungeon.player.masterDeck == null) return false;
 
     for (AbstractCard card : AbstractDungeon.player.masterDeck.group) {
