@@ -8,6 +8,14 @@
     "DESCRIPTION": "Damage scales +1x with Dexterity and -1x with Strength."
   },
   {
+    "PROPER_NAME": "Frost",
+    "NAMES": [
+      "Frost",
+      "frost"
+    ],
+    "DESCRIPTION": "Decrease attack damage by #b1 per stack. Stack is reduced by #b1 at the end of turn. NL Remove #ySlow when stack reaches #b0."
+  },
+  {
     "PROPER_NAME": "Paired",
     "NAMES": [
       "Paired",

@@ -2,5 +2,9 @@
   "legacy:flurry": {
     "NAME": "Flurry",
     "DESCRIPTIONS": ["Paired weapons deal #b", " bonus damage."]
+  },
+  "legacy:frost": {
+    "NAME": "Frost",
+    "DESCRIPTIONS": ["Decreases attack damage by #b", ". Loses slow upon thawing in #b", "turns.", "turn."]
   }
 }

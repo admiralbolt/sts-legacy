@@ -21,7 +21,10 @@ public class EnchantmentsManager {
   public static void initialize() {
     allEnchantments = new ArrayList<>();
     enchantmentMap = new HashMap<>();
+
+    // DON'T FORGET TO ADD ENCHANTMENTS HERE!
     addEnchantment(new Corrosive());
+    addEnchantment(new Icy());
   }
 
   public static Enchantment getEnchantment(String enchantmentId) {

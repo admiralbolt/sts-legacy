@@ -19,7 +19,7 @@ public class FlurryPower extends AbstractPower {
     this.owner = owner;
     this.amount = amount;
     this.img = ImageMaster.loadImage("legacy/images/powers/placeholder_power32.png");
-    this.type = AbstractPower.PowerType.BUFF;
+    this.type = PowerType.BUFF;
     this.updateDescription();
   }
 
