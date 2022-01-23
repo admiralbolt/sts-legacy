@@ -7,6 +7,10 @@
     "NAME": "Dagger",
     "DESCRIPTION": "Deal !D! Damage. NL legacy:Paired"
   },
+  "legacy:greatsword": {
+    "NAME": "Greatsword",
+    "DESCRIPTION": "Deal !D! Damage. NL legacy:Two_Handed"
+  },
   "legacy:kukri": {
     "NAME": "Kukri",
     "DESCRIPTION": "Deal !D! Damage. NL legacy:Finesse legacy:Paired"
@@ -26,6 +30,10 @@
   "legacy:rapier": {
     "NAME": "Rapier",
     "DESCRIPTION": "Deal !D! Damage. NL legacy:Finesse"
+  },
+  "legacy:spear": {
+    "NAME": "Spear",
+    "DESCRIPTION": "Deal !D! Damage. NL legacy:Two_Handed legacy:Finesse"
   },
   "legacy:steel_shield": {
     "NAME": "Steel Shield",

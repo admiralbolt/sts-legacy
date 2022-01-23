@@ -35,6 +35,7 @@ public class LegacyCards {
     addCard("legacy:longsword", Longsword.class, LegacyCardType.WEAPON, 6);
     addCard("legacy:mace", Mace.class, LegacyCardType.WEAPON, 5);
     addCard("legacy:rapier", Rapier.class, LegacyCardType.WEAPON, 4);
+    addCard("legacy:spear", Spear.class, LegacyCardType.WEAPON, 9);
     addCard("legacy:whip", Whip.class, LegacyCardType.WEAPON, 2);
 
     addCard("legacy:padded_armor", PaddedArmor.class, LegacyCardType.ARMOR, 2);

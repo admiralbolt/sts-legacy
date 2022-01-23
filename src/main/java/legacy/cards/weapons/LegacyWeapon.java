@@ -30,6 +30,10 @@ public class LegacyWeapon extends LegacyCard {
 
   private final Set<WeaponTrait> traits;
 
+  // A temporary variable used to hold current strength. This is only used for damage calculation to make strength
+  // apply twice as much for two handed weapons.
+  private int currentStrength = 0;
+
   public LegacyWeapon(String id, CardStrings cardStrings, int cost, CardRarity rarity, CardTarget target) {
     this(id, cardStrings, cost, rarity, target, new WeaponTrait[]{});
   }
@@ -54,98 +58,56 @@ public class LegacyWeapon extends LegacyCard {
     }
   }
 
-  @Override
-  public void applyPowers() {
+  // The logic of applyPower() / calculateCardDamage() is almost identical for handling weapon traits.
+  // Rather than repeating ourselves we do our damage calculation in a shared method. This works slightly differently
+  // than how the base game handles some things.
+  //
+  // HeavyBlade for example, multiplies the strength value before calling super.applyPowers() and then resets it
+  // afterwords. That seems a little fragile to me, so instead this.damage is modified directly instead.
+  private void damageCalc() {
     AbstractPower strength = AbstractDungeon.player.getPower("Strength");
+    AbstractPower dexterity = AbstractDungeon.player.getPower("Dexterity");
+
     int strengthAmount = (strength == null) ? 0 : strength.amount;
+    int dexterityAmount = (dexterity == null) ? 0 : dexterity.amount;
 
-    if (strength != null) {
-      // Two handed weapons scale with strength twice as much.
-      if (this.traits.contains(WeaponTrait.TWO_HANDED)) strength.amount *= 2;
-        // Finesse and ranged weapons don't scale with strength UNLESS
-        // they are also marked as two handed weapons.
-      else if (this.traits.contains(WeaponTrait.FINESSE) || this.traits.contains(WeaponTrait.RANGED))
-        strength.amount -= strengthAmount;
-    }
+    // Two handed weapons scale with strength twice as much.
+    if (this.traits.contains(WeaponTrait.TWO_HANDED)) this.addDamage(strengthAmount);
 
-    super.applyPowers();
-
-    if (strength != null && strengthAmount != 0) {
-      strength.amount = strengthAmount;
-    }
-
+    // Finese weapons scale with dexterity instead of strength.
+    // In the case where something is two handed and finesse, it should scale 1x with strength and dexterity.
     if (this.traits.contains(WeaponTrait.FINESSE)) {
-      AbstractPower dexterity = AbstractDungeon.player.getPower("Dexterity");
-      if (dexterity != null && dexterity.amount != 0) {
-        if (this.isMultiDamage && this.multiDamage != null) {
-          for (int i = 0; i < this.multiDamage.length; ++i) {
-            this.multiDamage[i] += dexterity.amount;
-          }
-        }
-        this.damage += dexterity.amount;
-        this.isDamageModified = true;
-      }
+      this.addDamage(dexterityAmount);
+      this.addDamage(-1 * strengthAmount);
     }
 
-    // Paired weapons deal bonus damage based on the amount of flurry stacks.
+    // Paired weapons scale with flurry stacks.
     if (this.traits.contains(WeaponTrait.PAIRED)) {
       AbstractPower flurry = AbstractDungeon.player.getPower("legacy:flurry");
-      if (flurry != null && flurry.amount != 0) {
-        if (this.isMultiDamage && this.multiDamage != null) {
-          for (int i = 0; i < this.multiDamage.length; ++i) {
-            this.multiDamage[i] += flurry.amount;
-          }
-        }
-        this.damage += flurry.amount;
-        this.isDamageModified = true;
+      if (flurry != null) addDamage(flurry.amount);
+    }
+
+    this.isDamageModified = (this.damage != this.baseDamage);
+  }
+
+  private void addDamage(int amount) {
+    if (this.isMultiDamage && this.multiDamage != null) {
+      for (int i = 0; i < this.multiDamage.length; ++i) {
+        this.multiDamage[i] += amount;
       }
     }
+    this.damage += amount;
+  }
+
+  @Override
+  public void applyPowers() {
+    super.applyPowers();
+    this.damageCalc();
   }
 
   @Override
   public void calculateCardDamage(AbstractMonster mo) {
-    int strengthAmount = 0;
-    AbstractPower strength = AbstractDungeon.player.getPower("Strength");
-
-    if (this.traits.contains(WeaponTrait.FINESSE)) {
-      if (strength != null) {
-        strengthAmount = strength.amount;
-        strength.amount = 0;
-      }
-    }
-
     super.calculateCardDamage(mo);
-
-    if (this.traits.contains(WeaponTrait.FINESSE)) {
-      if (strength != null && strengthAmount != 0) {
-        strength.amount = strengthAmount;
-      }
-
-      // Then, we apply damage from Dexterity.
-      AbstractPower dexterity = AbstractDungeon.player.getPower("Dexterity");
-      if (dexterity != null && dexterity.amount != 0) {
-        if (this.isMultiDamage && this.multiDamage != null) {
-          for (int i = 0; i < this.multiDamage.length; ++i) {
-            this.multiDamage[i] += dexterity.amount;
-          }
-        }
-        this.damage += dexterity.amount;
-        this.isDamageModified = true;
-      }
-    }
-
-    // Paired weapons deal bonus damage based on the amount of flurry stacks.
-    if (this.traits.contains(WeaponTrait.PAIRED)) {
-      AbstractPower flurry = AbstractDungeon.player.getPower("legacy:flurry");
-      if (flurry != null && flurry.amount != 0) {
-        if (this.isMultiDamage && this.multiDamage != null) {
-          for (int i = 0; i < this.multiDamage.length; ++i) {
-            this.multiDamage[i] += flurry.amount;
-          }
-        }
-        this.damage += flurry.amount;
-        this.isDamageModified = true;
-      }
-    }
+    this.damageCalc();
   }
 }

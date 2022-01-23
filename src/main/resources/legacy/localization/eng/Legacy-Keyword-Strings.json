@@ -5,7 +5,7 @@
       "Finesse",
       "finesse"
     ],
-    "DESCRIPTION": "Damage scales with Dexterity instead of Strength"
+    "DESCRIPTION": "Damage scales +1x with Dexterity and -1x with Strength."
   },
   {
     "PROPER_NAME": "Paired",
@@ -21,15 +21,17 @@
       "Ranged",
       "ranged"
     ],
-    "DESCRIPTION": "Damage ignores Block, Curl Up, Sharp Hide, Malleable, and Thorns. NL Does not scale with Strength."
+    "DESCRIPTION": "Damage ignores Block, Curl Up, Sharp Hide, Malleable, and Thorns."
   },
   {
     "PROPER_NAME": "Two Handed",
     "NAMES": [
       "Two Handed",
+      "TwoHanded",
+      "Two_Handed",
       "two_handed",
     ],
-    "DESCRIPTION": "Scales with Strength x2. Cannot play shields."
+    "DESCRIPTION": "Damage scales +1x with Strength."
   },
   {
     "PROPER_NAME": "Multiword Keyword",
