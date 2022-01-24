@@ -104,23 +104,23 @@
     <dependency>
       <groupId>basemod</groupId>
       <artifactId>basemod</artifactId>
-      <version>5.0.0</version>
+      <version>5.34.3</version>
       <scope>system</scope>
       <systemPath>${Steam.path}/workshop/content/646570/1605833019/BaseMod.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>com.evacipated.cardcrawl.mod</groupId>
       <artifactId>StSLib</artifactId>
-      <version>1.3.2</version>
+      <version>1.23.1</version>
       <scope>system</scope>
       <systemPath>${Steam.path}/workshop/content/646570/1609158507/StSLib.jar</systemPath>
     </dependency>
   </dependencies>
   <properties>
-    <Jar.path>common/SlayTheSpire/</Jar.path>
-    <ModTheSpire.version>3.8.0</ModTheSpire.version>
-    <working_dir>C:\Users\avikn\git\sts-legacy</working_dir>
-    <Steam.path>C:\Program Files (x86)/Steam/steamapps</Steam.path>
+    <Jar.path>common/SlayTheSpire/SlayTheSpire.app/Contents/Resources</Jar.path>
+    <ModTheSpire.version>3.24.0</ModTheSpire.version>
+    <working_dir>/Users/admiralbolt/git/sts-legacy</working_dir>
+    <Steam.path>/Users/admiralbolt/Library/Application Support/Steam/steamapps</Steam.path>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <SlayTheSpire.version>10-23-2020</SlayTheSpire.version>
