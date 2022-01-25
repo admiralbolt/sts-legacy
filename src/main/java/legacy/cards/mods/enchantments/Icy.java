@@ -25,10 +25,6 @@ public class Icy extends Enchantment {
 
   @Override
   public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-    System.out.println("ICY ON USE");
-    System.out.println(target);
-    System.out.println(AbstractDungeon.player);
-    System.out.println("ICY ON END");
     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(target, AbstractDungeon.player, new FrostPower(target, FROST_AMOUNT), FROST_AMOUNT));
   }
 
