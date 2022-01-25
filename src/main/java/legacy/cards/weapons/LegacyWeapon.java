@@ -1,18 +1,24 @@
 package legacy.cards.weapons;
 
+import basemod.abstracts.AbstractCardModifier;
+import basemod.helpers.CardModifierManager;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import legacy.actions.PiercingDamageAction;
 import legacy.cards.LegacyCard;
+import legacy.cards.mods.traits.FinesseTrait;
+import legacy.cards.mods.traits.FlurryTrait;
+import legacy.cards.mods.traits.RangedTrait;
+import legacy.cards.mods.traits.TwoHandedTrait;
 import legacy.enchantments.Enchantment;
 import legacy.powers.FlurryPower;
-
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Weapons of Legacy.
@@ -21,28 +27,16 @@ import java.util.Set;
  */
 public class LegacyWeapon extends LegacyCard {
 
-  public enum WeaponTrait {
-    FINESSE,
-    PAIRED,
-    RANGED,
-    TWO_HANDED
-  }
-
-  private final Set<WeaponTrait> traits;
-
-  // A temporary variable used to hold current strength. This is only used for damage calculation to make strength
-  // apply twice as much for two handed weapons.
-  private int currentStrength = 0;
-
   public LegacyWeapon(String id, CardStrings cardStrings, int cost, CardRarity rarity, CardTarget target) {
-    this(id, cardStrings, cost, rarity, target, new WeaponTrait[]{});
+    super(id, cardStrings, cost, CardType.ATTACK, rarity, target);
   }
 
-  public LegacyWeapon(String id, CardStrings cardStrings, int cost, CardRarity rarity, CardTarget target, WeaponTrait... weaponTraits) {
+  public LegacyWeapon(String id, CardStrings cardStrings, int cost, CardRarity rarity, CardTarget target, AbstractCardModifier ...modifiers) {
     super(id, cardStrings, cost, CardType.ATTACK, rarity, target);
 
-    this.traits = new HashSet<>();
-    this.traits.addAll(Arrays.asList(weaponTraits));
+    for (AbstractCardModifier modifier : modifiers) {
+      CardModifierManager.addModifier(this, modifier);
+    }
   }
 
   /**
@@ -50,11 +44,17 @@ public class LegacyWeapon extends LegacyCard {
    */
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    if (this.traits.contains(WeaponTrait.PAIRED)) {
+    if (CardModifierManager.hasModifier(this, FlurryTrait.ID)) {
       AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new FlurryPower(p, 1)));
     }
     for (Enchantment enchantment : this.enchantments) {
       enchantment.apply(p, m);
+    }
+
+    if (CardModifierManager.hasModifier(this, RangedTrait.ID)) {
+      AbstractDungeon.actionManager.addToBottom(new PiercingDamageAction(m, p, damage));
+    } else {
+      AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
     }
   }
 
@@ -72,17 +72,17 @@ public class LegacyWeapon extends LegacyCard {
     int dexterityAmount = (dexterity == null) ? 0 : dexterity.amount;
 
     // Two handed weapons scale with strength twice as much.
-    if (this.traits.contains(WeaponTrait.TWO_HANDED)) this.addDamage(strengthAmount);
+    if (CardModifierManager.hasModifier(this, TwoHandedTrait.ID)) this.addDamage(strengthAmount);
 
     // Finese weapons scale with dexterity instead of strength.
     // In the case where something is two handed and finesse, it should scale 1x with strength and dexterity.
-    if (this.traits.contains(WeaponTrait.FINESSE)) {
+    if (CardModifierManager.hasModifier(this, FinesseTrait.ID)) {
       this.addDamage(dexterityAmount);
       this.addDamage(-1 * strengthAmount);
     }
 
     // Paired weapons scale with flurry stacks.
-    if (this.traits.contains(WeaponTrait.PAIRED)) {
+    if (CardModifierManager.hasModifier(this, FlurryTrait.ID)) {
       AbstractPower flurry = AbstractDungeon.player.getPower("legacy:flurry");
       if (flurry != null) addDamage(flurry.amount);
     }

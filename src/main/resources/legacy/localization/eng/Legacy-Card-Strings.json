@@ -5,15 +5,15 @@
   },
   "legacy:dagger": {
     "NAME": "Dagger",
-    "DESCRIPTION": "Deal !D! Damage. NL legacy:Paired"
+    "DESCRIPTION": "Deal !D! Damage."
   },
   "legacy:greatsword": {
     "NAME": "Greatsword",
-    "DESCRIPTION": "Deal !D! Damage. NL legacy:Two_Handed"
+    "DESCRIPTION": "Deal !D! Damage."
   },
   "legacy:kukri": {
     "NAME": "Kukri",
-    "DESCRIPTION": "Deal !D! Damage. NL legacy:Finesse legacy:Paired"
+    "DESCRIPTION": "Deal !D! Damage."
   },
   "legacy:longsword": {
     "NAME": "Longsword",
@@ -29,11 +29,11 @@
   },
   "legacy:rapier": {
     "NAME": "Rapier",
-    "DESCRIPTION": "Deal !D! Damage. NL legacy:Finesse"
+    "DESCRIPTION": "Deal !D! Damage."
   },
   "legacy:spear": {
     "NAME": "Spear",
-    "DESCRIPTION": "Deal !D! Damage. NL legacy:Two_Handed legacy:Finesse"
+    "DESCRIPTION": "Deal !D! Damage."
   },
   "legacy:steel_shield": {
     "NAME": "Steel Shield",

@@ -9,6 +9,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import legacy.LegacyMod;
+import legacy.cards.mods.traits.FinesseTrait;
+import legacy.cards.mods.traits.TwoHandedTrait;
 
 public class Spear extends LegacyWeapon {
 
@@ -17,7 +19,7 @@ public class Spear extends LegacyWeapon {
   public static final int COST = 2;
 
   public Spear() {
-    super(ID, cardStrings, COST, CardRarity.COMMON, CardTarget.ENEMY, WeaponTrait.TWO_HANDED, WeaponTrait.FINESSE);
+    super(ID, cardStrings, COST, CardRarity.COMMON, CardTarget.ENEMY, new TwoHandedTrait(), new FinesseTrait());
   }
 
   @Override

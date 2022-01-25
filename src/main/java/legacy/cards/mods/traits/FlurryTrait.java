@@ -5,16 +5,16 @@ import com.badlogic.gdx.graphics.Texture;
 import legacy.util.TextureLoader;
 
 /**
- * Two handed weapons have +1x scaling with strength.
+ * Flurry weapons deal more damage the more you've played in a single  turn.
  *
  * Logic for damage calculation is in LegacyWeapon.
  */
-public class TwoHandedTrait extends EquipmentTrait {
+public class FlurryTrait extends EquipmentTrait {
 
-  public static final String ID = "legacy:two_handed";
-  public static final Texture BADGE = TextureLoader.getTexture("legacy/images/cards/mods/traits/two_handed.png");
+  public static final String ID = "legacy:flurry";
+  public static final Texture BADGE = TextureLoader.getTexture("legacy/images/cards/mods/traits/flurry.png");
 
-  public TwoHandedTrait() {
+  public FlurryTrait() {
     super(ID, BADGE);
   }
 

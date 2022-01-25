@@ -10,6 +10,8 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import legacy.LegacyMod;
 import legacy.actions.PiercingDamageAction;
+import legacy.cards.mods.traits.FinesseTrait;
+import legacy.cards.mods.traits.RangedTrait;
 
 public class Whip extends LegacyWeapon {
 
@@ -18,7 +20,7 @@ public class Whip extends LegacyWeapon {
   public static final int COST = 1;
 
   public Whip() {
-    super(ID, cardStrings, COST, CardRarity.UNCOMMON, CardTarget.ENEMY, WeaponTrait.FINESSE, WeaponTrait.RANGED);
+    super(ID, cardStrings, COST, CardRarity.UNCOMMON, CardTarget.ENEMY, new FinesseTrait(), new RangedTrait());
   }
 
   @Override

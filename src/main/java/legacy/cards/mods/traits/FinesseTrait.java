@@ -6,15 +6,13 @@ import legacy.util.TextureLoader;
 
 /**
  * Two handed weapons have +1x scaling with strength.
- *
- * Logic for damage calculation is in LegacyWeapon.
  */
-public class TwoHandedTrait extends EquipmentTrait {
+public class FinesseTrait extends EquipmentTrait {
 
-  public static final String ID = "legacy:two_handed";
-  public static final Texture BADGE = TextureLoader.getTexture("legacy/images/cards/mods/traits/two_handed.png");
+  public static final String ID = "legacy:finesse";
+  public static final Texture BADGE = TextureLoader.getTexture("legacy/images/cards/mods/traits/finesse.png");
 
-  public TwoHandedTrait() {
+  public FinesseTrait() {
     super(ID, BADGE);
   }
 

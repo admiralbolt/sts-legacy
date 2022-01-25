@@ -8,6 +8,14 @@
     "DESCRIPTION": "Damage scales +1x with Dexterity and -1x with Strength."
   },
   {
+    "PROPER_NAME": "Flurry",
+    "NAMES": [
+      "Flurry",
+      "flurry"
+    ],
+    "DESCRIPTION": "Subsequent flurry cards deal more damage."
+  },
+  {
     "PROPER_NAME": "Frost",
     "NAMES": [
       "Frost",

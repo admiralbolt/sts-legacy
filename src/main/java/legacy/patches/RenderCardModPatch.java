@@ -17,34 +17,11 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import javassist.CtBehavior;
-import legacy.cards.mods.traits.EquipmentTrait;
-import legacy.cards.mods.traits.TwoHandedTrait;
+import legacy.cards.mods.traits.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
-
-
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.GlyphLayout;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
-import com.evacipated.cardcrawl.mod.stslib.StSLib;
-import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.CommonKeywordIconsField;
-import com.evacipated.cardcrawl.modthespire.lib.*;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.GameDictionary;
-import com.megacrit.cardcrawl.helpers.Hitbox;
-import com.megacrit.cardcrawl.helpers.PowerTip;
-import com.megacrit.cardcrawl.helpers.TipHelper;
-import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
-import javassist.CtBehavior;
-
-import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 /**
@@ -69,7 +46,10 @@ public class RenderCardModPatch {
     KEYWORD_MAP.put("purge", StSLib.BADGE_PURGE);
 
     // EQUIPMENT TRAITS.
-    KEYWORD_MAP.put("legacy:two_handed", TwoHandedTrait.BADGE);
+    KEYWORD_MAP.put(FinesseTrait.ID, FinesseTrait.BADGE);
+    KEYWORD_MAP.put(FlurryTrait.ID, FlurryTrait.BADGE);
+    KEYWORD_MAP.put(RangedTrait.ID, RangedTrait.BADGE);
+    KEYWORD_MAP.put(TwoHandedTrait.ID, TwoHandedTrait.BADGE);
   }
 
   @SpirePatch(clz=AbstractCard.class, method="renderCard")
@@ -172,7 +152,11 @@ public class RenderCardModPatch {
       if (___card.exhaust || ___card.exhaustOnUseOnce) offsetY += drawBadge(sb, ___card, ___cardHb, StSLib.BADGE_EXHAUST, offsetY);
 
       // EQUIPMENT TRAITS.
-      if (CardModifierManager.hasModifier(___card, "legacy:two_handed")) offsetY += drawBadge(sb, ___card, ___cardHb, TwoHandedTrait.BADGE, offsetY);
+      for (AbstractCardModifier mod : CardModifierManager.modifiers(___card)) {
+        if (!(mod instanceof EquipmentTrait)) continue;
+
+        offsetY += drawBadge(sb, ___card, ___cardHb, ((EquipmentTrait) mod).badge, offsetY);
+      }
     }
 
     private static int drawBadge(SpriteBatch sb, AbstractCard card, Hitbox hb, Texture img, int offset) {
@@ -204,7 +188,6 @@ public class RenderCardModPatch {
     private static class Locator extends SpireInsertLocator {
       @Override
       public int[] Locate(CtBehavior ctBehavior) throws Exception {
-        System.out.println("SINGLE CARD VIEW POPUP LOCATE");
         Matcher finalMatcher = new Matcher.MethodCallMatcher(TipHelper.class, "queuePowerTips");
         return LineFinder.findInOrder(ctBehavior, finalMatcher);
       }
@@ -248,7 +231,11 @@ public class RenderCardModPatch {
     if (card.exhaust || card.exhaustOnUseOnce) offsetY -= RenderBadge(sb, card, StSLib.BADGE_EXHAUST, offsetY, alpha);
 
     // EQUIPMENT TRAITS.
-    if (CardModifierManager.hasModifier(card, "legacy:two_handed")) offsetY -= RenderBadge(sb, card, TwoHandedTrait.BADGE, offsetY, alpha);
+    for (AbstractCardModifier mod : CardModifierManager.modifiers(card)) {
+      if (!(mod instanceof EquipmentTrait)) continue;
+
+      offsetY -= RenderBadge(sb, card, ((EquipmentTrait) mod).badge, offsetY, alpha);
+    }
   }
 
   private static float RenderBadge(SpriteBatch sb, AbstractCard card, Texture texture, float offset_y, float alpha) {
@@ -270,7 +257,7 @@ public class RenderCardModPatch {
     for (AbstractCardModifier mod : CardModifierManager.modifiers(c)) {
       if (!(mod instanceof EquipmentTrait)) continue;
 
-      kws.add(((EquipmentTrait) mod).keyword);
+      kws.add(((EquipmentTrait) mod).id);
     }
 
     return kws.stream().distinct().collect(Collectors.toCollection(ArrayList::new));
