@@ -20,7 +20,7 @@ public class RangedTrait extends EquipmentTrait {
 
   @Override
   public AbstractCardModifier makeCopy() {
-    return new TwoHandedTrait();
+    return new RangedTrait();
   }
 
 }

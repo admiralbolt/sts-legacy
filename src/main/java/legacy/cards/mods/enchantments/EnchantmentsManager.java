@@ -1,4 +1,9 @@
-package legacy.enchantments;
+package legacy.cards.mods.enchantments;
+
+import basemod.helpers.CardBorderGlowManager;
+import basemod.helpers.CardModifierManager;
+import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,6 +30,28 @@ public class EnchantmentsManager {
     // DON'T FORGET TO ADD ENCHANTMENTS HERE!
     addEnchantment(new Corrosive());
     addEnchantment(new Icy());
+  }
+
+  public static void postInitialize() {
+    for (Enchantment enchantment : allEnchantments) {
+      CardBorderGlowManager.addGlowInfo(new CardBorderGlowManager.GlowInfo() {
+
+        @Override
+        public boolean test(AbstractCard card) {
+          return CardModifierManager.hasModifier(card, enchantment.id);
+        }
+
+        @Override
+        public Color getColor(AbstractCard card) {
+          return enchantment.getColor();
+        }
+
+        @Override
+        public String glowID() {
+          return enchantment.id + "_glow";
+        }
+      });
+    }
   }
 
   public static Enchantment getEnchantment(String enchantmentId) {

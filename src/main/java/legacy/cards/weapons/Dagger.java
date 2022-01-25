@@ -1,13 +1,7 @@
 package legacy.cards.weapons;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import legacy.LegacyMod;
 import legacy.cards.mods.traits.FlurryTrait;
 
@@ -19,13 +13,6 @@ public class Dagger extends LegacyWeapon {
 
   public Dagger() {
     super(ID, cardStrings, COST, CardRarity.COMMON, CardTarget.ENEMY, new FlurryTrait());
-  }
-
-  @Override
-  public void use(AbstractPlayer p, AbstractMonster m) {
-    super.use(p, m);
-
-    AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
   }
 
 }

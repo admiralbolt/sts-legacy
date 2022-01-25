@@ -1,8 +1,8 @@
 package legacy.db;
 
 import legacy.cards.LegacyCards;
-import legacy.enchantments.Enchantment;
-import legacy.enchantments.EnchantmentsManager;
+import legacy.cards.mods.enchantments.Enchantment;
+import legacy.cards.mods.enchantments.EnchantmentsManager;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

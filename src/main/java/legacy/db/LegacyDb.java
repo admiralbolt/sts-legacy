@@ -4,8 +4,8 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import legacy.cards.LegacyCards;
 import legacy.cards.weapons.Anathema;
-import legacy.enchantments.Enchantment;
-import legacy.enchantments.EnchantmentsManager;
+import legacy.cards.mods.enchantments.Enchantment;
+import legacy.cards.mods.enchantments.EnchantmentsManager;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -157,19 +157,6 @@ public class LegacyDb {
     }
 
     builder.append(baseName);
-    return builder.toString();
-  }
-
-  public String getCardDescription(String cardId, String baseDescription) {
-    StringBuilder builder = new StringBuilder();
-    builder.append(baseDescription);
-
-    List<Enchantment> enchantments = loadCardEnchantments(cardId);
-    for (Enchantment enchantment : enchantments) {
-      builder.append(" NL ");
-      builder.append(enchantment.description);
-    }
-
     return builder.toString();
   }
 

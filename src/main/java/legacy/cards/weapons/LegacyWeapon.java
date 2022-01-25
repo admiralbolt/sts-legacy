@@ -17,7 +17,7 @@ import legacy.cards.mods.traits.FinesseTrait;
 import legacy.cards.mods.traits.FlurryTrait;
 import legacy.cards.mods.traits.RangedTrait;
 import legacy.cards.mods.traits.TwoHandedTrait;
-import legacy.enchantments.Enchantment;
+import legacy.cards.mods.enchantments.Enchantment;
 import legacy.powers.FlurryPower;
 
 /**
@@ -46,9 +46,6 @@ public class LegacyWeapon extends LegacyCard {
   public void use(AbstractPlayer p, AbstractMonster m) {
     if (CardModifierManager.hasModifier(this, FlurryTrait.ID)) {
       AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new FlurryPower(p, 1)));
-    }
-    for (Enchantment enchantment : this.enchantments) {
-      enchantment.apply(p, m);
     }
 
     if (CardModifierManager.hasModifier(this, RangedTrait.ID)) {

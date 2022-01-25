@@ -18,7 +18,7 @@ public class FinesseTrait extends EquipmentTrait {
 
   @Override
   public AbstractCardModifier makeCopy() {
-    return new TwoHandedTrait();
+    return new FinesseTrait();
   }
 
 }

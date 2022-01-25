@@ -18,9 +18,8 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import legacy.cards.LegacyCards;
-import legacy.cards.weapons.*;
 import legacy.db.LegacyDb;
-import legacy.enchantments.EnchantmentsManager;
+import legacy.cards.mods.enchantments.EnchantmentsManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import legacy.characters.TheDefault;
@@ -308,6 +307,8 @@ public class LegacyMod implements
         settingsPanel.addUIElement(enableNormalsButton); // Add the button to the settings panel. Button is a go.
         
         BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
+
+        EnchantmentsManager.postInitialize();
 
         
         // =============== EVENTS =================

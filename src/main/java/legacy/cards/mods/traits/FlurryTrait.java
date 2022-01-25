@@ -20,7 +20,7 @@ public class FlurryTrait extends EquipmentTrait {
 
   @Override
   public AbstractCardModifier makeCopy() {
-    return new TwoHandedTrait();
+    return new FlurryTrait();
   }
 
 }

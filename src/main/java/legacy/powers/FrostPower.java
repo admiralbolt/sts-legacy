@@ -38,12 +38,38 @@ public class FrostPower extends AbstractPower {
   @Override
   public void onInitialApplication() {
     super.onInitialApplication();
+    applySlowIf5Stacks();
+  }
+
+  @Override
+  public void stackPower(int stackAmount) {
+    super.stackPower(stackAmount);
+    applySlowIf5Stacks();
+  }
+
+  @Override
+  public void reducePower(int reduceAmount) {
+    super.reducePower(reduceAmount);
+
+    if (this.amount < 5) {
+      removeSlow();
+    }
+  }
+
+  private void applySlowIf5Stacks() {
+    if (this.amount < 5) return;
+
+    // We don't want to apply slow if the target already has it.
+    AbstractPower slow = this.owner.getPower("Slow");
+    if (slow == null) AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this.owner, this.owner, new SlowPower(this.owner, 0)));
+  }
+
+  private void removeSlow() {
+    // Giant Head shouldn't be unslowed from getting thawed. :)
+    if (this.owner instanceof GiantHead) return;
 
     AbstractPower slow = this.owner.getPower("Slow");
-    System.out.println("INITIAL APPLICATION SLOW");
-    System.out.println(slow);
-    System.out.println("SLOW");
-    if (slow == null) AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this.owner, this.owner, new SlowPower(this.owner, 0)));
+    if (slow != null) AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, slow));
   }
 
   // Remove the slow power after thawing.
@@ -51,11 +77,7 @@ public class FrostPower extends AbstractPower {
   public void onRemove() {
     super.onRemove();
 
-    // Giant Head shouldn't be unslowed from getting thawed. :)
-    if (this.owner instanceof GiantHead) return;
-
-    AbstractPower slow = this.owner.getPower("Slow");
-    if (slow != null) AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, slow));
+    this.removeSlow();
   }
 
   public void atEndOfTurn(boolean isPlayer) {

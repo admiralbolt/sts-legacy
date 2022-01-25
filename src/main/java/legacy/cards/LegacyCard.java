@@ -1,7 +1,7 @@
 package legacy.cards;
 
 import basemod.abstracts.CustomCard;
-import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.CommonKeywordIconsField;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -9,10 +9,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import legacy.LegacyMod;
-import legacy.cards.weapons.LegacyWeapon;
 import legacy.characters.TheDefault;
 import legacy.db.DBCardInfo;
-import legacy.enchantments.Enchantment;
+import legacy.cards.mods.enchantments.Enchantment;
 import legacy.util.CardUtils;
 
 import java.util.List;
@@ -28,7 +27,7 @@ public class LegacyCard extends CustomCard {
             LegacyMod.LEGACY_DB.getName(id, cardStrings.NAME),
             LegacyMod.makeCardPathFromId(id),
             cost,
-            LegacyMod.LEGACY_DB.getCardDescription(id, cardStrings.DESCRIPTION),
+            cardStrings.DESCRIPTION,
             cardType,
             TheDefault.Enums.COLOR_GRAY,
             rarity,
@@ -52,6 +51,10 @@ public class LegacyCard extends CustomCard {
     this.baseMagicNumber = this.magicNumber = 1;
     this.cardStrings = cardStrings;
     this.enchantments = LegacyMod.LEGACY_DB.loadCardEnchantments(id);
+    // We need to add the enchantment modifier to the card on load as well.
+    for (Enchantment enchantment : this.enchantments) {
+      CardModifierManager.addModifier(this, enchantment);
+    }
   }
 
   /**

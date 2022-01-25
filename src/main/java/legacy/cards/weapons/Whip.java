@@ -1,15 +1,8 @@
 package legacy.cards.weapons;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import legacy.LegacyMod;
-import legacy.actions.PiercingDamageAction;
 import legacy.cards.mods.traits.FinesseTrait;
 import legacy.cards.mods.traits.RangedTrait;
 
@@ -21,12 +14,6 @@ public class Whip extends LegacyWeapon {
 
   public Whip() {
     super(ID, cardStrings, COST, CardRarity.UNCOMMON, CardTarget.ENEMY, new FinesseTrait(), new RangedTrait());
-  }
-
-  @Override
-  public void use(AbstractPlayer p, AbstractMonster m) {
-    AbstractDungeon.actionManager.addToBottom(new PiercingDamageAction(m, p, damage));
-    super.use(p, m);
   }
 
 }

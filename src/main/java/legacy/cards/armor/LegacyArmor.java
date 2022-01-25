@@ -1,10 +1,7 @@
 package legacy.cards.armor;
 
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.localization.CardStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import legacy.cards.LegacyCard;
-import legacy.enchantments.Enchantment;
 
 /**
  * Armor of Legacy.
@@ -25,13 +22,4 @@ public class LegacyArmor extends LegacyCard {
     this.initializeTitle();
   }
 
-  /**
-   * Applies effects from all enchantments.
-   */
-  @Override
-  public void use(AbstractPlayer p, AbstractMonster m) {
-    for (Enchantment enchantment : this.enchantments) {
-      enchantment.apply(p, m);
-    }
-  }
 }
