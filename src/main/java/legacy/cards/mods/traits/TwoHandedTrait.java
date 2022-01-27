@@ -15,7 +15,7 @@ public class TwoHandedTrait extends EquipmentTrait {
   public static final Texture BADGE = TextureLoader.getTexture("legacy/images/cards/mods/traits/two_handed.png");
 
   public TwoHandedTrait() {
-    super(ID, BADGE);
+    super(ID);
   }
 
   @Override

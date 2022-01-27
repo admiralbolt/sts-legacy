@@ -35,21 +35,21 @@ import java.util.stream.Collectors;
  */
 public class RenderCardModPatch {
 
-  private static final Map<String, Texture> KEYWORD_MAP;
+  private static final Map<String, Texture> BADGE_MAP;
   static {
-    KEYWORD_MAP = new HashMap<>();
+    BADGE_MAP = new HashMap<>();
     // BASE GAME KEYWORDS.
-    KEYWORD_MAP.put(GameDictionary.INNATE.NAMES[0].toLowerCase(), StSLib.BADGE_INNATE);
-    KEYWORD_MAP.put(GameDictionary.EXHAUST.NAMES[0].toLowerCase(), StSLib.BADGE_EXHAUST);
-    KEYWORD_MAP.put(GameDictionary.ETHEREAL.NAMES[0].toLowerCase(), StSLib.BADGE_ETHEREAL);
-    KEYWORD_MAP.put(GameDictionary.RETAIN.NAMES[0].toLowerCase(), StSLib.BADGE_RETAIN);
-    KEYWORD_MAP.put("purge", StSLib.BADGE_PURGE);
+    BADGE_MAP.put(GameDictionary.INNATE.NAMES[0].toLowerCase(), StSLib.BADGE_INNATE);
+    BADGE_MAP.put(GameDictionary.EXHAUST.NAMES[0].toLowerCase(), StSLib.BADGE_EXHAUST);
+    BADGE_MAP.put(GameDictionary.ETHEREAL.NAMES[0].toLowerCase(), StSLib.BADGE_ETHEREAL);
+    BADGE_MAP.put(GameDictionary.RETAIN.NAMES[0].toLowerCase(), StSLib.BADGE_RETAIN);
+    BADGE_MAP.put("purge", StSLib.BADGE_PURGE);
 
     // EQUIPMENT TRAITS.
-    KEYWORD_MAP.put(FinesseTrait.ID, FinesseTrait.BADGE);
-    KEYWORD_MAP.put(FlurryTrait.ID, FlurryTrait.BADGE);
-    KEYWORD_MAP.put(RangedTrait.ID, RangedTrait.BADGE);
-    KEYWORD_MAP.put(TwoHandedTrait.ID, TwoHandedTrait.BADGE);
+    BADGE_MAP.put(FinesseTrait.ID, FinesseTrait.BADGE);
+    BADGE_MAP.put(FlurryTrait.ID, FlurryTrait.BADGE);
+    BADGE_MAP.put(RangedTrait.ID, RangedTrait.BADGE);
+    BADGE_MAP.put(TwoHandedTrait.ID, TwoHandedTrait.BADGE);
   }
 
   @SpirePatch(clz=AbstractCard.class, method="renderCard")
@@ -132,7 +132,7 @@ public class RenderCardModPatch {
     public static void patch(SpriteBatch sb, String word, float x, float y, AbstractCard ___card) {
       if (___card == null) return;
 
-      drawBadgeOnTip(x, y, sb, KEYWORD_MAP.get(word));
+      drawBadgeOnTip(x, y, sb, BADGE_MAP.get(word));
     }
   }
 
@@ -155,7 +155,7 @@ public class RenderCardModPatch {
       for (AbstractCardModifier mod : CardModifierManager.modifiers(___card)) {
         if (!(mod instanceof EquipmentTrait)) continue;
 
-        offsetY += drawBadge(sb, ___card, ___cardHb, ((EquipmentTrait) mod).badge, offsetY);
+        offsetY += drawBadge(sb, ___card, ___cardHb, BADGE_MAP.get(((EquipmentTrait) mod).id), offsetY);
       }
     }
 
@@ -199,7 +199,7 @@ public class RenderCardModPatch {
     @SpireInsertPatch(locator=Locator.class, localvars={"tip"})
     public static void patch(float x, float y, SpriteBatch sb, ArrayList<PowerTip> powerTips, PowerTip tip) {
       if (!workaroundSwitch) return;
-      drawBadgeOnTip(x, y, sb, KEYWORD_MAP.get(tip.header.toLowerCase()));
+      drawBadgeOnTip(x, y, sb, BADGE_MAP.get(tip.header.toLowerCase()));
 
       if (powerTips.get(powerTips.size() - 1).equals(tip)) workaroundSwitch = false;
     }
@@ -234,7 +234,7 @@ public class RenderCardModPatch {
     for (AbstractCardModifier mod : CardModifierManager.modifiers(card)) {
       if (!(mod instanceof EquipmentTrait)) continue;
 
-      offsetY -= RenderBadge(sb, card, ((EquipmentTrait) mod).badge, offsetY, alpha);
+      offsetY -= RenderBadge(sb, card, BADGE_MAP.get(((EquipmentTrait) mod).id), offsetY, alpha);
     }
   }
 

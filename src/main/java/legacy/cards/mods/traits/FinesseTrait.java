@@ -13,7 +13,7 @@ public class FinesseTrait extends EquipmentTrait {
   public static final Texture BADGE = TextureLoader.getTexture("legacy/images/cards/mods/traits/finesse.png");
 
   public FinesseTrait() {
-    super(ID, BADGE);
+    super(ID);
   }
 
   @Override

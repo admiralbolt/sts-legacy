@@ -15,7 +15,7 @@ public class RangedTrait extends EquipmentTrait {
   public static final Texture BADGE = TextureLoader.getTexture("legacy/images/cards/mods/traits/ranged.png");
 
   public RangedTrait() {
-    super(ID, BADGE);
+    super(ID);
   }
 
   @Override

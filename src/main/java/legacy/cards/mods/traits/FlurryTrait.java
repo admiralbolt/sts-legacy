@@ -15,7 +15,7 @@ public class FlurryTrait extends EquipmentTrait {
   public static final Texture BADGE = TextureLoader.getTexture("legacy/images/cards/mods/traits/flurry.png");
 
   public FlurryTrait() {
-    super(ID, BADGE);
+    super(ID);
   }
 
   @Override

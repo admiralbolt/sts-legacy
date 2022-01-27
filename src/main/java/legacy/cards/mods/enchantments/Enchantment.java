@@ -3,8 +3,6 @@ package legacy.cards.mods.enchantments;
 import basemod.abstracts.AbstractCardModifier;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 /**
  * Enchantments are a special type of modifier that gets applied only to weapons & armor.

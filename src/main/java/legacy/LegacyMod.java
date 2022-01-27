@@ -132,7 +132,6 @@ public class LegacyMod implements
     }
     
     public static String makeCardPath(String resourcePath) {
-        System.out.println("DEBUG: " + getModID() + "/images/cards/" + resourcePath);
         return getModID() + "/images/cards/" + resourcePath;
     }
     
