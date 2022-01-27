@@ -20,9 +20,10 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import legacy.cards.LegacyCards;
 import legacy.db.LegacyDb;
 import legacy.cards.mods.enchantments.EnchantmentsManager;
+import legacy.util.MonsterUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import legacy.characters.TheDefault;
+import legacy.characters.TheAdventurer;
 import legacy.potions.PlaceholderPotion;
 import legacy.relics.BottledPlaceholderRelic;
 import legacy.relics.DefaultClickableRelic;
@@ -31,6 +32,7 @@ import legacy.relics.PlaceholderRelic2;
 import legacy.util.IDCheckDontTouchPls;
 import legacy.util.TextureLoader;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -63,11 +65,6 @@ public class LegacyMod implements
     // This is set below by the setModId call, because reasons.
     private static String modID;
 
-    // Mod-settings settings. This is if you want an on/off savable button
-    public static Properties theDefaultDefaultSettings = new Properties();
-    public static final String ENABLE_PLACEHOLDER_SETTINGS = "enablePlaceholder";
-    public static boolean enablePlaceholder = true; // The boolean we'll be setting on/off (true/false)
-
     //This is for the in-game mod settings panel.
     private static final String MODNAME = "Legacy";
     private static final String AUTHOR = "admiralbolt";
@@ -78,6 +75,9 @@ public class LegacyMod implements
     // anywhere else in the app, would prefer to not do this statically, but unsure if we can get an instance of the
     // LegacyMod somewhere else.
     public static LegacyDb LEGACY_DB = new LegacyDb();
+
+    // Things that don't need to be in the DB will be tracked via properties & spire config.
+    public static SpireConfig CHARACTER_STATS;
     
     // =============== INPUT TEXTURE LOCATION =================
     
@@ -172,35 +172,47 @@ public class LegacyMod implements
         
         logger.info("Done subscribing");
         
-        logger.info("Creating the color " + TheDefault.Enums.COLOR_GRAY.toString());
+        logger.info("Creating the color " + TheAdventurer.Enums.COLOR_GRAY.toString());
         
-        BaseMod.addColor(TheDefault.Enums.COLOR_GRAY, DEFAULT_GRAY, DEFAULT_GRAY, DEFAULT_GRAY,
+        BaseMod.addColor(TheAdventurer.Enums.COLOR_GRAY, DEFAULT_GRAY, DEFAULT_GRAY, DEFAULT_GRAY,
                 DEFAULT_GRAY, DEFAULT_GRAY, DEFAULT_GRAY, DEFAULT_GRAY,
                 ATTACK_DEFAULT_GRAY, SKILL_DEFAULT_GRAY, POWER_DEFAULT_GRAY, ENERGY_ORB_DEFAULT_GRAY,
                 ATTACK_DEFAULT_GRAY_PORTRAIT, SKILL_DEFAULT_GRAY_PORTRAIT, POWER_DEFAULT_GRAY_PORTRAIT,
                 ENERGY_ORB_DEFAULT_GRAY_PORTRAIT, CARD_ENERGY_ORB);
         
         logger.info("Done creating the color");
-        
-        
+
         logger.info("Adding mod settings");
-        // This loads the mod settings.
-        // The actual mod Button is added below in receivePostInitialize()
-        theDefaultDefaultSettings.setProperty(ENABLE_PLACEHOLDER_SETTINGS, "FALSE"); // This is the default setting. It's actually set...
+        Properties defaults = new Properties();
+        defaults.setProperty("xp", "0");
+        defaults.setProperty("nextXp", "100");
+        defaults.setProperty("level", "0");
+        defaults.setProperty("fighter_level", "0");
+        defaults.setProperty("rogue_level", "0");
+        defaults.setProperty("wizard_level", "0");
+
         try {
-            SpireConfig config = new SpireConfig("legacy", "legacyConfig", theDefaultDefaultSettings); // ...right here
-            // the "fileName" parameter is the name of the file MTS will create where it will save our setting.
-            config.load(); // Load the setting and set the boolean to equal it
-            enablePlaceholder = config.getBool(ENABLE_PLACEHOLDER_SETTINGS);
-        } catch (Exception e) {
+            CHARACTER_STATS = new SpireConfig("Legacy", "character_stats", defaults);
+            CHARACTER_STATS.load();
+        } catch (IOException e) {
             e.printStackTrace();
         }
         logger.info("Done adding mod settings");
 
         logger.info("Initializing Legacy Mod Specific Shtuff.");
+        MonsterUtils.initialize();
         LegacyCards.initialize();
         EnchantmentsManager.initialize();
         LEGACY_DB.initialize();
+    }
+
+    // Save permanent stats.
+    public static void saveCharacterStats() {
+        try {
+            CHARACTER_STATS.save();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     // ====== NO EDIT AREA ======
@@ -261,13 +273,13 @@ public class LegacyMod implements
     
     @Override
     public void receiveEditCharacters() {
-        logger.info("Beginning to edit characters. " + "Add " + TheDefault.Enums.THE_DEFAULT.toString());
+        logger.info("Beginning to edit characters. " + "Add " + TheAdventurer.Enums.THE_DEFAULT.toString());
         
-        BaseMod.addCharacter(new TheDefault("the Default", TheDefault.Enums.THE_DEFAULT),
-                THE_DEFAULT_BUTTON, THE_DEFAULT_PORTRAIT, TheDefault.Enums.THE_DEFAULT);
+        BaseMod.addCharacter(new TheAdventurer("the Default", TheAdventurer.Enums.THE_DEFAULT),
+                THE_DEFAULT_BUTTON, THE_DEFAULT_PORTRAIT, TheAdventurer.Enums.THE_DEFAULT);
         
         receiveEditPotions();
-        logger.info("Added " + TheDefault.Enums.THE_DEFAULT.toString());
+        logger.info("Added " + TheAdventurer.Enums.THE_DEFAULT.toString());
     }
     
     // =============== /LOAD THE CHARACTER/ =================
@@ -284,28 +296,7 @@ public class LegacyMod implements
         
         // Create the Mod Menu
         ModPanel settingsPanel = new ModPanel();
-        
-        // Create the on/off button:
-        ModLabeledToggleButton enableNormalsButton = new ModLabeledToggleButton("This is the text which goes next to the checkbox.",
-                350.0f, 700.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
-                enablePlaceholder, // Boolean it uses
-                settingsPanel, // The mod panel in which this button will be in
-                (label) -> {}, // thing??????? idk
-                (button) -> { // The actual button:
-            
-            enablePlaceholder = button.enabled; // The boolean true/false will be whether the button is enabled or not
-            try {
-                // And based on that boolean, set the settings and save them
-                SpireConfig config = new SpireConfig("legacyMod", "legacyConfig", theDefaultDefaultSettings);
-                config.setBool(ENABLE_PLACEHOLDER_SETTINGS, enablePlaceholder);
-                config.save();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-        
-        settingsPanel.addUIElement(enableNormalsButton); // Add the button to the settings panel. Button is a go.
-        
+
         BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
 
         EnchantmentsManager.postInitialize();
@@ -333,7 +324,7 @@ public class LegacyMod implements
         // Class Specific Potion. If you want your potion to not be class-specific,
         // just remove the player class at the end (in this case the "TheDefaultEnum.THE_DEFAULT".
         // Remember, you can press ctrl+P inside parentheses like addPotions)
-        BaseMod.addPotion(PlaceholderPotion.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, PlaceholderPotion.POTION_ID, TheDefault.Enums.THE_DEFAULT);
+        BaseMod.addPotion(PlaceholderPotion.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, PlaceholderPotion.POTION_ID, TheAdventurer.Enums.THE_DEFAULT);
         
         logger.info("Done editing potions");
     }
@@ -355,9 +346,9 @@ public class LegacyMod implements
         // in order to automatically differentiate which pool to add the relic too.
 
         // This adds a character specific relic. Only when you play with the mentioned color, will you get this relic.
-        BaseMod.addRelicToCustomPool(new PlaceholderRelic(), TheDefault.Enums.COLOR_GRAY);
-        BaseMod.addRelicToCustomPool(new BottledPlaceholderRelic(), TheDefault.Enums.COLOR_GRAY);
-        BaseMod.addRelicToCustomPool(new DefaultClickableRelic(), TheDefault.Enums.COLOR_GRAY);
+        BaseMod.addRelicToCustomPool(new PlaceholderRelic(), TheAdventurer.Enums.COLOR_GRAY);
+        BaseMod.addRelicToCustomPool(new BottledPlaceholderRelic(), TheAdventurer.Enums.COLOR_GRAY);
+        BaseMod.addRelicToCustomPool(new DefaultClickableRelic(), TheAdventurer.Enums.COLOR_GRAY);
         
         // This adds a relic to the Shared pool. Every character can find this relic.
         BaseMod.addRelic(new PlaceholderRelic2(), RelicType.SHARED);

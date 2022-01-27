@@ -17,38 +17,28 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import legacy.cards.armor.PaddedArmor;
 import legacy.cards.weapons.Anathema;
 import legacy.cards.weapons.Rapier;
+import legacy.util.MonsterUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import legacy.LegacyMod;
-import legacy.cards.*;
 import legacy.relics.DefaultClickableRelic;
 import legacy.relics.PlaceholderRelic;
 import legacy.relics.PlaceholderRelic2;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import static legacy.LegacyMod.*;
-import static legacy.characters.TheDefault.Enums.COLOR_GRAY;
+import static legacy.characters.TheAdventurer.Enums.COLOR_GRAY;
 
-//Wiki-page https://github.com/daviscook477/BaseMod/wiki/Custom-Characters
-//and https://github.com/daviscook477/BaseMod/wiki/Migrating-to-5.0
-//All text (starting description and loadout, anything labeled TEXT[]) can be found in DefaultMod-character-Strings.json in the resources
-
-public class TheDefault extends CustomPlayer {
+public class TheAdventurer extends CustomPlayer {
     public static final Logger logger = LogManager.getLogger(LegacyMod.class.getName());
-
-    // =============== CHARACTER ENUMERATORS =================
-    // These are enums for your Characters color (both general color and for the card library) as well as
-    // an enum for the name of the player class - IRONCLAD, THE_SILENT, DEFECT, YOUR_CLASS ...
-    // These are all necessary for creating a character. If you want to find out where and how exactly they are used
-    // in the basegame (for fun and education) Ctrl+click on the PlayerClass, CardColor and/or LibraryType below and go down the
-    // Ctrl+click rabbit hole
 
     public static class Enums {
         @SpireEnum
@@ -65,13 +55,19 @@ public class TheDefault extends CustomPlayer {
     // =============== BASE STATS =================
 
     public static final int ENERGY_PER_TURN = 3;
-    public static final int STARTING_HP = 75;
-    public static final int MAX_HP = 75;
-    public static final int STARTING_GOLD = 99;
-    public static final int CARD_DRAW = 9;
-    public static final int ORB_SLOTS = 3;
+    public static final int STARTING_GOLD = 0;
+    public static final int CARD_DRAW = 5;
+    public static final int ORB_SLOTS = 0;
 
     // =============== /BASE STATS/ =================
+
+    // RPG STATS
+
+    public int level;
+    public int xp;
+    public int fighterLevel;
+    public int rogueLevel;
+    public int wizardLevel;
 
 
     // =============== STRINGS =================
@@ -103,7 +99,7 @@ public class TheDefault extends CustomPlayer {
 
     // =============== CHARACTER CLASS START =================
 
-    public TheDefault(String name, PlayerClass setClass) {
+    public TheAdventurer(String name, PlayerClass setClass) {
         super(name, setClass, orbTextures,
                 "legacy/images/char/defaultCharacter/orb/vfx.png", null,
                 new SpriterAnimation(
@@ -141,6 +137,12 @@ public class TheDefault extends CustomPlayer {
 
         // =============== /TEXT BUBBLE LOCATION/ =================
 
+        // Load RPG Stats
+        this.level = CHARACTER_STATS.getInt("level");
+        this.xp = CHARACTER_STATS.getInt("xp");
+        this.fighterLevel = CHARACTER_STATS.getInt("fighter_level");
+        this.rogueLevel = CHARACTER_STATS.getInt("rogue_level");
+        this.wizardLevel = CHARACTER_STATS.getInt("wizard_level");
     }
 
     // =============== /CHARACTER CLASS END/ =================
@@ -149,8 +151,25 @@ public class TheDefault extends CustomPlayer {
     @Override
     public CharSelectInfo getLoadout() {
         return new CharSelectInfo(NAMES[0], TEXT[0],
-                STARTING_HP, MAX_HP, ORB_SLOTS, STARTING_GOLD, CARD_DRAW, this, getStartingRelics(),
+                getMaxHp(), getMaxHp(), ORB_SLOTS, STARTING_GOLD, CARD_DRAW, this, getStartingRelics(),
                 getStartingDeck(), false);
+    }
+
+    // Max HP is a base of 35 + 2hp/lvl.
+    public static int getMaxHp() {
+        return CHARACTER_STATS.getInt("level") * 2 + 35;
+    }
+
+    public void gainXp(AbstractMonster m) {
+        this.xp += MonsterUtils.getXp(m);
+    }
+
+    public void commitStats() {
+        CHARACTER_STATS.setInt("level", this.level);
+        CHARACTER_STATS.setInt("xp", this.xp);
+        CHARACTER_STATS.setInt("fighter_level", this.fighterLevel);
+        CHARACTER_STATS.setInt("rogue_level", this.rogueLevel);
+        CHARACTER_STATS.setInt("wizard_level", this.wizardLevel);
     }
 
     // Starting Deck
@@ -243,7 +262,7 @@ public class TheDefault extends CustomPlayer {
     // Should return a new instance of your character, sending name as its name parameter.
     @Override
     public AbstractPlayer newInstance() {
-        return new TheDefault(name, chosenClass);
+        return new TheAdventurer(name, chosenClass);
     }
 
     // Should return a Color object to be used to color the miniature card images in run history.
@@ -293,6 +312,8 @@ public class TheDefault extends CustomPlayer {
     public void onVictory() {
         super.onVictory();
 
+        commitStats();
+        LegacyMod.saveCharacterStats();
         LEGACY_DB.commitChanges();
     }
 
@@ -304,7 +325,11 @@ public class TheDefault extends CustomPlayer {
     public void playDeathAnimation() {
         super.playDeathAnimation();
 
+        commitStats();
+        LegacyMod.saveCharacterStats();
         LEGACY_DB.commitChanges();
     }
+
+
 
 }

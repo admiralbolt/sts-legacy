@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import legacy.LegacyMod;
-import legacy.characters.TheDefault;
+import legacy.characters.TheAdventurer;
 import legacy.db.DBCardInfo;
 import legacy.cards.mods.enchantments.Enchantment;
 import legacy.util.CardUtils;
@@ -29,7 +29,7 @@ public class LegacyCard extends CustomCard {
             cost,
             cardStrings.DESCRIPTION,
             cardType,
-            TheDefault.Enums.COLOR_GRAY,
+            TheAdventurer.Enums.COLOR_GRAY,
             rarity,
             target
     );
