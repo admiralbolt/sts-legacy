@@ -1,4 +1,4 @@
-package legacy.cards.armor;
+package legacy.cards.equipment.armor;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;

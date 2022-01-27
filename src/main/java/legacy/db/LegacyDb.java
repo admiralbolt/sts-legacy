@@ -3,7 +3,7 @@ package legacy.db;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import legacy.cards.LegacyCards;
-import legacy.cards.weapons.Anathema;
+import legacy.cards.equipment.weapons.Anathema;
 import legacy.cards.mods.enchantments.Enchantment;
 import legacy.cards.mods.enchantments.EnchantmentsManager;
 

@@ -1,14 +1,14 @@
-package legacy.cards.armor;
+package legacy.cards.equipment.armor;
 
 import com.megacrit.cardcrawl.localization.CardStrings;
-import legacy.cards.LegacyCard;
+import legacy.cards.equipment.EquipmentCard;
 
 /**
  * Armor of Legacy.
  *
  * These are skills that can be **permanently** upgraded.
  */
-public class LegacyArmor extends LegacyCard {
+public class LegacyArmor extends EquipmentCard {
 
   public LegacyArmor(String id, CardStrings cardStrings, int cost, CardRarity rarity, CardTarget target) {
     super(id, cardStrings, cost, CardType.SKILL, rarity, target);

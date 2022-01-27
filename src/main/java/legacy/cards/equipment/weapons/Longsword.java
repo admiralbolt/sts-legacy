@@ -1,4 +1,4 @@
-package legacy.cards.weapons;
+package legacy.cards.equipment.weapons;
 
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;

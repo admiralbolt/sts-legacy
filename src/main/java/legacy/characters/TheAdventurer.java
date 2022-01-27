@@ -20,9 +20,9 @@ import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import legacy.cards.armor.PaddedArmor;
-import legacy.cards.weapons.Anathema;
-import legacy.cards.weapons.Rapier;
+import legacy.cards.equipment.armor.PaddedArmor;
+import legacy.cards.equipment.weapons.Anathema;
+import legacy.cards.equipment.weapons.Rapier;
 import legacy.util.MonsterUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -31,7 +31,6 @@ import legacy.relics.DefaultClickableRelic;
 import legacy.relics.PlaceholderRelic;
 import legacy.relics.PlaceholderRelic2;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import static legacy.LegacyMod.*;

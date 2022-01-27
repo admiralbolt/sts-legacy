@@ -1,4 +1,4 @@
-package legacy.cards.weapons;
+package legacy.cards.equipment.weapons;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;

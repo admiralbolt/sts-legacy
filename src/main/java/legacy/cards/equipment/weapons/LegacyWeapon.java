@@ -1,4 +1,4 @@
-package legacy.cards.weapons;
+package legacy.cards.equipment.weapons;
 
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
@@ -12,12 +12,11 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import legacy.actions.PiercingDamageAction;
-import legacy.cards.LegacyCard;
+import legacy.cards.equipment.EquipmentCard;
 import legacy.cards.mods.traits.FinesseTrait;
 import legacy.cards.mods.traits.FlurryTrait;
 import legacy.cards.mods.traits.RangedTrait;
 import legacy.cards.mods.traits.TwoHandedTrait;
-import legacy.cards.mods.enchantments.Enchantment;
 import legacy.powers.FlurryPower;
 
 /**
@@ -25,7 +24,7 @@ import legacy.powers.FlurryPower;
  *
  * These are attacks that can be **permanently** upgraded.
  */
-public class LegacyWeapon extends LegacyCard {
+public class LegacyWeapon extends EquipmentCard {
 
   public LegacyWeapon(String id, CardStrings cardStrings, int cost, CardRarity rarity, CardTarget target) {
     super(id, cardStrings, cost, CardType.ATTACK, rarity, target);

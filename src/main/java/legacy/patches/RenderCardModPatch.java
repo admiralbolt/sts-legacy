@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import javassist.CtBehavior;
+import legacy.cards.LegacyCard;
 import legacy.cards.mods.traits.*;
 
 import java.util.ArrayList;
@@ -58,7 +59,9 @@ public class RenderCardModPatch {
     // Render badges in game.
     @SpireInsertPatch(locator=Locator.class)
     public static void patch(AbstractCard __instance, SpriteBatch sb, boolean hovered, boolean selected) {
-      RenderBadges(sb, __instance);
+      if (__instance instanceof LegacyCard) {
+        RenderBadges(sb, __instance);
+      }
     }
 
     private static class Locator extends SpireInsertLocator {
@@ -74,9 +77,11 @@ public class RenderCardModPatch {
   @SpirePatch(clz=AbstractCard.class, method="renderInLibrary")
   public static class RenderIconsInLibrary {
 
-    @SpireInsertPatch(locator= Locator.class)
+    @SpireInsertPatch(locator=Locator.class)
     public static void patch(AbstractCard instance, SpriteBatch sb) {
-      RenderBadges(sb, instance);
+      if (instance instanceof LegacyCard) {
+        RenderBadges(sb, instance);
+      }
     }
 
     private static class Locator extends SpireInsertLocator {
@@ -112,7 +117,7 @@ public class RenderCardModPatch {
 
     @SpireInsertPatch(locator=Locator.class)
     public static void patch(SingleCardViewPopup __instance, SpriteBatch sb, AbstractCard ___card) {
-        ___card.keywords = addKeywords(___card, ___card.keywords);
+      ___card.keywords = addKeywords(___card, ___card.keywords);
     }
 
     private static class Locator extends SpireInsertLocator {
@@ -132,7 +137,9 @@ public class RenderCardModPatch {
     public static void patch(SpriteBatch sb, String word, float x, float y, AbstractCard ___card) {
       if (___card == null) return;
 
-      drawBadgeOnTip(x, y, sb, BADGE_MAP.get(word));
+      if (___card instanceof LegacyCard) {
+        drawBadgeOnTip(x, y, sb, BADGE_MAP.get(word));
+      }
     }
   }
 
@@ -142,20 +149,24 @@ public class RenderCardModPatch {
 
     @SpireInsertPatch(locator=Locator.class)
     public static void patch(SingleCardViewPopup __instance, SpriteBatch sb, AbstractCard ___card, Hitbox ___cardHb) {
-      int offsetY = 0;
+      if (___card instanceof LegacyCard) {
+        int offsetY = 0;
 
-      // BASE GAME MODIFIERS.
-      if (___card.isInnate) offsetY += drawBadge(sb, ___card, ___cardHb, StSLib.BADGE_INNATE, offsetY);
-      if (___card.isEthereal) offsetY += drawBadge(sb, ___card, ___cardHb, StSLib.BADGE_ETHEREAL, offsetY);
-      if (___card.retain || ___card.selfRetain) offsetY += drawBadge(sb, ___card, ___cardHb, StSLib.BADGE_RETAIN, offsetY);
-      if (___card.purgeOnUse) offsetY += drawBadge(sb, ___card, ___cardHb, StSLib.BADGE_PURGE, offsetY);
-      if (___card.exhaust || ___card.exhaustOnUseOnce) offsetY += drawBadge(sb, ___card, ___cardHb, StSLib.BADGE_EXHAUST, offsetY);
+        // BASE GAME MODIFIERS.
+        if (___card.isInnate) offsetY += drawBadge(sb, ___card, ___cardHb, StSLib.BADGE_INNATE, offsetY);
+        if (___card.isEthereal) offsetY += drawBadge(sb, ___card, ___cardHb, StSLib.BADGE_ETHEREAL, offsetY);
+        if (___card.retain || ___card.selfRetain)
+          offsetY += drawBadge(sb, ___card, ___cardHb, StSLib.BADGE_RETAIN, offsetY);
+        if (___card.purgeOnUse) offsetY += drawBadge(sb, ___card, ___cardHb, StSLib.BADGE_PURGE, offsetY);
+        if (___card.exhaust || ___card.exhaustOnUseOnce)
+          offsetY += drawBadge(sb, ___card, ___cardHb, StSLib.BADGE_EXHAUST, offsetY);
 
-      // EQUIPMENT TRAITS.
-      for (AbstractCardModifier mod : CardModifierManager.modifiers(___card)) {
-        if (!(mod instanceof EquipmentTrait)) continue;
+        // EQUIPMENT TRAITS.
+        for (AbstractCardModifier mod : CardModifierManager.modifiers(___card)) {
+          if (!(mod instanceof EquipmentTrait)) continue;
 
-        offsetY += drawBadge(sb, ___card, ___cardHb, BADGE_MAP.get(((EquipmentTrait) mod).id), offsetY);
+          offsetY += drawBadge(sb, ___card, ___cardHb, BADGE_MAP.get(((EquipmentTrait) mod).id), offsetY);
+        }
       }
     }
 

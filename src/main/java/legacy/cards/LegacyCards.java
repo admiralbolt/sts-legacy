@@ -2,9 +2,9 @@ package legacy.cards;
 
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import legacy.cards.armor.PaddedArmor;
-import legacy.cards.armor.SteelShield;
-import legacy.cards.weapons.*;
+import legacy.cards.equipment.armor.PaddedArmor;
+import legacy.cards.equipment.armor.SteelShield;
+import legacy.cards.equipment.weapons.*;
 import legacy.db.DBCardInfo;
 
 import java.util.ArrayList;
