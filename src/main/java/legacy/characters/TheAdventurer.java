@@ -68,6 +68,7 @@ public class TheAdventurer extends CustomPlayer {
 
     public int level;
     public int xp;
+    public int nextLevelXp;
     public int fighterLevel;
     public int rogueLevel;
     public int wizardLevel;
@@ -189,6 +190,7 @@ public class TheAdventurer extends CustomPlayer {
         // Load RPG Stats
         this.level = CHARACTER_STATS.getInt("level");
         this.xp = CHARACTER_STATS.getInt("xp");
+        this.nextLevelXp = CHARACTER_STATS.getInt("next_level_xp");
         this.fighterLevel = CHARACTER_STATS.getInt("fighter_level") + 1;
         this.rogueLevel = CHARACTER_STATS.getInt("rogue_level") + 2;
         this.wizardLevel = CHARACTER_STATS.getInt("wizard_level") + 3;
@@ -218,6 +220,7 @@ public class TheAdventurer extends CustomPlayer {
     public void commitStats() {
         CHARACTER_STATS.setInt("level", this.level);
         CHARACTER_STATS.setInt("xp", this.xp);
+        CHARACTER_STATS.setInt("nextLevelXp", this.nextLevelXp);
         CHARACTER_STATS.setInt("fighter_level", this.fighterLevel);
         CHARACTER_STATS.setInt("rogue_level", this.rogueLevel);
         CHARACTER_STATS.setInt("wizard_level", this.wizardLevel);

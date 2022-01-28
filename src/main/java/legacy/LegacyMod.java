@@ -21,6 +21,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import legacy.cards.LegacyCards;
 import legacy.db.LegacyDb;
 import legacy.cards.mods.enchantments.EnchantmentsManager;
+import legacy.ui.TopPanelXPItem;
 import legacy.util.MonsterUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -187,7 +188,7 @@ public class LegacyMod implements
         logger.info("Adding mod settings");
         Properties defaults = new Properties();
         defaults.setProperty("xp", "0");
-        defaults.setProperty("nextXp", "100");
+        defaults.setProperty("next_level_xp", "1000");
         defaults.setProperty("level", "0");
         defaults.setProperty("fighter_level", "0");
         defaults.setProperty("rogue_level", "0");
@@ -304,6 +305,9 @@ public class LegacyMod implements
         BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
 
         EnchantmentsManager.postInitialize();
+
+        // Brand new display for XP!
+        BaseMod.addTopPanelItem(new TopPanelXPItem());
 
         
         // =============== EVENTS =================
