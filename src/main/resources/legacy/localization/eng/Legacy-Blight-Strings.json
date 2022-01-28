@@ -1,0 +1,23 @@
+{
+  "legacy:fighter_class_blight": {
+    "NAME": "Fighter Class Levels",
+    "DESCRIPTION": [
+      "How many levels of Fighter you have. NL Start each combat with #b",
+      " #yStrength."
+    ]
+  },
+  "legacy:rogue_class_blight": {
+    "NAME": "Rogue Class Levels",
+    "DESCRIPTION": [
+      "How many levels of Rogue you have. NL Start each combat with #b",
+      " #yDexterity."
+    ]
+  },
+  "legacy:wizard_class_blight": {
+    "NAME": "Wizard Class Levels",
+    "DESCRIPTION": [
+      "How many levels of Wizard you have. NL Start each combat with #b",
+      " #yFocus."
+    ]
+  }
+}

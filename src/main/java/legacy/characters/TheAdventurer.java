@@ -8,18 +8,22 @@ import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
-import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.ScreenShake;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import legacy.base_classes.Fighter;
+import legacy.base_classes.Rogue;
+import legacy.base_classes.Wizard;
 import legacy.cards.equipment.armor.PaddedArmor;
 import legacy.cards.equipment.weapons.Anathema;
 import legacy.cards.equipment.weapons.Rapier;
@@ -98,6 +102,52 @@ public class TheAdventurer extends CustomPlayer {
 
     // =============== CHARACTER CLASS START =================
 
+
+    @Override
+    protected void initializeStarterRelics(PlayerClass chosenClass) {
+        super.initializeStarterRelics(chosenClass);
+    }
+
+    public void addClassBlights() {
+        // First check to see if we already have the class blights.
+        for (AbstractBlight blight : this.blights) {
+            if (blight.blightID.equals(Fighter.ID)) return;
+        }
+
+        // Otherwise initialize the fighter, rogue, and wizard classes.
+        AbstractBlight fighterBlight = new Fighter(this.fighterLevel);
+        initializeBlight(fighterBlight);
+
+        AbstractBlight rogueBlight = new Rogue(this.rogueLevel);
+        initializeBlight(rogueBlight);
+
+        AbstractBlight wizardBlight = new Wizard(this.wizardLevel);
+        initializeBlight(wizardBlight);
+    }
+
+    // Annoyingly, most blights are expected to be added within the context of a current room.
+    // If we add them directly to the player's `this.blights`, we need to make sure they have the
+    // correct values set, as though spawnBlightAndObtain() was called.
+    private void initializeBlight(AbstractBlight blight) {
+        // blight.spawn()
+        blight.currentX = (float) Settings.WIDTH / 2.0F;
+        blight.currentY = (float) Settings.HEIGHT / 2.0F;
+        blight.isAnimating = true;
+        blight.isObtained = false;
+        blight.hb = new Hitbox(AbstractRelic.PAD_X, AbstractRelic.PAD_X);
+
+        // blight.obtain()
+        blight.hb.hovered = false;
+        int slot = this.blights.size();
+        blight.targetX = 64.0F * Settings.xScale + (float) slot * AbstractRelic.PAD_X;
+        blight.targetY = Settings.isMobile ? (float) Settings.HEIGHT - 206.0F * Settings.scale : (float) Settings.HEIGHT - 176.0F * Settings.scale;
+        this.blights.add(blight);
+
+        blight.isObtained = true;
+        blight.isAnimating = false;
+        blight.isDone = false;
+    }
+
     public TheAdventurer(String name, PlayerClass setClass) {
         super(name, setClass, orbTextures,
                 "legacy/images/char/defaultCharacter/orb/vfx.png", null,
@@ -139,9 +189,11 @@ public class TheAdventurer extends CustomPlayer {
         // Load RPG Stats
         this.level = CHARACTER_STATS.getInt("level");
         this.xp = CHARACTER_STATS.getInt("xp");
-        this.fighterLevel = CHARACTER_STATS.getInt("fighter_level");
-        this.rogueLevel = CHARACTER_STATS.getInt("rogue_level");
-        this.wizardLevel = CHARACTER_STATS.getInt("wizard_level");
+        this.fighterLevel = CHARACTER_STATS.getInt("fighter_level") + 1;
+        this.rogueLevel = CHARACTER_STATS.getInt("rogue_level") + 2;
+        this.wizardLevel = CHARACTER_STATS.getInt("wizard_level") + 3;
+
+        this.addClassBlights();
     }
 
     // =============== /CHARACTER CLASS END/ =================
@@ -218,7 +270,7 @@ public class TheAdventurer extends CustomPlayer {
     // Ascension 14 or higher. (ironclad loses 5, defect and silent lose 4 hp respectively)
     @Override
     public int getAscensionMaxHPLoss() {
-        return 0;
+        return 5;
     }
 
     // Should return the card color enum to be associated with your character.

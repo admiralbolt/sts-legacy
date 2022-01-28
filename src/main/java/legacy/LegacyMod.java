@@ -13,6 +13,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
@@ -161,6 +162,8 @@ public class LegacyMod implements
     
     
     // =============== SUBSCRIBE, CREATE THE COLOR_GRAY, INITIALIZE =================
+
+
     
     public LegacyMod() {
         logger.info("Subscribe to BaseMod hooks");
@@ -257,6 +260,8 @@ public class LegacyMod implements
     
     // ====== YOU CAN EDIT AGAIN ======
     // NO U
+
+
     
     
     public static void initialize() {
@@ -413,6 +418,9 @@ public class LegacyMod implements
         // OrbStrings
         BaseMod.loadCustomStringsFile(OrbStrings.class,
                 getModID() + "/localization/eng/Legacy-Orb-Strings.json");
+
+        // BlightStrings
+        BaseMod.loadCustomStringsFile(BlightStrings.class, getModID() + "/localization/eng/Legacy-Blight-Strings.json");
         
         logger.info("Done edittting strings");
     }
