@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import legacy.LegacyMod;
 import legacy.actions.PiercingDamageAction;
 import legacy.cards.equipment.EquipmentCard;
 import legacy.cards.mods.traits.FinesseTrait;
@@ -26,12 +27,12 @@ import legacy.powers.FlurryPower;
  */
 public class LegacyWeapon extends EquipmentCard {
 
-  public LegacyWeapon(String id, CardStrings cardStrings, int cost, CardRarity rarity, CardTarget target) {
-    super(id, cardStrings, cost, CardType.ATTACK, rarity, target);
+  public static String getImagePath(String id) {
+    return LegacyMod.getModID() + "/images/cards/weapons/" + LegacyMod.getNameFromId(id) + ".png";
   }
 
   public LegacyWeapon(String id, CardStrings cardStrings, int cost, CardRarity rarity, CardTarget target, AbstractCardModifier ...modifiers) {
-    super(id, cardStrings, cost, CardType.ATTACK, rarity, target);
+    super(id, cardStrings, getImagePath(id), cost, CardType.ATTACK, rarity, target);
 
     for (AbstractCardModifier modifier : modifiers) {
       CardModifierManager.addModifier(this, modifier);

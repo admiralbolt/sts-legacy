@@ -6,7 +6,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import javassist.CtBehavior;
 import legacy.characters.TheAdventurer;
+import org.apache.logging.log4j.core.util.ReflectionUtil;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 /**
@@ -38,12 +40,19 @@ public class MonsterXpPatch {
   }
 
   // If a monster triggers the suicide action it *shouldn't* give xp.
-  @SpirePatch(clz = SuicideAction.class, method = "update")
+  @SpirePatch(clz=SuicideAction.class, method="update")
   public static class MonstersGiveNoXpOnSuicide {
 
     @SpireInsertPatch(locator = Locator.class)
     public static void Insert(SuicideAction __instance) {
-      WorthXpField.worthXp.set(__instance.target, false);
+      try {
+        Field field = __instance.getClass().getField("m");
+        Object monster = ReflectionUtil.getFieldValue(field, __instance);
+        WorthXpField.worthXp.set(monster, false);
+      } catch (NoSuchFieldException e) {
+        System.out.println("GAHHHHH");
+        e.printStackTrace();
+      }
     }
 
     public static class Locator extends SpireInsertLocator {

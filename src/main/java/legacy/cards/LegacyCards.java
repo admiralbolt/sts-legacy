@@ -20,7 +20,8 @@ public class LegacyCards {
 
   public enum LegacyCardType {
     WEAPON,
-    ARMOR
+    ARMOR,
+    PRESTIGE_CLASSES
   }
 
   public static void initialize() {
@@ -28,6 +29,7 @@ public class LegacyCards {
     cardsByType = new HashMap<>();
     cardBaseValues = new HashMap<>();
 
+    // Weapons.
     addCard("legacy:anathema", Anathema.class, LegacyCardType.WEAPON,15);
     addCard("legacy:dagger", Dagger.class, LegacyCardType.WEAPON, 2);
     addCard("legacy:greatsword", Greatsword.class, LegacyCardType.WEAPON, 10);
@@ -38,6 +40,7 @@ public class LegacyCards {
     addCard("legacy:spear", Spear.class, LegacyCardType.WEAPON, 9);
     addCard("legacy:whip", Whip.class, LegacyCardType.WEAPON, 2);
 
+    // Armor.
     addCard("legacy:padded_armor", PaddedArmor.class, LegacyCardType.ARMOR, 2);
     addCard("legacy:steel_shield", SteelShield.class, LegacyCardType.ARMOR, 2);
   }

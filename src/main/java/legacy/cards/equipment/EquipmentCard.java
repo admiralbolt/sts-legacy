@@ -21,11 +21,11 @@ public class EquipmentCard extends LegacyCard {
   public final List<Enchantment> enchantments;
   public final CardStrings cardStrings;
 
-  public EquipmentCard(String id, CardStrings cardStrings, int cost, CardType cardType, CardRarity rarity, CardTarget target) {
+  public EquipmentCard(String id, CardStrings cardStrings, String imagePath, int cost, CardType cardType, CardRarity rarity, CardTarget target) {
     super(
             id,
             LegacyMod.LEGACY_DB.getName(id, cardStrings.NAME),
-            LegacyMod.makeCardPathFromId(id),
+            imagePath,
             cost,
             cardStrings.DESCRIPTION,
             cardType,

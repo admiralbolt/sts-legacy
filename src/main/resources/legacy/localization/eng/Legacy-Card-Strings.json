@@ -3,6 +3,10 @@
     "NAME": "Anathema",
     "DESCRIPTION": "Deal !D! Damage. NL [#eeee00]Permanently[] increase damage by !M! . NL [#ff0000]Lose[] 1 Max Hp."
   },
+  "legacy:barbarian": {
+    "NAME": "Barbarian",
+    "DESCRIPTION": "Gain !M! Strength. Lose 1 Dexterity."
+  },
   "legacy:dagger": {
     "NAME": "Dagger",
     "DESCRIPTION": "Deal !D! Damage."

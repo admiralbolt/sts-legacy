@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import legacy.cards.LegacyCards;
+import legacy.cards.prestige_classes.Barbarian;
 import legacy.db.LegacyDb;
 import legacy.cards.mods.enchantments.EnchantmentsManager;
 import legacy.ui.TopPanelXPItem;
@@ -131,6 +132,11 @@ public class LegacyMod implements
     public static String makeCardPathFromId(String id) {
         String[] bits = id.split(":");
         return makeCardPath(bits[1]) + ".png";
+    }
+
+    public static String getNameFromId(String id) {
+        String[] bits = id.split(":");
+        return bits[1];
     }
     
     public static String makeCardPath(String resourcePath) {
@@ -378,9 +384,12 @@ public class LegacyMod implements
 
         logger.info("Adding cards");
 
+        // TODO(admiralbolt): Figure out a better way of doing this.
         for (AbstractCard c : LegacyCards.getAllCards()) {
             BaseMod.addCard(c);
         }
+
+        BaseMod.addCard(new Barbarian());
 
         logger.info("Done adding cards!");
     }
@@ -392,7 +401,6 @@ public class LegacyMod implements
     
     @Override
     public void receiveEditStrings() {
-        logger.info("You seeing this?");
         logger.info("Beginning to edit strings for mod with ID: " + getModID());
         
         // CardStrings
@@ -422,6 +430,10 @@ public class LegacyMod implements
         // OrbStrings
         BaseMod.loadCustomStringsFile(OrbStrings.class,
                 getModID() + "/localization/eng/Legacy-Orb-Strings.json");
+
+        // UIStrings.
+        BaseMod.loadCustomStringsFile(UIStrings.class,
+                getModID() + "/localization/eng/Legacy-UI-Strings.json");
 
         // BlightStrings
         BaseMod.loadCustomStringsFile(BlightStrings.class, getModID() + "/localization/eng/Legacy-Blight-Strings.json");

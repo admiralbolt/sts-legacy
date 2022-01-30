@@ -103,12 +103,6 @@ public class TheAdventurer extends CustomPlayer {
 
     // =============== CHARACTER CLASS START =================
 
-
-    @Override
-    protected void initializeStarterRelics(PlayerClass chosenClass) {
-        super.initializeStarterRelics(chosenClass);
-    }
-
     public void addClassBlights() {
         // First check to see if we already have the class blights.
         for (AbstractBlight blight : this.blights) {
@@ -191,9 +185,9 @@ public class TheAdventurer extends CustomPlayer {
         this.level = CHARACTER_STATS.getInt("level");
         this.xp = CHARACTER_STATS.getInt("xp");
         this.nextLevelXp = CHARACTER_STATS.getInt("next_level_xp");
-        this.fighterLevel = CHARACTER_STATS.getInt("fighter_level") + 1;
-        this.rogueLevel = CHARACTER_STATS.getInt("rogue_level") + 2;
-        this.wizardLevel = CHARACTER_STATS.getInt("wizard_level") + 3;
+        this.fighterLevel = CHARACTER_STATS.getInt("fighter_level");
+        this.rogueLevel = CHARACTER_STATS.getInt("rogue_level");
+        this.wizardLevel = CHARACTER_STATS.getInt("wizard_level");
 
         this.addClassBlights();
     }

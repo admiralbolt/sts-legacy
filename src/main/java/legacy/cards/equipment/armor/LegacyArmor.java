@@ -1,6 +1,7 @@
 package legacy.cards.equipment.armor;
 
 import com.megacrit.cardcrawl.localization.CardStrings;
+import legacy.LegacyMod;
 import legacy.cards.equipment.EquipmentCard;
 
 /**
@@ -10,8 +11,12 @@ import legacy.cards.equipment.EquipmentCard;
  */
 public class LegacyArmor extends EquipmentCard {
 
+  public static String getImagePath(String id) {
+    return LegacyMod.getModID() + "/images/cards/armor/" + LegacyMod.getNameFromId(id) + ".png";
+  }
+
   public LegacyArmor(String id, CardStrings cardStrings, int cost, CardRarity rarity, CardTarget target) {
-    super(id, cardStrings, cost, CardType.SKILL, rarity, target);
+    super(id, cardStrings, getImagePath(id), cost, CardType.SKILL, rarity, target);
   }
 
   public void upgradeStats() {
