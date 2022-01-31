@@ -18,6 +18,9 @@ import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import legacy.base_classes.FighterLevelUpChoice;
+import legacy.base_classes.RogueLevelUpChoice;
+import legacy.base_classes.WizardLevelUpChoice;
 import legacy.cards.LegacyCards;
 import legacy.cards.prestige_classes.Barbarian;
 import legacy.db.LegacyDb;
@@ -194,7 +197,7 @@ public class LegacyMod implements
         logger.info("Adding mod settings");
         Properties defaults = new Properties();
         defaults.setProperty("xp", "0");
-        defaults.setProperty("next_level_xp", "1000");
+        defaults.setProperty("next_level_xp", "10");
         defaults.setProperty("level", "0");
         defaults.setProperty("fighter_level", "0");
         defaults.setProperty("rogue_level", "0");
@@ -390,6 +393,9 @@ public class LegacyMod implements
         }
 
         BaseMod.addCard(new Barbarian());
+        BaseMod.addCard(new FighterLevelUpChoice());
+        BaseMod.addCard(new RogueLevelUpChoice());
+        BaseMod.addCard(new WizardLevelUpChoice());
 
         logger.info("Done adding cards!");
     }

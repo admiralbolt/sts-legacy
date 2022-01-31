@@ -29,7 +29,6 @@ public class EquipmentCard extends LegacyCard {
             cost,
             cardStrings.DESCRIPTION,
             cardType,
-            TheAdventurer.Enums.COLOR_GRAY,
             rarity,
             target
     );
@@ -95,6 +94,10 @@ public class EquipmentCard extends LegacyCard {
    * The way that upgrading actually works though, is that a duplicate card gets created with upgrade()
    * called on that. We need to ensure that when upgrade() is called on a card *actually* in our deck
    * that the database gets updated, but ONLY in that case AND we don't want to loop infinitely.
+   *
+   * Another note while I'm thinking about it -- It is always possible to save and reload after smithing at a campfire.
+   * This means that all cards are infinitely upgradeable with some use of cheating. Should probably figure out a way
+   * to resolve this.
    */
   @Override
   public void upgrade() {

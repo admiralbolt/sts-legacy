@@ -15,25 +15,28 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.*;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
+import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.Hitbox;
+import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import legacy.LegacyMod;
 import legacy.base_classes.Fighter;
 import legacy.base_classes.Rogue;
 import legacy.base_classes.Wizard;
 import legacy.cards.equipment.armor.PaddedArmor;
 import legacy.cards.equipment.weapons.Anathema;
 import legacy.cards.equipment.weapons.Rapier;
-import legacy.util.MonsterUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import legacy.LegacyMod;
 import legacy.relics.DefaultClickableRelic;
 import legacy.relics.PlaceholderRelic;
 import legacy.relics.PlaceholderRelic2;
+import legacy.util.MonsterUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 
@@ -44,7 +47,7 @@ public class TheAdventurer extends CustomPlayer {
     public static final Logger logger = LogManager.getLogger(LegacyMod.class.getName());
 
     public static class Enums {
-        @SpireEnum
+      @SpireEnum
         public static AbstractPlayer.PlayerClass THE_DEFAULT;
         @SpireEnum(name = "DEFAULT_GRAY_COLOR") // These two HAVE to have the same absolutely identical name.
         public static AbstractCard.CardColor COLOR_GRAY;
@@ -211,10 +214,46 @@ public class TheAdventurer extends CustomPlayer {
         this.xp += MonsterUtils.getXp(m);
     }
 
+    private void increaseBlight(String id) {
+        for (AbstractBlight blight : this.blights) {
+            if (blight.blightID.equals(id)) {
+                blight.incrementUp();
+                blight.stack();
+            }
+        }
+    }
+
+    // Surprisingly, you can't save scum this. I don't really understand why though.
+    public void levelUp(String classId) {
+      this.level++;
+      this.nextLevelXp = this.getTotalXpForNextLevel();
+      // Make sure we increment internal levels, and then commit them.
+      if (classId.equals(Fighter.ID)) {
+        this.fighterLevel++;
+      } else if (classId.equals(Rogue.ID)) {
+        this.rogueLevel++;
+      } else if (classId.equals(Wizard.ID)) {
+        this.wizardLevel++;
+      }
+
+      // Also need to increase our blight stacks.
+      this.increaseBlight(classId);
+
+      this.increaseMaxHp(2, true);
+      this.commitStats();
+    }
+
+    public int getTotalXpForNextLevel() {
+        if (this.level == 0) return 10;
+
+        // Good ol' gaussian sum.
+        return (this.level * this.level + this.level) * 50;
+    }
+
     public void commitStats() {
         CHARACTER_STATS.setInt("level", this.level);
         CHARACTER_STATS.setInt("xp", this.xp);
-        CHARACTER_STATS.setInt("nextLevelXp", this.nextLevelXp);
+        CHARACTER_STATS.setInt("next_level_xp", this.nextLevelXp);
         CHARACTER_STATS.setInt("fighter_level", this.fighterLevel);
         CHARACTER_STATS.setInt("rogue_level", this.rogueLevel);
         CHARACTER_STATS.setInt("wizard_level", this.wizardLevel);

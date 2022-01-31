@@ -22,9 +22,32 @@ public abstract class PrestigeClass extends LegacyCard {
     return LegacyMod.getModID() + "/images/cards/prestige_classes/" + LegacyMod.getNameFromId(id) + ".png";
   }
 
+  // Construct a description string with the proper stats requirements.
+  // i.e. "Requires 2 Strength NL Requires 2 Dexterity NL"
+  public static String requirementsString(int strengthRequirement, int dexterityRequirement, int focusRequirement) {
+    StringBuilder builder = new StringBuilder();
+    if (strengthRequirement > 0) {
+      builder.append("Requires ");
+      builder.append(strengthRequirement);
+      builder.append(" Strength. NL ");
+    }
+    if (dexterityRequirement > 0) {
+      builder.append("Requires ");
+      builder.append(dexterityRequirement);
+      builder.append(" Dexterity. NL ");
+    }
+    if (focusRequirement > 0) {
+      builder.append("Requires ");
+      builder.append(focusRequirement);
+      builder.append(" Focus. NL ");
+    }
+    return builder.toString();
+  }
+
   public PrestigeClass(String id, CardStrings cardStrings, int cost, CardRarity rarity, int strengthRequirement, int dexterityRequirement, int focusRequirement) {
-    super(id, cardStrings.NAME, getImagePath(id), cost, cardStrings.DESCRIPTION, CardType.POWER,
-            TheAdventurer.Enums.COLOR_GRAY, rarity, CardTarget.SELF);
+    super(id, cardStrings.NAME, getImagePath(id), cost,
+            requirementsString(strengthRequirement, dexterityRequirement, focusRequirement) + cardStrings.DESCRIPTION,
+            CardType.POWER, rarity, CardTarget.SELF);
 
     this.strengthRequirement = strengthRequirement;
     this.needsStrength = strengthRequirement > 0;
@@ -61,4 +84,6 @@ public abstract class PrestigeClass extends LegacyCard {
 
     return true;
   }
+
+
 }

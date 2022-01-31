@@ -19,6 +19,18 @@
     "NAME": "Kukri",
     "DESCRIPTION": "Deal !D! Damage."
   },
+  "legacy:level_up_choice_fighter": {
+    "NAME": "Fighter",
+    "DESCRIPTION": "Gain 1 Fighter level."
+  },
+  "legacy:level_up_choice_rogue": {
+    "NAME": "Rogue",
+    "DESCRIPTION": "Gain 1 Rogue level."
+  },
+  "legacy:level_up_choice_wizard": {
+    "NAME": "Wizard",
+    "DESCRIPTION": "Gain 1 Wizard level."
+  },
   "legacy:longsword": {
     "NAME": "Longsword",
     "DESCRIPTION": "Deal !D! Damage."

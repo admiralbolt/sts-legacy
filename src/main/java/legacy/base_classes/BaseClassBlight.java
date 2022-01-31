@@ -63,4 +63,11 @@ public class BaseClassBlight extends AbstractBlight {
         return new AccuracyPower(AbstractDungeon.player, 69);
     }
   }
+
+  @Override
+  public void stack() {
+    this.counter++;
+    this.updateDescription();
+    this.flash();
+  }
 }

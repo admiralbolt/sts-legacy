@@ -4,5 +4,10 @@
       "Level Up",
       "Gain another class level."
     ]
+  },
+  "legacy:level_up_effect": {
+    "TEXT": [
+      "Choose which class to gain a level in."
+    ]
   }
 }
