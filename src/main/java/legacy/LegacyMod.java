@@ -12,17 +12,15 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
-import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import legacy.base_classes.FighterLevelUpChoice;
 import legacy.base_classes.RogueLevelUpChoice;
 import legacy.base_classes.WizardLevelUpChoice;
 import legacy.cards.LegacyCards;
-import legacy.cards.prestige_classes.Barbarian;
+import legacy.cards.prestige_classes.FrenziedBerserker;
+import legacy.cards.prestige_classes.WhirlingDervish;
 import legacy.db.LegacyDb;
 import legacy.cards.mods.enchantments.EnchantmentsManager;
 import legacy.ui.TopPanelXPItem;
@@ -392,7 +390,9 @@ public class LegacyMod implements
             BaseMod.addCard(c);
         }
 
-        BaseMod.addCard(new Barbarian());
+        BaseMod.addCard(new FrenziedBerserker());
+        BaseMod.addCard(new WhirlingDervish());
+
         BaseMod.addCard(new FighterLevelUpChoice());
         BaseMod.addCard(new RogueLevelUpChoice());
         BaseMod.addCard(new WizardLevelUpChoice());

@@ -21,9 +21,7 @@ public class CampfireLevelUpEffect extends AbstractGameEffect {
 
   public static final String ID = "legacy:level_up_effect";
   public static final UIStrings UI_STRINGS = CardCrawlGame.languagePack.getUIString(ID);
-
-  private boolean openedScreen = false;
-  private Color screenColor = AbstractDungeon.fadeColor.cpy();
+  private final Color screenColor = AbstractDungeon.fadeColor.cpy();
 
   public CampfireLevelUpEffect() {
     this.duration = 1.5F;

@@ -6,8 +6,19 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import legacy.LegacyMod;
 import legacy.cards.LegacyCard;
-import legacy.characters.TheAdventurer;
 
+/**
+ * Power cards that grant powerful buffs but require certain amounts of strength, dexterity, and focus to play.
+ * Only 1 Prestige Class can be active at a time.
+ *
+ * Each of the base classes corresponds to one of these powers ->
+ *   Fighter - Strength
+ *   Rogue - Dexterity
+ *   Wizard - Focus
+ *
+ * Rather than depending on class levels though, by depending on the raw powers, it will interact nicely with other
+ * cards / relics.
+ */
 public abstract class PrestigeClass extends LegacyCard {
 
   public int strengthRequirement = 0;
@@ -24,6 +35,7 @@ public abstract class PrestigeClass extends LegacyCard {
 
   // Construct a description string with the proper stats requirements.
   // i.e. "Requires 2 Strength NL Requires 2 Dexterity NL"
+  // This is static because it gets prepended in the constructor.
   public static String requirementsString(int strengthRequirement, int dexterityRequirement, int focusRequirement) {
     StringBuilder builder = new StringBuilder();
     if (strengthRequirement > 0) {
@@ -84,6 +96,5 @@ public abstract class PrestigeClass extends LegacyCard {
 
     return true;
   }
-
 
 }

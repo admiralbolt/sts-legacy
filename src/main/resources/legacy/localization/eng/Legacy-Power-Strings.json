@@ -1,10 +1,33 @@
 {
   "legacy:flurry": {
     "NAME": "Flurry",
-    "DESCRIPTIONS": ["Paired weapons deal #b", " bonus damage."]
+    "DESCRIPTIONS": [
+      "Paired weapons deal #b",
+      " bonus damage."
+    ]
+  },
+  "legacy:frenzied_beserker_power": {
+    "NAME": "Frenzied Beserker",
+    "DESCRIPTIONS": [
+      "Double your strength. Enter Wrath.",
+      "Triple your strength. Enter Wrath."
+    ]
   },
   "legacy:frost": {
     "NAME": "Frost",
-    "DESCRIPTIONS": ["Decreases attack damage by #b", ". Loses slow upon thawing in #b", "turns.", "turn."]
+    "DESCRIPTIONS": [
+      "Decreases attack damage by #b",
+      ". Loses slow upon thawing in #b",
+      "turns.",
+      "turn."
+    ]
+  },
+  "legacy:whirling_dervish_power": {
+    "NAME": "Whirling Dervish",
+    "DESCRIPTION": [
+      "Double the amount of legacy:Flurry stacks you generate. NL If you play #b",
+      " more attack this turn, draw a card.",
+      " more atatcks this turn, draw a card."
+    ]
   }
 }

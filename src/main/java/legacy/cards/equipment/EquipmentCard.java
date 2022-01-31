@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import legacy.LegacyMod;
 import legacy.cards.LegacyCard;
 import legacy.cards.mods.enchantments.Enchantment;
-import legacy.characters.TheAdventurer;
 import legacy.db.DBCardInfo;
 import legacy.util.CardUtils;
 
