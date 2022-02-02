@@ -15,5 +15,14 @@ public class Greatsword extends LegacyWeapon {
     super(ID, cardStrings, COST, CardRarity.COMMON, CardTarget.ENEMY, new TwoHandedTrait());
   }
 
+  @Override
+  public void upgrade() {
+    if (this.upgraded) return;
+
+    this.upgradeName();
+    this.upgradeDamage(6);
+    this.initializeDescription();
+  }
+
 }
 

@@ -16,5 +16,14 @@ public class Spear extends LegacyWeapon {
     super(ID, cardStrings, COST, CardRarity.COMMON, CardTarget.ENEMY, new TwoHandedTrait(), new FinesseTrait());
   }
 
+  @Override
+  public void upgrade() {
+    if (this.upgraded) return;
+
+    this.upgradeName();
+    this.upgradeDamage(5);
+    this.initializeDescription();
+  }
+
 }
 

@@ -41,8 +41,8 @@ public class LegacyCards {
     addCard("legacy:whip", Whip.class, LegacyCardType.WEAPON, 2);
 
     // Armor.
-    addCard("legacy:padded_armor", PaddedArmor.class, LegacyCardType.ARMOR, 2);
-    addCard("legacy:steel_shield", SteelShield.class, LegacyCardType.ARMOR, 2);
+    addCard("legacy:padded_armor", PaddedArmor.class, LegacyCardType.ARMOR, 3);
+    addCard("legacy:steel_shield", SteelShield.class, LegacyCardType.ARMOR, 4);
   }
 
   public static void addCard(String cardId, Class<? extends CustomCard> c, LegacyCardType type, Integer baseValue) {

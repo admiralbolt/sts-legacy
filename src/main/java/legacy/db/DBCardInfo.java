@@ -3,7 +3,7 @@ package legacy.db;
 /**
  * Card info stored in the DB. This is:
  * - the "value" of the card aka the damage or block.
- * - the number of times the card has been upgraded.
+ * - the number of times the base damage has been increased.
  */
 public class DBCardInfo {
 

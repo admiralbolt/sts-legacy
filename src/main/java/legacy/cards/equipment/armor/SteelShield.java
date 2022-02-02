@@ -27,4 +27,14 @@ public class SteelShield extends LegacyArmor {
     AbstractDungeon.actionManager.addToBottom(new AddTemporaryHPAction(p, p, this.magicNumber));
     super.use(p, m);
   }
+
+  @Override
+  public void upgrade() {
+    if (this.upgraded) return;
+
+    this.upgradeName();
+    this.upgradeBlock(2);
+    this.upgradeMagicNumber(1);
+    this.initializeDescription();
+  }
 }

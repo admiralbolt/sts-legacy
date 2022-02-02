@@ -14,5 +14,14 @@ public class Longsword extends LegacyWeapon {
     super(ID, cardStrings, COST, CardRarity.COMMON, CardTarget.ENEMY);
   }
 
+  @Override
+  public void upgrade() {
+    if (this.upgraded) return;
+
+    this.upgradeName();
+    this.upgradeDamage(3);
+    this.initializeDescription();
+  }
+
 }
 

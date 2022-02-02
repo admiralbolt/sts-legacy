@@ -29,5 +29,14 @@ public class Anathema extends LegacyWeapon {
     AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HEAVY));
   }
 
+  @Override
+  public void upgrade() {
+    if (this.upgraded) return;
+
+    this.upgradeName();
+    this.upgradeDamage(10);
+    this.initializeDescription();
+  }
+
 }
 

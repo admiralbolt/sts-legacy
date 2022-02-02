@@ -96,6 +96,7 @@ public class LegacyDb {
 
   /**
    * Upgrades a card and persists the value to the database.
+   * This is for raw +X stat enchantments, since they need to interact with base damage values.
    */
   public void upgradeCard(String cardId) {
     DBCardInfo info = getCardInfo(cardId);
@@ -138,8 +139,7 @@ public class LegacyDb {
   }
 
   /**
-   * Returns a nicely formatted cardname i.e.:
-   * +2 Corrosive Rapier
+   * Returns a nicely formatted card name i.e. +2 Corrosive Rapier.
    */
   public String getName(String cardId, String baseName) {
     StringBuilder builder = new StringBuilder();

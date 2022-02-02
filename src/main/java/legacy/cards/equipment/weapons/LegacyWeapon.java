@@ -23,9 +23,14 @@ import legacy.powers.FlurryPower;
 /**
  * Weapons of Legacy.
  *
- * These are attacks that can be **permanently** upgraded.
+ * These are attacks that can be **permanently** upgraded via enchantments.
+ * Additionally, each weapon has certain traits associated with it that affect the card.
+ * For example, Finesse weapons have their damage scale with Dexterity instead of Strength.
+ *
+ * One last thing, because of the weirdness from loading values from the DB, the base values for these cards
+ * are actually defined in LegacyCards.java.
  */
-public class LegacyWeapon extends EquipmentCard {
+public abstract class LegacyWeapon extends EquipmentCard {
 
   public static String getImagePath(String id) {
     return LegacyMod.getModID() + "/images/cards/weapons/" + LegacyMod.getNameFromId(id) + ".png";
@@ -39,11 +44,9 @@ public class LegacyWeapon extends EquipmentCard {
     }
   }
 
-  /**
-   * Applies effects from all enchantments.
-   */
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
+    // NOTE: Enchantment effects are automatically added via their onUse() hook, so no need to do anything here.
     if (CardModifierManager.hasModifier(this, FlurryTrait.ID)) {
       AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new FlurryPower(p, 1)));
     }

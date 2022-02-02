@@ -16,5 +16,14 @@ public class Whip extends LegacyWeapon {
     super(ID, cardStrings, COST, CardRarity.UNCOMMON, CardTarget.ENEMY, new FinesseTrait(), new RangedTrait());
   }
 
+  @Override
+  public void upgrade() {
+    if (this.upgraded) return;
+
+    this.upgradeName();
+    this.upgradeDamage(2);
+    this.initializeDescription();
+  }
+
 }
 
