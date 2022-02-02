@@ -6,8 +6,8 @@
       " bonus damage."
     ]
   },
-  "legacy:frenzied_beserker_power": {
-    "NAME": "Frenzied Beserker",
+  "legacy:frenzied_berserker_power": {
+    "NAME": "Frenzied Berserker",
     "DESCRIPTIONS": [
       "Double your strength. Enter Wrath.",
       "Triple your strength. Enter Wrath."
@@ -24,7 +24,7 @@
   },
   "legacy:whirling_dervish_power": {
     "NAME": "Whirling Dervish",
-    "DESCRIPTION": [
+    "DESCRIPTIONS": [
       "Double the amount of legacy:Flurry stacks you generate. NL If you play #b",
       " more attack this turn, draw a card.",
       " more atatcks this turn, draw a card."

@@ -45,6 +45,8 @@ public class BaseClassBlight extends AbstractBlight {
 
   @Override
   public void atBattleStart() {
+    if (this.counter == 0) return;
+
     this.flash();
     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, this.getPower(), this.counter));
   }

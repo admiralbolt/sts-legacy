@@ -57,6 +57,16 @@ public class WhirlingDervishPower extends PrestigeClassPower {
     // Double the amount of flurry generated.
     if (!power.ID.equals(FlurryPower.POWER_ID)) return;
 
-    addToBot(new ApplyPowerAction(target, source, power));
+    if (target.hasPower(FlurryPower.POWER_ID)) {
+      target.getPower(FlurryPower.POWER_ID).stackPower(power.amount);
+    } else {
+      power.stackPower(power.amount);
+    }
+  }
+
+  @Override
+  public void atStartOfTurn() {
+    this.amount = this.cardsForDraw;
+    this.updateDescription();
   }
 }

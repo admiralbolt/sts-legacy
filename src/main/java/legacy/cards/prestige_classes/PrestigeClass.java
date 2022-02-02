@@ -9,7 +9,8 @@ import legacy.cards.LegacyCard;
 
 /**
  * Power cards that grant powerful buffs but require certain amounts of strength, dexterity, and focus to play.
- * Only 1 Prestige Class can be active at a time.
+ * Only 1 Prestige Class can be active at a time. Make sure that the prestige class power is the same name
+ * as the card, but suffixed with '_power'.
  *
  * Each of the base classes corresponds to one of these powers ->
  *   Fighter - Strength
@@ -94,7 +95,9 @@ public abstract class PrestigeClass extends LegacyCard {
       if (focusAmount < focusRequirement) return false;
     }
 
-    return true;
+    // Besides the stat requirements, we should also make sure they don't already have an instance of the prestige
+    // class power they are trying to play.
+    return !p.hasPower(this.cardID + "_power");
   }
 
 }

@@ -24,11 +24,8 @@ public class MultiplyStrengthAction extends AbstractGameAction {
 
   @Override
   public void update() {
-    if (this.duration == Settings.ACTION_DUR_XFAST && this.target.hasPower("Strength")) {
-      int strengthAdd = this.target.getPower("Strength").amount * this.multiplier;
-      addToTop(new ApplyPowerAction(this.target, this.target, new StrengthPower(this.target, strengthAdd), strengthAdd));
-    }
-
-    tickDuration();
+    int strengthAdd = this.target.getPower("Strength").amount * this.multiplier;
+    addToTop(new ApplyPowerAction(this.target, this.target, new StrengthPower(this.target, strengthAdd), strengthAdd));
+    this.isDone = true;
   }
 }
