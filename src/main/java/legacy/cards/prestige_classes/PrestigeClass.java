@@ -31,7 +31,7 @@ public abstract class PrestigeClass extends LegacyCard {
   public boolean needsFocus;
 
   public static String getImagePath(String id) {
-    return LegacyMod.getModID() + "/images/cards/prestige_classes/" + LegacyMod.getNameFromId(id) + ".png";
+    return LegacyMod.MOD_ID + "/images/cards/prestige_classes/" + LegacyMod.getNameFromId(id) + ".png";
   }
 
   // Construct a description string with the proper stats requirements.

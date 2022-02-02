@@ -12,7 +12,7 @@ import legacy.cards.equipment.EquipmentCard;
 public abstract class LegacyArmor extends EquipmentCard {
 
   public static String getImagePath(String id) {
-    return LegacyMod.getModID() + "/images/cards/armor/" + LegacyMod.getNameFromId(id) + ".png";
+    return LegacyMod.MOD_ID + "/images/cards/armor/" + LegacyMod.getNameFromId(id) + ".png";
   }
 
   public LegacyArmor(String id, CardStrings cardStrings, int cost, CardRarity rarity, CardTarget target) {

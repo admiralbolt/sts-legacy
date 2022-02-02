@@ -1,7 +1,7 @@
 {
-  "modid": "YourNameHere:${project.artifactId}",
+  "modid": "legacy",
   "name": "${project.name}",
-  "author_list": ["NotGremious"],
+  "author_list": ["Admiral Lighnting Bolt"],
   "credits": "Basemod, ModTheSpire, #modding",
   "description": "${project.description}",
   "version": "${project.version}",

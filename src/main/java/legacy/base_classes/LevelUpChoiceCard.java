@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import legacy.cards.LegacyCard;
 
-public class LevelUpChoiceCard extends LegacyCard {
+public abstract class LevelUpChoiceCard extends LegacyCard {
 
   public LevelUpChoiceCard(String id, CardStrings cardStrings, String imgName) {
     super(id, cardStrings.NAME, "legacy/images/cards/class_level_up_choices/" + imgName,

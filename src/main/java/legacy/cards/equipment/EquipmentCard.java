@@ -46,24 +46,6 @@ public abstract class EquipmentCard extends LegacyCard {
     }
   }
 
-  /**
-   * Returns a nicely formatted name based on upgrades & enchantments.
-   *
-   * Ex: +2 Corrosive Returning Greatsword.
-   */
-  public String getFormattedName() {
-    StringBuilder builder = new StringBuilder();
-
-    // For my OCD, enchantments will be added in alphabetical order.
-    for (Enchantment enchantment : this.enchantments.stream().sorted(Comparator.comparing(e -> e.name)).collect(Collectors.toList())) {
-      builder.append(enchantment.name);
-      builder.append(" ");
-    }
-
-    builder.append(this.cardStrings.NAME);
-    return builder.toString();
-  }
-
   @Override
   public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {
 

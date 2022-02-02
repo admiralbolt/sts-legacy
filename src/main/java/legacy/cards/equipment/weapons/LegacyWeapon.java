@@ -33,7 +33,7 @@ import legacy.powers.FlurryPower;
 public abstract class LegacyWeapon extends EquipmentCard {
 
   public static String getImagePath(String id) {
-    return LegacyMod.getModID() + "/images/cards/weapons/" + LegacyMod.getNameFromId(id) + ".png";
+    return LegacyMod.MOD_ID + "/images/cards/weapons/" + LegacyMod.getNameFromId(id) + ".png";
   }
 
   public LegacyWeapon(String id, CardStrings cardStrings, int cost, CardRarity rarity, CardTarget target, AbstractCardModifier ...modifiers) {
