@@ -40,6 +40,10 @@
     "NAME": "Mace",
     "DESCRIPTION": "Deal !D! Damage."
   },
+  "legacy:nunchacku": {
+    "NAME": "nunchaku",
+    "DESCRIPTOIN": "Deal !D! damage 2 times."
+  },
   "legacy:padded_armor": {
     "NAME": "Padded Armor",
     "DESCRIPTION": "Gain !B! Block.  NL Gain !M! Temporary Dexterity."
@@ -47,6 +51,10 @@
   "legacy:rapier": {
     "NAME": "Rapier",
     "DESCRIPTION": "Deal !D! Damage."
+  },
+  "legacy:shortbow": {
+    "NAME": "Shortbow",
+    "DESCRIIPTION": "Deal !D! Damage."
   },
   "legacy:spear": {
     "NAME": "Spear",
@@ -58,7 +66,7 @@
   },
   "legacy:whip": {
     "NAME": "Whip",
-    "DESCRIPTION": "Deal !D! Damage.  NL legacy:Finesse legacy:Ranged"
+    "DESCRIPTION": "Deal !D! Damage. Apply !M! Weak."
   },
   "legacy:whirling_dervish": {
     "NAME": "Whirling Dervish",

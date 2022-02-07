@@ -1,11 +1,17 @@
 package legacy.cards.prestige_classes;
 
+import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.SpawnModificationCard;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import legacy.LegacyMod;
 import legacy.cards.LegacyCard;
+import legacy.characters.TheAdventurer;
+
+import java.util.ArrayList;
 
 /**
  * Power cards that grant powerful buffs but require certain amounts of strength, dexterity, and focus to play.
@@ -20,7 +26,7 @@ import legacy.cards.LegacyCard;
  * Rather than depending on class levels though, by depending on the raw powers, it will interact nicely with other
  * cards / relics.
  */
-public abstract class PrestigeClass extends LegacyCard {
+public abstract class PrestigeClass extends LegacyCard implements SpawnModificationCard {
 
   public int strengthRequirement = 0;
   public int dexterityRequirement = 0;
@@ -100,4 +106,17 @@ public abstract class PrestigeClass extends LegacyCard {
     return !p.hasPower(this.cardID + "_power");
   }
 
+  // We only want to spawn prestige classes *IF* the player has the classes to play them.
+  // For prestige classes we set the required class levels at one less than the stat requirements.
+  @Override
+  public boolean canSpawn(ArrayList<AbstractCard> currentRewardCards) {
+    if (!(AbstractDungeon.player instanceof TheAdventurer)) return false;
+
+    TheAdventurer adventurer = (TheAdventurer) AbstractDungeon.player;
+    if (this.needsStrength && adventurer.fighterLevel < (this.strengthRequirement - 1)) return false;
+    if (this.needsDexterity && adventurer.rogueLevel < (this.dexterityRequirement - 1)) return false;
+    if (this.needsFocus && adventurer.wizardLevel < (this.focusRequirement - 1)) return false;
+
+    return true;
+  }
 }
