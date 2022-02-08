@@ -3,6 +3,10 @@
     "NAME": "Anathema",
     "DESCRIPTION": "Deal !D! Damage. NL [#eeee00]Permanently[] increase damage by !M! . NL [#ff0000]Lose[] 1 Max Hp."
   },
+  "legacy:bedroll": {
+    "NAME": "Bedroll",
+    "DESCRIPTION": "Heal !M!% of your max hp. NL End your turn."
+  },
   "legacy:dagger": {
     "NAME": "Dagger",
     "DESCRIPTION": "Deal !D! Damage."
@@ -39,6 +43,11 @@
   "legacy:mace": {
     "NAME": "Mace",
     "DESCRIPTION": "Deal !D! Damage."
+  },
+  "legacy:net": {
+    "NAME": "Net",
+    "DESCRIPTION": "Apply !M! Weak. NL Enemy loses 5 Temporary Strength. NL Enemy loses Flight.",
+    "UPGRADE_DESCRIPTION": "Apply !M! Weak to ALL enemies. NL All Enemies lose 5 Temporary Strength. NL All Enemies lose flight."
   },
   "legacy:nunchaku": {
     "NAME": "Nunchaku",
