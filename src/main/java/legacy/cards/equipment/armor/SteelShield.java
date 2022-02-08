@@ -25,7 +25,6 @@ public class SteelShield extends LegacyArmor {
   public void use(AbstractPlayer p, AbstractMonster m) {
     AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
     AbstractDungeon.actionManager.addToBottom(new AddTemporaryHPAction(p, p, this.magicNumber));
-    super.use(p, m);
   }
 
   @Override

@@ -28,7 +28,6 @@ public class PaddedArmor extends LegacyArmor {
     AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new DexterityPower(p, this.magicNumber), this.magicNumber));
     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new LoseDexterityPower(p, this.magicNumber), this.magicNumber));
-    super.use(p, m);
   }
 
   @Override

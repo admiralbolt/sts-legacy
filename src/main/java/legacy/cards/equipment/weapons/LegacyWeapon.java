@@ -2,9 +2,11 @@ package legacy.cards.equipment.weapons;
 
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
+import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.SpawnModificationCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -13,12 +15,17 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import legacy.LegacyMod;
 import legacy.actions.PiercingDamageAction;
-import legacy.cards.equipment.EquipmentCard;
+import legacy.cards.LegacyCard;
+import legacy.cards.mods.enchantments.Enchantment;
 import legacy.cards.mods.traits.FinesseTrait;
 import legacy.cards.mods.traits.FlurryTrait;
 import legacy.cards.mods.traits.RangedTrait;
 import legacy.cards.mods.traits.TwoHandedTrait;
+import legacy.db.DBCardInfo;
 import legacy.powers.FlurryPower;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Weapons of Legacy.
@@ -30,15 +37,33 @@ import legacy.powers.FlurryPower;
  * One last thing, because of the weirdness from loading values from the DB, the base values for these cards
  * are actually defined in LegacyCards.java.
  */
-public abstract class LegacyWeapon extends EquipmentCard {
+public abstract class LegacyWeapon extends LegacyCard implements SpawnModificationCard {
 
   public static String getImagePath(String id) {
     return LegacyMod.MOD_ID + "/images/cards/weapons/" + LegacyMod.getNameFromId(id) + ".png";
   }
 
-  public LegacyWeapon(String id, CardStrings cardStrings, int cost, CardRarity rarity, CardTarget target, AbstractCardModifier ...modifiers) {
-    super(id, cardStrings, getImagePath(id), cost, CardType.ATTACK, rarity, target);
+  public List<Enchantment> enchantments;
+  public final CardStrings cardStrings;
 
+  public LegacyWeapon(String id, CardStrings cardStrings, int cost, CardRarity rarity, CardTarget target, AbstractCardModifier ...modifiers) {
+    super(id, LegacyMod.LEGACY_DB.getName(id, cardStrings.NAME), getImagePath(id), cost,
+            cardStrings.DESCRIPTION, CardType.ATTACK, rarity, target);
+
+    this.cardStrings = cardStrings;
+
+    // Properly load permanent upgrades / name from the db.
+    DBCardInfo info = LegacyMod.LEGACY_DB.getCardInfo(id);
+    this.baseDamage = info.value;
+
+    this.baseMagicNumber = this.magicNumber = 1;
+    // Enchantments need to get loaded from the DB, and their modifiers need to be applied.
+    this.enchantments = LegacyMod.LEGACY_DB.loadCardEnchantments(id);
+    for (Enchantment enchantment : this.enchantments) {
+      CardModifierManager.addModifier(this, enchantment);
+    }
+
+    // All the weapon traits should be applied.
     for (AbstractCardModifier modifier : modifiers) {
       CardModifierManager.addModifier(this, modifier);
     }
@@ -109,5 +134,15 @@ public abstract class LegacyWeapon extends EquipmentCard {
   public void calculateCardDamage(AbstractMonster mo) {
     super.calculateCardDamage(mo);
     this.damageCalc();
+  }
+
+  // Weapon cards are unique! If you already have a copy in your deck, you can't get more.
+  @Override
+  public boolean canSpawn(ArrayList<AbstractCard> currentRewardCards) {
+    for (AbstractCard card : AbstractDungeon.player.masterDeck.group) {
+      if (card.cardID.equals(this.cardID)) return false;
+    }
+
+    return true;
   }
 }

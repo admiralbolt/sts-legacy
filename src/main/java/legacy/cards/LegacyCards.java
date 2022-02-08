@@ -2,6 +2,7 @@ package legacy.cards;
 
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import legacy.LegacyMod;
 import legacy.cards.equipment.armor.PaddedArmor;
 import legacy.cards.equipment.armor.SteelShield;
 import legacy.cards.equipment.weapons.*;
@@ -91,6 +92,10 @@ public class LegacyCards {
     }
 
     return null;
+  }
+
+  public static String getImagePath(String type, String id) {
+    return LegacyMod.MOD_ID + "/images/cards/" + type.toLowerCase() + "/" + LegacyMod.getNameFromId(id) + ".png";
   }
 
 }
