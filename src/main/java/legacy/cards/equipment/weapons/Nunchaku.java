@@ -18,12 +18,12 @@ import legacy.cards.mods.traits.FlurryTrait;
  */
 public class Nunchaku extends LegacyWeapon {
 
-  public static final String ID = LegacyMod.makeID("Nunchaku");
+  public static final String ID = LegacyMod.makeID("nunchaku");
   private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
   public static final int COST = 1;
 
   public Nunchaku() {
-    super(ID, cardStrings, COST, CardRarity.COMMON, CardTarget.ENEMY, new FlurryTrait());
+    super(ID, cardStrings, COST, CardRarity.UNCOMMON, CardTarget.ENEMY, new FlurryTrait());
   }
 
   @Override

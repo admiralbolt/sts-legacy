@@ -40,9 +40,9 @@
     "NAME": "Mace",
     "DESCRIPTION": "Deal !D! Damage."
   },
-  "legacy:nunchacku": {
-    "NAME": "nunchaku",
-    "DESCRIPTOIN": "Deal !D! damage 2 times."
+  "legacy:nunchaku": {
+    "NAME": "Nunchaku",
+    "DESCRIPTION": "Deal !D! damage 2 times."
   },
   "legacy:padded_armor": {
     "NAME": "Padded Armor",
@@ -54,7 +54,7 @@
   },
   "legacy:shortbow": {
     "NAME": "Shortbow",
-    "DESCRIIPTION": "Deal !D! Damage."
+    "DESCRIPTION": "Deal !D! Damage."
   },
   "legacy:spear": {
     "NAME": "Spear",

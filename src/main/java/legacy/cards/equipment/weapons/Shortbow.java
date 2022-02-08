@@ -8,7 +8,7 @@ import legacy.cards.mods.traits.RangedTrait;
 
 public class Shortbow extends LegacyWeapon {
 
-  public static final String ID = LegacyMod.makeID("Shortbow");
+  public static final String ID = "legacy:shortbow";
   private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
   private static final int COST = 1;
 
