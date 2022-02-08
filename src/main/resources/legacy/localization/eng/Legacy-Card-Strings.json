@@ -7,6 +7,10 @@
     "NAME": "Bedroll",
     "DESCRIPTION": "Heal !M!% of your max hp. NL End your turn."
   },
+  "legacy:bone_armor": {
+    "NAME": "Bone Armor",
+    "DESCRIPTION": "Exhaust a card from your discard. NL Gain !B! Block."
+  },
   "legacy:dagger": {
     "NAME": "Dagger",
     "DESCRIPTION": "Deal !D! Damage."

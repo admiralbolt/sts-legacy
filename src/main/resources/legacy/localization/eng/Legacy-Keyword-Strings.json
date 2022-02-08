@@ -40,6 +40,14 @@
     "DESCRIPTION": "Damage ignores Block, Curl Up, Sharp Hide, Malleable, and Thorns."
   },
   {
+    "PROPER_NAME": "Spell",
+    "NAMES": [
+      "Spell",
+      "spell"
+    ],
+    "DESCRIPTION": "Spells require a certain amount of focus to play, and scale with focus. The ignore physical powers like Strength, Dexterity, Frail, Weak, and Vulnerable."
+  },
+  {
     "PROPER_NAME": "Two Handed",
     "NAMES": [
       "Two Handed",

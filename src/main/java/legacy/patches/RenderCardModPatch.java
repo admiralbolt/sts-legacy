@@ -18,6 +18,8 @@ import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import javassist.CtBehavior;
 import legacy.cards.LegacyCard;
+import legacy.cards.mods.ModifierWithBadge;
+import legacy.cards.mods.SpellModifier;
 import legacy.cards.mods.traits.*;
 
 import java.util.ArrayList;
@@ -46,11 +48,12 @@ public class RenderCardModPatch {
     BADGE_MAP.put(GameDictionary.RETAIN.NAMES[0].toLowerCase(), StSLib.BADGE_RETAIN);
     BADGE_MAP.put("purge", StSLib.BADGE_PURGE);
 
-    // EQUIPMENT TRAITS.
+    // Custom Modifiers.
     BADGE_MAP.put(FinesseTrait.ID, FinesseTrait.BADGE);
     BADGE_MAP.put(FlurryTrait.ID, FlurryTrait.BADGE);
     BADGE_MAP.put(RangedTrait.ID, RangedTrait.BADGE);
     BADGE_MAP.put(TwoHandedTrait.ID, TwoHandedTrait.BADGE);
+    BADGE_MAP.put(SpellModifier.ID, SpellModifier.BADGE);
   }
 
   @SpirePatch(clz=AbstractCard.class, method="renderCard")
@@ -163,9 +166,9 @@ public class RenderCardModPatch {
 
         // EQUIPMENT TRAITS.
         for (AbstractCardModifier mod : CardModifierManager.modifiers(___card)) {
-          if (!(mod instanceof EquipmentTrait)) continue;
+          if (!(mod instanceof ModifierWithBadge)) continue;
 
-          offsetY += drawBadge(sb, ___card, ___cardHb, BADGE_MAP.get(((EquipmentTrait) mod).id), offsetY);
+          offsetY += drawBadge(sb, ___card, ___cardHb, BADGE_MAP.get(((ModifierWithBadge) mod).id), offsetY);
         }
       }
     }
@@ -243,9 +246,9 @@ public class RenderCardModPatch {
 
     // EQUIPMENT TRAITS.
     for (AbstractCardModifier mod : CardModifierManager.modifiers(card)) {
-      if (!(mod instanceof EquipmentTrait)) continue;
+      if (!(mod instanceof ModifierWithBadge)) continue;
 
-      offsetY -= RenderBadge(sb, card, BADGE_MAP.get(((EquipmentTrait) mod).id), offsetY, alpha);
+      offsetY -= RenderBadge(sb, card, BADGE_MAP.get(((ModifierWithBadge) mod).id), offsetY, alpha);
     }
   }
 
@@ -266,9 +269,9 @@ public class RenderCardModPatch {
 
     // Equipment Traits.
     for (AbstractCardModifier mod : CardModifierManager.modifiers(c)) {
-      if (!(mod instanceof EquipmentTrait)) continue;
+      if (!(mod instanceof ModifierWithBadge)) continue;
 
-      kws.add(((EquipmentTrait) mod).id);
+      kws.add(((ModifierWithBadge) mod).id);
     }
 
     return kws.stream().distinct().collect(Collectors.toCollection(ArrayList::new));
