@@ -90,6 +90,10 @@ public abstract class Spell extends LegacyCard implements SpawnModificationCard 
   // 6. Set this.damage to the new val, and set this.isDamageModified.
   @Override
   public void applyPowers() {
+    this.applyPowers(false);
+  }
+
+  public void applyPowers(boolean applyToMagicNumber) {
     this.applyPowersToBlock();
 
     AbstractPower focus = AbstractDungeon.player.getPower(FocusPower.POWER_ID);
@@ -99,6 +103,11 @@ public abstract class Spell extends LegacyCard implements SpawnModificationCard 
     // Modify damage based on focus.
     this.addDamage(focusAmount);
     this.isDamageModified = true;
+
+    // Modify magicNumber based on focus.
+    if (!applyToMagicNumber) return;
+    this.magicNumber = this.baseMagicNumber + focusAmount;
+    this.isMagicNumberModified = true;
   }
 
   // Digging into the applyPowersToBlock() function:

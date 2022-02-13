@@ -1,7 +1,16 @@
 {
+  "legacy:acid_arrow": {
+    "NAME": "Melf's Acid Arrow",
+    "DESCRIPTION": "Apply !M! Poison. NL Apply !M! Delayed Poison."
+  },
   "legacy:anathema": {
     "NAME": "Anathema",
     "DESCRIPTION": "Deal !D! Damage. NL [#eeee00]Permanently[] increase damage by !M! . NL [#ff0000]Lose[] 1 Max Hp."
+  },
+  "legacy:augury": {
+    "NAME": "Augury",
+    "DESCRIPTION": "Scry !M!. NL Draw !M2! card.",
+    "UPGRADE_DESCRIPTION": "Scry !M!. NL Draw !M2! cards."
   },
   "legacy:bedroll": {
     "NAME": "Bedroll",
@@ -77,13 +86,18 @@
     "NAME": "Steel Shield",
     "DESCRIPTION": "Gain !B! Block. NL Gain !M! Temporary HP."
   },
+  "legacy:ten_foot_pole": {
+    "NAME": "Ten Foot Pole",
+    "DESCRIPTION": "Remove all buffs from an enemy. NL Gain !M! Intangible."
+  },
   "legacy:whip": {
     "NAME": "Whip",
     "DESCRIPTION": "Deal !D! Damage. Apply !M! Weak."
   },
   "legacy:war_horn": {
     "NAME": "War Horn",
-    "DESCRIPTION": "Draw 1 card. Gain 1 Temporary Strength. NL Next turn, draw !M! additional cards and gain !M! Temporary Strength."
+    "DESCRIPTION": "Draw 1 card. Gain 1 Temporary Strength. NL Next turn, draw !M! additional card and gain !M! Temporary Strength.",
+    "UPGRADE_DESCRIPTION": "Draw 1 card. Gain 1 Temporary Strength. NL Next turn, draw !M! additional cards and gain !M! Temporary Strength."
   },
   "legacy:whirling_dervish": {
     "NAME": "Whirling Dervish",

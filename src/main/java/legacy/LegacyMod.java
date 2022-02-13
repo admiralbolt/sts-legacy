@@ -9,8 +9,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
-import com.evacipated.cardcrawl.modthespire.Loader;
-import com.evacipated.cardcrawl.modthespire.ModInfo;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
@@ -19,6 +17,7 @@ import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import legacy.cards.LegacyCards;
 import legacy.cards.mods.enchantments.EnchantmentsManager;
+import legacy.cards.vars.MagicNumberTwoVariable;
 import legacy.characters.TheAdventurer;
 import legacy.db.LegacyDb;
 import legacy.potions.PlaceholderPotion;
@@ -29,15 +28,9 @@ import legacy.relics.PlaceholderRelic2;
 import legacy.ui.TopPanelXPItem;
 import legacy.util.MonsterUtils;
 import legacy.util.TextureLoader;
-import org.clapper.util.classutil.ClassFilter;
-import org.clapper.util.classutil.ClassFinder;
-import org.clapper.util.classutil.ClassInfo;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.Properties;
 
 
@@ -222,6 +215,9 @@ public class LegacyMod implements
   @Override
   public void receiveEditCards() {
     new AutoAdd(LegacyMod.MOD_ID).setDefaultSeen(true).cards();
+
+    // Add card vars.
+    BaseMod.addDynamicVariable(new MagicNumberTwoVariable());
   }
 
   @Override

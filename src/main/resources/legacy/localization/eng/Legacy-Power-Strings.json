@@ -1,4 +1,11 @@
 {
+  "legacy:delayed_poison": {
+    "NAME": "Delayed Poison",
+    "DESCRIPTIONS": [
+      "Apply #b",
+      " poison at the start of next turn."
+    ]
+  },
   "legacy:flurry": {
     "NAME": "Flurry",
     "DESCRIPTIONS": [

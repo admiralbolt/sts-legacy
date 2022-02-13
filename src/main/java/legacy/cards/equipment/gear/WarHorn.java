@@ -42,6 +42,7 @@ public class WarHorn extends LegacyCard {
 
     this.upgradeName();
     this.upgradeMagicNumber(1);
+    this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
     this.initializeDescription();
   }
 
