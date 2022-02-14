@@ -27,12 +27,6 @@ public class BaseClassBlight extends AbstractBlight {
     this.powerId = powerId;
     this.img = TextureLoader.getTexture("legacy/images/relics/base_classes/" + imageName + ".png");
     this.outlineImg = TextureLoader.getTexture("legacy/images/relics/outline/base_class.png");
-  }
-
-  // Note that this is just for tracking class levels during an existing run. This will not save them to the config,
-  // and that should be done as part of the same process that updates the level here.
-  public void increaseLevel() {
-    this.counter++;
     this.updateDescription();
   }
 

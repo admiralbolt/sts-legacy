@@ -7,6 +7,10 @@
     "NAME": "Anathema",
     "DESCRIPTION": "Deal !D! Damage. NL [#eeee00]Permanently[] increase damage by !M! . NL [#ff0000]Lose[] 1 Max Hp."
   },
+  "legacy:arch_mage": {
+    "NAME": "Arch Mage",
+    "DESCRIPTION": "Whenever you play a legacy:Spell gain 1 Temporary Focus. NL Whenever you play a legacy:Spell gain [E]."
+  },
   "legacy:augury": {
     "NAME": "Augury",
     "DESCRIPTION": "Scry !M!. NL Draw !M2! card.",
@@ -89,6 +93,10 @@
   "legacy:ten_foot_pole": {
     "NAME": "Ten Foot Pole",
     "DESCRIPTION": "Remove all buffs from an enemy. NL Gain !M! Intangible."
+  },
+  "legacy:treasure_map": {
+    "NAME": "Treasure Map",
+    "DESCRIPTION": "Scry !M2!. NL Gain !M! Gold."
   },
   "legacy:whip": {
     "NAME": "Whip",

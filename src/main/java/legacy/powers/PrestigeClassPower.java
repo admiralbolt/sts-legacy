@@ -31,8 +31,6 @@ public class PrestigeClassPower extends AbstractPower {
     this.amount = -1;
     this.type = PowerType.BUFF;
     this.img = ImageMaster.loadImage("legacy/images/powers/prestige_classes/" + LegacyMod.getNameFromId(id) + ".png");
-    System.out.println("wtf");
-    System.out.println(this.img);
   }
 
   @Override

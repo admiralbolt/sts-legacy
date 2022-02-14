@@ -1,4 +1,10 @@
 {
+  "legacy:arch_mage_power": {
+    "NAME": "Arch Mage",
+    "DESCRIPTIONS": [
+      "Whenever you play a legacy:Spell gain 1 Temporary Focus. NL Whenever you play a legacy:Spell gain [E]."
+    ]
+  },
   "legacy:delayed_poison": {
     "NAME": "Delayed Poison",
     "DESCRIPTIONS": [
@@ -27,6 +33,13 @@
       ". Loses slow upon thawing in #b",
       "turns.",
       "turn."
+    ]
+  },
+  "legacy:lose_focus_power": {
+    "NAME": "Focus Down",
+    "DESCRIPTIONS": [
+      "At the end of this turn, lose #b",
+      " #yStrength."
     ]
   },
   "legacy:next_turn_tmp_strength": {

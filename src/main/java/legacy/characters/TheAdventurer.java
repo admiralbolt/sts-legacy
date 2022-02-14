@@ -232,11 +232,11 @@ public class TheAdventurer extends CustomPlayer {
     this.nextLevelXp = this.getTotalXpForNextLevel();
     // Make sure we increment internal levels, and then commit them.
     if (classId.equals(Fighter.ID)) {
-    this.fighterLevel++;
+      this.fighterLevel++;
     } else if (classId.equals(Rogue.ID)) {
-    this.rogueLevel++;
+      this.rogueLevel++;
     } else if (classId.equals(Wizard.ID)) {
-    this.wizardLevel++;
+      this.wizardLevel++;
     }
 
     // Also need to increase our blight stacks.
