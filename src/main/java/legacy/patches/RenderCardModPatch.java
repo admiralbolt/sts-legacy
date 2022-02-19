@@ -51,6 +51,9 @@ public class RenderCardModPatch {
     // Custom Modifiers.
     BADGE_MAP.put(FinesseTrait.ID, FinesseTrait.BADGE);
     BADGE_MAP.put(FlurryTrait.ID, FlurryTrait.BADGE);
+    BADGE_MAP.put(HeavyArmorTrait.ID, HeavyArmorTrait.BADGE);
+    BADGE_MAP.put(LightArmorTrait.ID, LightArmorTrait.BADGE);
+    BADGE_MAP.put(MediumArmorTrait.ID, MediumArmorTrait.BADGE);
     BADGE_MAP.put(RangedTrait.ID, RangedTrait.BADGE);
     BADGE_MAP.put(TwoHandedTrait.ID, TwoHandedTrait.BADGE);
     BADGE_MAP.put(SpellModifier.ID, SpellModifier.BADGE);

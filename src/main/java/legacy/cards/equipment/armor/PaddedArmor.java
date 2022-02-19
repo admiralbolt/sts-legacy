@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.LoseDexterityPower;
 import legacy.LegacyMod;
+import legacy.cards.mods.traits.LightArmorTrait;
 
 public class PaddedArmor extends LegacyArmor {
 
@@ -18,7 +19,7 @@ public class PaddedArmor extends LegacyArmor {
   public static final int COST = 0;
 
   public PaddedArmor() {
-    super(ID, cardStrings, COST, CardRarity.COMMON, CardTarget.SELF);
+    super(ID, cardStrings, COST, CardRarity.COMMON, new LightArmorTrait());
 
     this.baseMagicNumber = this.magicNumber = 1;
   }

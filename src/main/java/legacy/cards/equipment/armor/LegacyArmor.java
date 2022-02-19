@@ -1,15 +1,22 @@
 package legacy.cards.equipment.armor;
 
+import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.SpawnModificationCard;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import legacy.LegacyMod;
 import legacy.cards.LegacyCard;
+import legacy.cards.mods.ModifierWithBadge;
 import legacy.cards.mods.enchantments.Enchantment;
+import legacy.cards.mods.traits.HeavyArmorTrait;
+import legacy.cards.mods.traits.MediumArmorTrait;
+import legacy.cards.mods.traits.TwoHandedTrait;
 import legacy.db.DBCardInfo;
 
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,9 +34,9 @@ public abstract class LegacyArmor extends LegacyCard implements SpawnModificatio
   public List<Enchantment> enchantments;
   public final CardStrings cardStrings;
 
-  public LegacyArmor(String id, CardStrings cardStrings, int cost, CardRarity rarity, CardTarget target) {
+  public LegacyArmor(String id, CardStrings cardStrings, int cost, CardRarity rarity, AbstractCardModifier ...modifiers) {
     super(id, LegacyMod.LEGACY_DB.getName(id, cardStrings.NAME), getImagePath(id), cost,
-            cardStrings.DESCRIPTION, CardType.SKILL, rarity, target);
+            cardStrings.DESCRIPTION, CardType.SKILL, rarity, CardTarget.SELF);
 
     this.cardStrings = cardStrings;
 
@@ -43,6 +50,11 @@ public abstract class LegacyArmor extends LegacyCard implements SpawnModificatio
     for (Enchantment enchantment : this.enchantments) {
       CardModifierManager.addModifier(this, enchantment);
     }
+
+    // All the armor traits should be applied.
+    for (AbstractCardModifier modifier : modifiers) {
+      CardModifierManager.addModifier(this, modifier);
+    }
   }
 
   // Armor cards are unique! If you already have a copy in your deck, you can't get more.
@@ -53,6 +65,23 @@ public abstract class LegacyArmor extends LegacyCard implements SpawnModificatio
     }
 
     return true;
+  }
+
+  @Override
+  public void applyPowers() {
+    super.applyPowers();
+
+    // Handle our armor traits here, specifically for heavy / medium armor.
+    AbstractPower dexterity = AbstractDungeon.player.getPower("Dexterity");
+    if (dexterity == null || dexterity.amount == 0) return;
+
+    if (CardModifierManager.hasModifier(this, HeavyArmorTrait.ID)) {
+      this.block -= dexterity.amount;
+      if (this.block == this.baseBlock) this.isBlockModified = false;
+    } else if (CardModifierManager.hasModifier(this, MediumArmorTrait.ID) && dexterity.amount > 3) {
+      this.block -= (dexterity.amount - 3);
+      this.isBlockModified = true;
+    }
   }
 
 }

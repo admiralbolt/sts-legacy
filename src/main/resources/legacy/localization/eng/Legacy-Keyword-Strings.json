@@ -24,6 +24,36 @@
     "DESCRIPTION": "Decrease attack damage by #b1 per stack. Stack is reduced by #b1 at the end of turn. NL Targets with 5 or more stacks are also slowed."
   },
   {
+    "PROPER_NAME": "Heavy Armor",
+    "NAMES": [
+      "Heavy Armor",
+      "HeavyArmor",
+      "Heavy_Armor",
+      "heavy_armor"
+    ],
+    "DESCRIPTION": "Doesn't scale with Dexterity."
+  },
+  {
+    "PROPER_NAME": "Medium Armor",
+    "NAMES": [
+      "Medium Armor",
+      "MediumArmor",
+      "Medium_Armor",
+      "medium_armor"
+    ],
+    "DESCRIPTION": "Scales with up to 3 Dexterity."
+  },
+  {
+    "PROPER_NAME": "Light Armor",
+    "NAMES": [
+      "Light Armor",
+      "LightArmor",
+      "Light_Armor",
+      "light_armor"
+    ],
+    "DESCRIPTION": "Armor scales fully with Dexterity."
+  },
+  {
     "PROPER_NAME": "Paired",
     "NAMES": [
       "Paired",
