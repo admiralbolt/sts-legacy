@@ -17,6 +17,7 @@ import legacy.cards.mods.SpellModifier;
 import legacy.characters.TheAdventurer;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Magic is real btw.
@@ -131,13 +132,13 @@ public abstract class Spell extends LegacyCard implements SpawnModificationCard 
     this.isBlockModified = true;
   }
 
+  // In this case we are not calling super.applyPowers() or super.calculateCardDamge, so when we addDamage, it should
+  // be based on the baseDamage value.
   private void addDamage(int amount) {
     if (this.isMultiDamage && this.multiDamage != null) {
-      for (int i = 0; i < this.multiDamage.length; ++i) {
-        this.multiDamage[i] += amount;
-      }
+      Arrays.fill(this.multiDamage, this.baseDamage + amount);
     }
-    this.damage += amount;
+    this.damage = this.baseDamage + amount;
   }
 
   // For our purposes, identical to applyPowers(). We don't care about Vulnerable or Slow.
@@ -147,7 +148,9 @@ public abstract class Spell extends LegacyCard implements SpawnModificationCard 
     int focusAmount = (focus == null) ? 0 : focus.amount;
     if (focusAmount == 0) return;
 
+    System.out.println("calculatingCardDamage, baseDamage: " + this.baseDamage + ", damage: " + this.damage + ", focus: " + focusAmount);
     // Modify damage based on focus.
     this.addDamage(focusAmount);
+    this.isDamageModified = true;
   }
 }

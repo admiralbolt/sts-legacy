@@ -99,7 +99,7 @@ public abstract class LegacyWeapon extends LegacyCard implements SpawnModificati
     // Two handed weapons scale with strength twice as much.
     if (CardModifierManager.hasModifier(this, TwoHandedTrait.ID)) this.addDamage(strengthAmount);
 
-    // Finese weapons scale with dexterity instead of strength.
+    // Finesse weapons scale with dexterity instead of strength.
     // In the case where something is two handed and finesse, it should scale 1x with strength and dexterity.
     if (CardModifierManager.hasModifier(this, FinesseTrait.ID)) {
       this.addDamage(dexterityAmount);

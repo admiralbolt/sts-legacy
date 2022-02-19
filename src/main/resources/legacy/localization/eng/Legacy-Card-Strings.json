@@ -33,6 +33,10 @@
     "DESCRIPTION": "Double your Strength. NL Enter Wrath.",
     "UPGRADE_DESCRIPTION": "Triple your Strength. NL Enter Wrath."
   },
+  "legacy:grave_storm": {
+    "NAME": "Grave Storm",
+    "DESCRIPTION": "Exhaust your discard pile. NL Deal !D! damage for each card Exhausted."
+  },
   "legacy:greatsword": {
     "NAME": "Greatsword",
     "DESCRIPTION": "Deal !D! Damage."
