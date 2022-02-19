@@ -68,16 +68,16 @@ public abstract class LegacyArmor extends LegacyCard implements SpawnModificatio
   }
 
   @Override
-  public void applyPowers() {
-    super.applyPowers();
+  public void applyPowersToBlock() {
+    super.applyPowersToBlock();
 
     // Handle our armor traits here, specifically for heavy / medium armor.
     AbstractPower dexterity = AbstractDungeon.player.getPower("Dexterity");
     if (dexterity == null || dexterity.amount == 0) return;
 
     if (CardModifierManager.hasModifier(this, HeavyArmorTrait.ID)) {
-      this.block -= dexterity.amount;
-      if (this.block == this.baseBlock) this.isBlockModified = false;
+      this.block = this.baseBlock;
+      this.isBlockModified = false;
     } else if (CardModifierManager.hasModifier(this, MediumArmorTrait.ID) && dexterity.amount > 3) {
       this.block -= (dexterity.amount - 3);
       this.isBlockModified = true;

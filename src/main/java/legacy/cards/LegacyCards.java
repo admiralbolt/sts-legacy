@@ -3,8 +3,7 @@ package legacy.cards;
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import legacy.LegacyMod;
-import legacy.cards.equipment.armor.PaddedArmor;
-import legacy.cards.equipment.armor.SteelShield;
+import legacy.cards.equipment.armor.*;
 import legacy.cards.equipment.weapons.*;
 import legacy.db.DBCardInfo;
 
@@ -44,6 +43,7 @@ public class LegacyCards {
     addCard("legacy:whip", Whip.class, LegacyCardType.WEAPON, 2);
 
     // Armor.
+    addCard("legacy:full_plate", FullPlate.class, LegacyCardType.ARMOR, 7);
     addCard("legacy:padded_armor", PaddedArmor.class, LegacyCardType.ARMOR, 3);
     addCard("legacy:steel_shield", SteelShield.class, LegacyCardType.ARMOR, 4);
   }
