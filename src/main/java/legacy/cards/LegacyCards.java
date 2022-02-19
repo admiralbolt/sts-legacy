@@ -12,16 +12,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Base values for weapon & armor cards. We need to load the base values (block / damage) of the cards from the
+ * database. This provides an easy way to seed the database with initial base values, without needing to use the
+ * card classes directly. (There's a circular dependency if we try to do that).
+ */
 public class LegacyCards {
 
   public static Map<String, Class<? extends CustomCard>> allCards;
-  public static Map<String, LegacyCardType> cardsByType;
+  public static Map<String, EquipmentType> cardsByType;
   public static Map<String, Integer> cardBaseValues;
 
-  public enum LegacyCardType {
+  public enum EquipmentType {
     WEAPON,
-    ARMOR,
-    PRESTIGE_CLASSES
+    ARMOR
   }
 
   public static void initialize() {
@@ -30,25 +34,25 @@ public class LegacyCards {
     cardBaseValues = new HashMap<>();
 
     // Weapons.
-    addCard("legacy:anathema", Anathema.class, LegacyCardType.WEAPON,15);
-    addCard("legacy:dagger", Dagger.class, LegacyCardType.WEAPON, 2);
-    addCard("legacy:greatsword", Greatsword.class, LegacyCardType.WEAPON, 10);
-    addCard("legacy:kukri", Kukri.class, LegacyCardType.WEAPON, 2);
-    addCard("legacy:longsword", Longsword.class, LegacyCardType.WEAPON, 6);
-    addCard("legacy:mace", Mace.class, LegacyCardType.WEAPON, 5);
-    addCard("legacy:nunchaku", Nunchaku.class, LegacyCardType.WEAPON, 3);
-    addCard("legacy:rapier", Rapier.class, LegacyCardType.WEAPON, 4);
-    addCard("legacy:shortbow", Shortbow.class, LegacyCardType.WEAPON, 5);
-    addCard("legacy:spear", Spear.class, LegacyCardType.WEAPON, 9);
-    addCard("legacy:whip", Whip.class, LegacyCardType.WEAPON, 2);
+    addCard("legacy:anathema", Anathema.class, EquipmentType.WEAPON,15);
+    addCard("legacy:dagger", Dagger.class, EquipmentType.WEAPON, 2);
+    addCard("legacy:greatsword", Greatsword.class, EquipmentType.WEAPON, 10);
+    addCard("legacy:kukri", Kukri.class, EquipmentType.WEAPON, 2);
+    addCard("legacy:longsword", Longsword.class, EquipmentType.WEAPON, 6);
+    addCard("legacy:mace", Mace.class, EquipmentType.WEAPON, 5);
+    addCard("legacy:nunchaku", Nunchaku.class, EquipmentType.WEAPON, 3);
+    addCard("legacy:rapier", Rapier.class, EquipmentType.WEAPON, 4);
+    addCard("legacy:shortbow", Shortbow.class, EquipmentType.WEAPON, 5);
+    addCard("legacy:spear", Spear.class, EquipmentType.WEAPON, 9);
+    addCard("legacy:whip", Whip.class, EquipmentType.WEAPON, 2);
 
     // Armor.
-    addCard("legacy:full_plate", FullPlate.class, LegacyCardType.ARMOR, 7);
-    addCard("legacy:padded_armor", PaddedArmor.class, LegacyCardType.ARMOR, 3);
-    addCard("legacy:steel_shield", SteelShield.class, LegacyCardType.ARMOR, 4);
+    addCard("legacy:full_plate", FullPlate.class, EquipmentType.ARMOR, 7);
+    addCard("legacy:padded_armor", PaddedArmor.class, EquipmentType.ARMOR, 3);
+    addCard("legacy:steel_shield", SteelShield.class, EquipmentType.ARMOR, 4);
   }
 
-  public static void addCard(String cardId, Class<? extends CustomCard> c, LegacyCardType type, Integer baseValue) {
+  public static void addCard(String cardId, Class<? extends CustomCard> c, EquipmentType type, Integer baseValue) {
     allCards.put(cardId, c);
     cardsByType.put(cardId, type);
     cardBaseValues.put(cardId, baseValue);
