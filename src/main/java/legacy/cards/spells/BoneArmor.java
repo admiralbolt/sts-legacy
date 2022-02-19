@@ -1,5 +1,6 @@
 package legacy.cards.spells;
 
+import com.evacipated.cardcrawl.mod.stslib.actions.common.MoveCardsAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -33,9 +34,9 @@ public class BoneArmor extends Spell {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    // TODO(admiralbolt): Make the exhaust from discard effect.
-    // STS Animator mod has one of those, but it's wrapped in a few layers of abstraction, that may actually be useful.
-    // See: ExhaustFromPile.java, SelectFromPile.java, EYBActionWithCallback.java, EYBAction.
+    // Thanks STSLib! Also I should've read the docs first before rolling my own exhaust from discard action :(
+    // One other thing to note here, is that it doesn't have as nice of a UI as the hand select.
+    this.addToBot(new MoveCardsAction(p.exhaustPile, p.discardPile, 1));
     this.addToBot(new GainBlockAction(p, this.block));
   }
 
