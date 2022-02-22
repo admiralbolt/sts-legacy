@@ -2,7 +2,7 @@ package legacy.db;
 
 import legacy.cards.LegacyCards;
 import legacy.cards.mods.enchantments.Enchantment;
-import legacy.cards.mods.enchantments.EnchantmentsManager;
+import legacy.cards.mods.enchantments.EnchantmentUtils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -52,7 +52,7 @@ public class DBInitializer {
   }
 
   public static String getEnchantmentDataSQL() {
-    return "INSERT OR IGNORE INTO enchantments (enchantmentId, name, description) VALUES " + EnchantmentsManager.allEnchantments.stream().map(Enchantment::toDatabaseString).collect(Collectors.joining(", ")) + ";";
+    return "INSERT OR IGNORE INTO enchantments (enchantmentId, name, description) VALUES " + EnchantmentUtils.allEnchantments.stream().map(Enchantment::toDatabaseString).collect(Collectors.joining(", ")) + ";";
   }
 
 

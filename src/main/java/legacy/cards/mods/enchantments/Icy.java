@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import legacy.cards.LegacyCards;
 import legacy.cards.mods.enchantments.Enchantment;
 import legacy.powers.FrostPower;
 
@@ -20,7 +21,7 @@ public class Icy extends Enchantment {
   private static final int FROST_AMOUNT = 2;
 
   public Icy() {
-    super("legacy:icy", "Icy", "Apply " + FROST_AMOUNT + " legacy:Frost.", AbstractCard.CardType.ATTACK);
+    super("legacy:icy", "Icy", "Apply " + FROST_AMOUNT + " legacy:Frost.", LegacyCards.EquipmentType.WEAPON, 10, -2);
   }
 
   @Override

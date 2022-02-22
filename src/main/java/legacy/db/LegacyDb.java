@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import legacy.cards.LegacyCards;
 import legacy.cards.equipment.weapons.Anathema;
 import legacy.cards.mods.enchantments.Enchantment;
-import legacy.cards.mods.enchantments.EnchantmentsManager;
+import legacy.cards.mods.enchantments.EnchantmentUtils;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -63,7 +63,7 @@ public class LegacyDb {
       ResultSet result = stmt.executeQuery();
       while (result.next()) {
         String enchantmentId = result.getString("enchantmentId");
-        Enchantment enchantment = EnchantmentsManager.getEnchantment(enchantmentId);
+        Enchantment enchantment = EnchantmentUtils.getEnchantment(enchantmentId);
         if (enchantment == null) {
           System.out.println("Could not find enchantment with id: " + enchantmentId);
           continue;

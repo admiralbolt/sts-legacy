@@ -148,7 +148,6 @@ public abstract class Spell extends LegacyCard implements SpawnModificationCard 
     int focusAmount = (focus == null) ? 0 : focus.amount;
     if (focusAmount == 0) return;
 
-    System.out.println("calculatingCardDamage, baseDamage: " + this.baseDamage + ", damage: " + this.damage + ", focus: " + focusAmount);
     // Modify damage based on focus.
     this.addDamage(focusAmount);
     this.isDamageModified = true;

@@ -16,7 +16,6 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import legacy.LegacyMod;
 import legacy.actions.PiercingDamageAction;
 import legacy.cards.LegacyCard;
-import legacy.cards.mods.enchantments.Enchantment;
 import legacy.cards.mods.traits.FinesseTrait;
 import legacy.cards.mods.traits.FlurryTrait;
 import legacy.cards.mods.traits.RangedTrait;
@@ -25,7 +24,6 @@ import legacy.db.DBCardInfo;
 import legacy.powers.FlurryPower;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Weapons of Legacy.
@@ -43,30 +41,27 @@ public abstract class LegacyWeapon extends LegacyCard implements SpawnModificati
     return LegacyMod.MOD_ID + "/images/cards/weapons/" + LegacyMod.getNameFromId(id) + ".png";
   }
 
-  public List<Enchantment> enchantments;
   public final CardStrings cardStrings;
 
   public LegacyWeapon(String id, CardStrings cardStrings, int cost, CardRarity rarity, CardTarget target, AbstractCardModifier ...modifiers) {
-    super(id, LegacyMod.LEGACY_DB.getName(id, cardStrings.NAME), getImagePath(id), cost,
+    super(id, cardStrings.NAME, getImagePath(id), cost,
             cardStrings.DESCRIPTION, CardType.ATTACK, rarity, target);
 
     this.cardStrings = cardStrings;
+    this.enchantable = true;
 
     // Properly load permanent upgrades / name from the db.
     DBCardInfo info = LegacyMod.LEGACY_DB.getCardInfo(id);
     this.baseDamage = info.value;
 
     this.baseMagicNumber = this.magicNumber = 1;
-    // Enchantments need to get loaded from the DB, and their modifiers need to be applied.
-    this.enchantments = LegacyMod.LEGACY_DB.loadCardEnchantments(id);
-    for (Enchantment enchantment : this.enchantments) {
-      CardModifierManager.addModifier(this, enchantment);
-    }
 
     // All the weapon traits should be applied.
     for (AbstractCardModifier modifier : modifiers) {
       CardModifierManager.addModifier(this, modifier);
     }
+
+    this.updateName();
   }
 
   @Override

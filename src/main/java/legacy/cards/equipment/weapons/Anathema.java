@@ -19,6 +19,8 @@ public class Anathema extends LegacyWeapon {
 
   public Anathema() {
     super(ID, cardStrings, COST, CardRarity.RARE, CardTarget.ENEMY);
+
+    this.enchantable = false;
   }
 
   // Actions the card should do.

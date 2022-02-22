@@ -20,7 +20,7 @@ import java.util.Map;
 public class LegacyCards {
 
   public static Map<String, Class<? extends CustomCard>> allCards;
-  public static Map<String, EquipmentType> cardsByType;
+  public static Map<String, EquipmentType> cardsToType;
   public static Map<String, Integer> cardBaseValues;
 
   public enum EquipmentType {
@@ -30,7 +30,7 @@ public class LegacyCards {
 
   public static void initialize() {
     allCards = new HashMap<>();
-    cardsByType = new HashMap<>();
+    cardsToType = new HashMap<>();
     cardBaseValues = new HashMap<>();
 
     // Weapons.
@@ -54,7 +54,7 @@ public class LegacyCards {
 
   public static void addCard(String cardId, Class<? extends CustomCard> c, EquipmentType type, Integer baseValue) {
     allCards.put(cardId, c);
-    cardsByType.put(cardId, type);
+    cardsToType.put(cardId, type);
     cardBaseValues.put(cardId, baseValue);
   }
 

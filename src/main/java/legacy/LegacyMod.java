@@ -16,10 +16,11 @@ import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import legacy.cards.LegacyCards;
-import legacy.cards.mods.enchantments.EnchantmentsManager;
+import legacy.cards.mods.enchantments.EnchantmentUtils;
 import legacy.cards.vars.MagicNumberTwoVariable;
 import legacy.characters.TheAdventurer;
 import legacy.db.LegacyDb;
+import legacy.events.EnchantmentShrine;
 import legacy.potions.PlaceholderPotion;
 import legacy.relics.BottledPlaceholderRelic;
 import legacy.relics.DefaultClickableRelic;
@@ -135,7 +136,7 @@ public class LegacyMod implements
 
     MonsterUtils.initialize();
     LegacyCards.initialize();
-    EnchantmentsManager.initialize();
+    EnchantmentUtils.initialize();
     LEGACY_DB.initialize();
   }
 
@@ -175,20 +176,13 @@ public class LegacyMod implements
 
     BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
 
-    EnchantmentsManager.postInitialize();
+    EnchantmentUtils.postInitialize();
 
     // Brand new display for XP!
     BaseMod.addTopPanelItem(new TopPanelXPItem());
 
-
     // =============== EVENTS =================
-
-    // This event will be exclusive to the City (act 2). If you want an event that's present at any
-    // part of the game, simply don't include the dungeon ID
-    // If you want to have a character-specific event, look at slimebound (CityRemoveEventPatch).
-    // Essentially, you need to patch the game and say "if a player is not playing my character class, remove the event from the pool"
-
-    // =============== /EVENTS/ =================
+    BaseMod.addEvent(EnchantmentShrine.ID, EnchantmentShrine.class);
   }
 
   public void receiveEditPotions() {

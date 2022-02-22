@@ -31,7 +31,9 @@ import legacy.base_classes.Rogue;
 import legacy.base_classes.Wizard;
 import legacy.cards.equipment.armor.PaddedArmor;
 import legacy.cards.equipment.weapons.Anathema;
+import legacy.cards.equipment.weapons.Dagger;
 import legacy.cards.equipment.weapons.Rapier;
+import legacy.cards.equipment.weapons.Spear;
 import legacy.relics.DefaultClickableRelic;
 import legacy.relics.PlaceholderRelic;
 import legacy.relics.PlaceholderRelic2;
@@ -269,8 +271,8 @@ public class TheAdventurer extends CustomPlayer {
 
     deck.add(Anathema.ID);
     deck.add(Rapier.ID);
-    deck.add(Rapier.ID);
-    deck.add(PaddedArmor.ID);
+    deck.add(Dagger.ID);
+    deck.add(Spear.ID);
     deck.add(PaddedArmor.ID);
 
     return deck;

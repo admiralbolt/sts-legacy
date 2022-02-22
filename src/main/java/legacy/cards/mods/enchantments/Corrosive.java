@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
+import legacy.cards.LegacyCards;
 import legacy.cards.mods.enchantments.Enchantment;
 import legacy.powers.FrostPower;
 
@@ -21,7 +22,7 @@ public class Corrosive extends Enchantment {
   private static final int POISON_AMOUNT = 4;
 
   public Corrosive() {
-    super("legacy:corrosive", "Corrosive", "Apply " + POISON_AMOUNT + " Poison.", AbstractCard.CardType.ATTACK);
+    super("legacy:corrosive", "Corrosive", "Apply " + POISON_AMOUNT + " Poison.", LegacyCards.EquipmentType.WEAPON, 10, -2);
   }
 
   @Override

@@ -35,10 +35,11 @@ public abstract class LegacyArmor extends LegacyCard implements SpawnModificatio
   public final CardStrings cardStrings;
 
   public LegacyArmor(String id, CardStrings cardStrings, int cost, CardRarity rarity, AbstractCardModifier ...modifiers) {
-    super(id, LegacyMod.LEGACY_DB.getName(id, cardStrings.NAME), getImagePath(id), cost,
+    super(id, cardStrings.NAME, getImagePath(id), cost,
             cardStrings.DESCRIPTION, CardType.SKILL, rarity, CardTarget.SELF);
 
     this.cardStrings = cardStrings;
+    this.enchantable = true;
 
     // Properly load permanent upgrades / name from the db.
     DBCardInfo info = LegacyMod.LEGACY_DB.getCardInfo(id);
@@ -55,6 +56,8 @@ public abstract class LegacyArmor extends LegacyCard implements SpawnModificatio
     for (AbstractCardModifier modifier : modifiers) {
       CardModifierManager.addModifier(this, modifier);
     }
+
+    this.updateName();
   }
 
   // Armor cards are unique! If you already have a copy in your deck, you can't get more.

@@ -10,6 +10,8 @@ import java.util.*;
  */
 public class CardUtils {
 
+  public static Random RANDOM = new Random();
+
   public static boolean isCardInstanceInMasterDeck(UUID uuid) {
     if (AbstractDungeon.player == null || AbstractDungeon.player.masterDeck == null) return false;
 

@@ -50,7 +50,6 @@ public class MonsterXpPatch {
         Object monster = ReflectionUtil.getFieldValue(field, __instance);
         WorthXpField.worthXp.set(monster, false);
       } catch (NoSuchFieldException e) {
-        System.out.println("GAHHHHH");
         e.printStackTrace();
       }
     }
