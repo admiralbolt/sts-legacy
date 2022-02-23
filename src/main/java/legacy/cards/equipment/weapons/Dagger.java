@@ -16,6 +16,8 @@ public class Dagger extends LegacyWeapon {
 
   public Dagger() {
     super(ID, cardStrings, COST, CardRarity.COMMON, CardTarget.ENEMY, new FlurryTrait());
+
+    this.baseDamage = this.damage = 2;
   }
 
   @Override

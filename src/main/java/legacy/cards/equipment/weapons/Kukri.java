@@ -14,6 +14,8 @@ public class Kukri extends LegacyWeapon {
 
   public Kukri() {
     super(ID, cardStrings, COST, CardRarity.COMMON, CardTarget.ENEMY, new FlurryTrait(), new FinesseTrait());
+
+    this.baseDamage = this.damage = 2;
   }
 
   @Override

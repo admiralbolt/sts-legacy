@@ -22,7 +22,7 @@ public class CardUtils {
     return false;
   }
 
-  public static HashSet<AbstractCard> getAllInstancesOfCard(String cardId) {
+  public static HashSet<AbstractCard> getAllInstancesOfCardInCombat(String cardId) {
     HashSet<AbstractCard> cards = new HashSet<>();
     if (AbstractDungeon.player.cardInUse.cardID.equals(cardId)) {
       cards.add(AbstractDungeon.player.cardInUse);

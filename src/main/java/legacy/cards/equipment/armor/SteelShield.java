@@ -20,6 +20,7 @@ public class SteelShield extends LegacyArmor {
   public SteelShield() {
     super(ID, cardStrings, COST, CardRarity.UNCOMMON, new MediumArmorTrait());
 
+    this.baseBlock = this.block = 4;
     this.baseMagicNumber = this.magicNumber = 2;
   }
 

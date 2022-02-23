@@ -12,6 +12,8 @@ public class Mace extends LegacyWeapon {
 
   public Mace() {
     super(ID, cardStrings, COST, CardRarity.COMMON, CardTarget.ENEMY);
+
+    this.baseDamage = this.damage = 5;
   }
 
   @Override

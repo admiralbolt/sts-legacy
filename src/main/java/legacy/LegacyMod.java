@@ -16,11 +16,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import legacy.cards.LegacyCards;
 import legacy.cards.mods.enchantments.EnchantmentUtils;
 import legacy.cards.vars.MagicNumberTwoVariable;
 import legacy.characters.TheAdventurer;
-import legacy.db.LegacyDb;
 import legacy.events.EnchantmentShrine;
 import legacy.potions.PlaceholderPotion;
 import legacy.relics.BottledPlaceholderRelic;
@@ -51,14 +49,10 @@ public class LegacyMod implements
   private static final String AUTHOR = "Admiral Lightning Bolt";
   private static final String DESCRIPTION = "Slay the Spire with no perma-death sort of.";
 
-  // I can't think of a better way of doing this in the 10 seconds that I have spent thinking about it, so,
-  // We'll be tracking sqlite3 db changes statically on the mod instance. This can then be imported and used
-  // anywhere else in the app, would prefer to not do this statically, but unsure if we can get an instance of the
-  // LegacyMod somewhere else.
-  public static LegacyDb LEGACY_DB = new LegacyDb();
-
-  // Things that don't need to be in the DB will be tracked via properties & spire config.
+  // Character stats! This is experience points and levels.
   public static SpireConfig CHARACTER_STATS;
+  // Card enchantments! These are all enchantments applied to a card.
+  public static SpireConfig CARD_ENCHANTMENTS;
 
   // =============== INPUT TEXTURE LOCATION =================
 
@@ -111,15 +105,7 @@ public class LegacyMod implements
     return MOD_ID + "/images/relics/outline/" + resourcePath;
   }
 
-  public LegacyMod() {
-    BaseMod.subscribe(this);
-
-    BaseMod.addColor(TheAdventurer.Enums.COLOR_GRAY, DEFAULT_GRAY, DEFAULT_GRAY, DEFAULT_GRAY,
-            DEFAULT_GRAY, DEFAULT_GRAY, DEFAULT_GRAY, DEFAULT_GRAY,
-            ATTACK_DEFAULT_GRAY, SKILL_DEFAULT_GRAY, POWER_DEFAULT_GRAY, ENERGY_ORB_DEFAULT_GRAY,
-            ATTACK_DEFAULT_GRAY_PORTRAIT, SKILL_DEFAULT_GRAY_PORTRAIT, POWER_DEFAULT_GRAY_PORTRAIT,
-            ENERGY_ORB_DEFAULT_GRAY_PORTRAIT, CARD_ENERGY_ORB);
-
+  private static void loadCharacterStats() {
     Properties defaults = new Properties();
     defaults.setProperty("xp", "0");
     defaults.setProperty("next_level_xp", "10");
@@ -134,11 +120,33 @@ public class LegacyMod implements
     } catch (IOException e) {
       e.printStackTrace();
     }
+  }
+
+  private static void loadCardEnchantments() {
+    Properties defaults = new Properties();
+    defaults.setProperty("cards", "[]");
+    try {
+      CARD_ENCHANTMENTS = new SpireConfig("Legacy", "card_enchantments", defaults);
+      CARD_ENCHANTMENTS.load();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public LegacyMod() {
+    BaseMod.subscribe(this);
+
+    BaseMod.addColor(TheAdventurer.Enums.COLOR_GRAY, DEFAULT_GRAY, DEFAULT_GRAY, DEFAULT_GRAY,
+            DEFAULT_GRAY, DEFAULT_GRAY, DEFAULT_GRAY, DEFAULT_GRAY,
+            ATTACK_DEFAULT_GRAY, SKILL_DEFAULT_GRAY, POWER_DEFAULT_GRAY, ENERGY_ORB_DEFAULT_GRAY,
+            ATTACK_DEFAULT_GRAY_PORTRAIT, SKILL_DEFAULT_GRAY_PORTRAIT, POWER_DEFAULT_GRAY_PORTRAIT,
+            ENERGY_ORB_DEFAULT_GRAY_PORTRAIT, CARD_ENERGY_ORB);
+
+    loadCharacterStats();
+    loadCardEnchantments();
 
     MonsterUtils.initialize();
-    LegacyCards.initialize();
     EnchantmentUtils.initialize();
-    LEGACY_DB.initialize();
   }
 
   // Save permanent stats.

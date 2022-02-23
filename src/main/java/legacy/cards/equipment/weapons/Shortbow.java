@@ -14,6 +14,8 @@ public class Shortbow extends LegacyWeapon {
 
   public Shortbow() {
     super(ID, cardStrings, COST, CardRarity.COMMON, CardTarget.ENEMY, new FinesseTrait(), new RangedTrait());
+
+    this.baseDamage = this.damage = 5;
   }
 
   @Override

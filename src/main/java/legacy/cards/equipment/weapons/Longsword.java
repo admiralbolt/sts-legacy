@@ -12,6 +12,8 @@ public class Longsword extends LegacyWeapon {
 
   public Longsword() {
     super(ID, cardStrings, COST, CardRarity.COMMON, CardTarget.ENEMY);
+
+    this.baseDamage = this.damage = 6;
   }
 
   @Override

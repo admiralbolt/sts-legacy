@@ -24,6 +24,8 @@ public class Nunchaku extends LegacyWeapon {
 
   public Nunchaku() {
     super(ID, cardStrings, COST, CardRarity.UNCOMMON, CardTarget.ENEMY, new FlurryTrait());
+
+    this.baseDamage = this.damage = 3;
   }
 
   @Override

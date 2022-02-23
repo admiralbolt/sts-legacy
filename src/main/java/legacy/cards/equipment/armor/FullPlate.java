@@ -19,6 +19,7 @@ public class FullPlate extends LegacyArmor {
   public FullPlate() {
     super(ID, cardStrings, COST, CardRarity.UNCOMMON, new HeavyArmorTrait());
 
+    this.baseBlock = this.block = 7;
     this.baseMagicNumber = this.magicNumber = 4;
     this.exhaust = true;
   }

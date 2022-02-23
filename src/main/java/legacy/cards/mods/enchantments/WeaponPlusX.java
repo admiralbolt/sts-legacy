@@ -5,17 +5,18 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import legacy.cards.LegacyCards;
+import legacy.cards.LegacyCard;
 
 /**
  * Enchantment that gives a weapon +X damage.
  */
 public class WeaponPlusX extends Enchantment {
 
+  public static final String ID = "legacy:weapon_plus_x";
   public int amount;
 
   public WeaponPlusX(int amount) {
-    super("legacy:weapon_plus_x", "+" + amount, "", LegacyCards.EquipmentType.WEAPON, 0, 0);
+    super(ID, "+" + amount, "", LegacyCard.LegacyCardType.WEAPON, 0, 0);
   }
 
   @Override

@@ -9,7 +9,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import legacy.LegacyMod;
-import legacy.actions.PermanentBuffAction;
+import legacy.actions.PermanentBuffWeaponAction;
+import legacy.cards.mods.traits.TwoHandedTrait;
 
 public class Anathema extends LegacyWeapon {
 
@@ -18,16 +19,16 @@ public class Anathema extends LegacyWeapon {
   public static final int COST = 2;
 
   public Anathema() {
-    super(ID, cardStrings, COST, CardRarity.RARE, CardTarget.ENEMY);
+    super(ID, cardStrings, COST, CardRarity.RARE, CardTarget.ENEMY, new TwoHandedTrait());
 
+    this.baseDamage = this.damage = 15;
     this.enchantable = false;
   }
 
-  // Actions the card should do.
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
     AbstractDungeon.player.decreaseMaxHealth(1);
-    AbstractDungeon.actionManager.addToBottom(new PermanentBuffAction(this.cardID, this.magicNumber));
+    AbstractDungeon.actionManager.addToBottom(new PermanentBuffWeaponAction(this, this.magicNumber));
     AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HEAVY));
   }
 

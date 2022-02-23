@@ -21,6 +21,7 @@ public class PaddedArmor extends LegacyArmor {
   public PaddedArmor() {
     super(ID, cardStrings, COST, CardRarity.COMMON, new LightArmorTrait());
 
+    this.baseBlock = this.block = 3;
     this.baseMagicNumber = this.magicNumber = 1;
   }
 

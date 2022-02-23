@@ -3,17 +3,18 @@ package legacy.cards.mods.enchantments;
 import basemod.abstracts.AbstractCardModifier;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import legacy.cards.LegacyCards;
+import legacy.cards.LegacyCard;
 
 /**
  * Enchantment that gives an armor +X damage.
  */
 public class ArmorPlusX extends Enchantment {
 
+  public static String ID = "legacy:armor_plus_x";
   public int amount;
 
   public ArmorPlusX(int amount) {
-    super("legacy:armor_plus_x", "+" + amount, "", LegacyCards.EquipmentType.ARMOR, 0, 0);
+    super(ID, "+" + amount, "", LegacyCard.LegacyCardType.ARMOR, 0, 0);
   }
 
   @Override

@@ -12,7 +12,6 @@ import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.powers.NoBlockPower;
 import com.megacrit.cardcrawl.stances.WrathStance;
 import legacy.cards.LegacyCard;
-import legacy.cards.LegacyCards;
 import legacy.cards.mods.SpellModifier;
 import legacy.characters.TheAdventurer;
 
@@ -46,8 +45,8 @@ public abstract class Spell extends LegacyCard implements SpawnModificationCard 
   }
 
   public Spell(String id, CardStrings cardStrings, int cost, CardType type, CardRarity rarity, CardTarget target, SpellSchool school, int focusRequirement) {
-    super(id, cardStrings.NAME, LegacyCards.getImagePath("spells", id), cost,
-            requirementsString(focusRequirement) + cardStrings.DESCRIPTION, type, rarity, target);
+    super(id, cardStrings.NAME, cost, requirementsString(focusRequirement) + cardStrings.DESCRIPTION,
+            LegacyCardType.SPELL, type, rarity, target);
 
     CardModifierManager.addModifier(this, new SpellModifier());
     this.focusRequirement = focusRequirement;

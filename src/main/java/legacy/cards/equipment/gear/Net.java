@@ -2,9 +2,7 @@ package legacy.cards.equipment.gear;
 
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
-import com.megacrit.cardcrawl.actions.watcher.PressEndTurnButtonAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -13,11 +11,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.combat.EntangleEffect;
-import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import legacy.cards.LegacyCard;
-import legacy.cards.LegacyCards;
-
-import java.util.Iterator;
 
 /**
  * Slayer of byrds.
@@ -31,8 +25,7 @@ public class Net extends LegacyCard {
   public static final int COST = 2;
 
   public Net() {
-    super(ID, cardStrings.NAME, LegacyCards.getImagePath("gear", ID), COST,
-            cardStrings.DESCRIPTION, CardType.SKILL, CardRarity.COMMON, CardTarget.ENEMY);
+    super(ID, cardStrings.NAME, COST, cardStrings.DESCRIPTION, LegacyCardType.GEAR, CardType.SKILL, CardRarity.COMMON, CardTarget.ENEMY);
 
     this.baseMagicNumber = this.magicNumber = 2;
   }

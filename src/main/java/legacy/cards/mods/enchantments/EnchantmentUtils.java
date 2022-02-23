@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import legacy.cards.LegacyCard;
-import legacy.cards.LegacyCards;
 import legacy.cards.equipment.weapons.LegacyWeapon;
 
 import java.util.ArrayList;
@@ -22,7 +21,7 @@ public class EnchantmentUtils {
 
   public static List<Enchantment> allEnchantments;
   public static Map<String, Enchantment> enchantmentMap;
-  public static Map<LegacyCards.EquipmentType, EnchantmentPool> enchantmentPools;
+  public static Map<LegacyCard.LegacyCardType, EnchantmentPool> enchantmentPools;
 
   public static Map<AbstractCard.CardRarity, Integer> MAX_ENCHANTMENTS_BY_RARITY;
 
@@ -36,8 +35,8 @@ public class EnchantmentUtils {
     allEnchantments = new ArrayList<>();
     enchantmentMap = new HashMap<>();
     enchantmentPools = new HashMap<>();
-    enchantmentPools.put(LegacyCards.EquipmentType.ARMOR, new EnchantmentPool());
-    enchantmentPools.put(LegacyCards.EquipmentType.WEAPON, new EnchantmentPool());
+    enchantmentPools.put(LegacyCard.LegacyCardType.ARMOR, new EnchantmentPool());
+    enchantmentPools.put(LegacyCard.LegacyCardType.WEAPON, new EnchantmentPool());
     // Each rarity can have a certain number of enchantments.
     MAX_ENCHANTMENTS_BY_RARITY = new HashMap<>();
     MAX_ENCHANTMENTS_BY_RARITY.put(AbstractCard.CardRarity.RARE, 4);
@@ -107,7 +106,7 @@ public class EnchantmentUtils {
 
   // Get random enchantments for a card!
   public static List<Enchantment> randomEnchantments(LegacyCard card, int amount) {
-    return enchantmentPools.get(LegacyCards.cardsToType.get(card.cardID)).rollEnchantments(card, amount);
+    return enchantmentPools.get(card.legacyCardType).rollEnchantments(card, amount);
   }
 
   public static List<LegacyCard> getEnchantableCards() {

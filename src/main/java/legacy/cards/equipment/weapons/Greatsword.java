@@ -13,6 +13,8 @@ public class Greatsword extends LegacyWeapon {
 
   public Greatsword() {
     super(ID, cardStrings, COST, CardRarity.COMMON, CardTarget.ENEMY, new TwoHandedTrait());
+
+    this.baseDamage = this.damage = 10;
   }
 
   @Override

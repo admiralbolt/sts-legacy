@@ -3,7 +3,7 @@ package legacy.cards.mods.enchantments;
 import basemod.abstracts.AbstractCardModifier;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import legacy.cards.LegacyCards;
+import legacy.cards.LegacyCard;
 
 /**
  * Enchantments are a special type of modifier that gets applied only to weapons & armor.
@@ -14,13 +14,13 @@ public abstract class Enchantment extends AbstractCardModifier {
   public String name;
   public String description;
   // Which equipment type this enchantment can be applied to.
-  public LegacyCards.EquipmentType type;
+  public LegacyCard.LegacyCardType type;
   // The default weight for rolling the enchantment.
   public int weight;
   // The rarity of the enchanted card affects the quality of enchantments.
   public int rarityMultiplier;
 
-  public Enchantment(String id, String name, String description, LegacyCards.EquipmentType type, int weight, int rarityMultiplier) {
+  public Enchantment(String id, String name, String description, LegacyCard.LegacyCardType type, int weight, int rarityMultiplier) {
     this.id = id;
     this.name = name;
     this.description = description;

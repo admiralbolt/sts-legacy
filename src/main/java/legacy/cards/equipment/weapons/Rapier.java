@@ -13,6 +13,8 @@ public class Rapier extends LegacyWeapon {
 
   public Rapier() {
     super(ID, cardStrings, COST, CardRarity.COMMON, CardTarget.ENEMY, new FinesseTrait());
+
+    this.baseDamage = this.damage = 4;
   }
 
   @Override

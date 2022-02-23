@@ -3,7 +3,6 @@ package legacy.cards.equipment.gear;
 import basemod.cardmods.EtherealMod;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.unique.RemoveAllPowersAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -12,7 +11,6 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import legacy.actions.BetterRemoveAllPowersAction;
 import legacy.cards.LegacyCard;
-import legacy.cards.LegacyCards;
 
 /**
  * The most powerful piece of equipment in all of the game.
@@ -26,8 +24,7 @@ public class TenFootPole extends LegacyCard {
   public static final int COST = 3;
 
   public TenFootPole() {
-    super(ID, cardStrings.NAME, LegacyCards.getImagePath("gear", ID), COST,
-            cardStrings.DESCRIPTION, CardType.SKILL, CardRarity.RARE, CardTarget.ENEMY);
+    super(ID, cardStrings.NAME, COST, cardStrings.DESCRIPTION, LegacyCardType.GEAR, CardType.SKILL, CardRarity.RARE, CardTarget.ENEMY);
 
     this.baseMagicNumber = this.magicNumber = 1;
     this.exhaust = true;

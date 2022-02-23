@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import legacy.cards.LegacyCard;
-import legacy.cards.LegacyCards;
 
 /**
  * P L S S L P.
@@ -22,8 +21,7 @@ public class Bedroll extends LegacyCard {
   public static final int COST = 2;
 
   public Bedroll() {
-    super(ID, cardStrings.NAME, LegacyCards.getImagePath("gear", ID), COST,
-            cardStrings.DESCRIPTION, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+    super(ID, cardStrings.NAME, COST, cardStrings.DESCRIPTION, LegacyCardType.GEAR, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
     this.baseMagicNumber = this.magicNumber = 7;
     this.exhaust = true;

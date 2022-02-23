@@ -5,12 +5,9 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import legacy.cards.LegacyCards;
-import legacy.cards.mods.enchantments.Enchantment;
+import legacy.cards.LegacyCard;
 import legacy.powers.FrostPower;
 
 /**
@@ -18,10 +15,11 @@ import legacy.powers.FrostPower;
  */
 public class Icy extends Enchantment {
 
+  public static final String ID = "legacy:icy";
   private static final int FROST_AMOUNT = 2;
 
   public Icy() {
-    super("legacy:icy", "Icy", "Apply " + FROST_AMOUNT + " legacy:Frost.", LegacyCards.EquipmentType.WEAPON, 10, -2);
+    super(ID, "Icy", "Apply " + FROST_AMOUNT + " legacy:Frost.", LegacyCard.LegacyCardType.WEAPON, 10, -2);
   }
 
   @Override

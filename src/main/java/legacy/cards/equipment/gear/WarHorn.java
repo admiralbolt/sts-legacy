@@ -13,7 +13,6 @@ import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
 import legacy.cards.LegacyCard;
-import legacy.cards.LegacyCards;
 import legacy.powers.GainTemporaryStrengthNextTurnPower;
 
 /**
@@ -30,8 +29,7 @@ public class WarHorn extends LegacyCard {
   public static final int COST = 1;
 
   public WarHorn() {
-    super(ID, cardStrings.NAME, LegacyCards.getImagePath("gear", ID), COST,
-            cardStrings.DESCRIPTION, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+    super(ID, cardStrings.NAME, COST, cardStrings.DESCRIPTION, LegacyCardType.GEAR, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
     this.baseMagicNumber = this.magicNumber = 1;
   }
