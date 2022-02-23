@@ -61,5 +61,4 @@ public abstract class LegacyCard extends CustomCard {
     return LegacyMod.MOD_ID + "/images/cards/" + type.toString().toLowerCase() + "/" + LegacyMod.getNameFromId(id) + ".png";
   }
 
-
 }

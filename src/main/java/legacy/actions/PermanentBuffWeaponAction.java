@@ -29,11 +29,12 @@ public class PermanentBuffWeaponAction extends AbstractGameAction {
     this.increase = increase;
   }
 
-  private void upgradeBonus(AbstractCard cardToUpgrade, int currentBonus) {
+  private void upgradeBonus(LegacyCard cardToUpgrade, int currentBonus) {
     if (CardModifierManager.hasModifier(cardToUpgrade, WeaponPlusX.ID)) {
       CardModifierManager.removeModifiersById(cardToUpgrade, WeaponPlusX.ID, true);
     }
     CardModifierManager.addModifier(cardToUpgrade, new WeaponPlusX(currentBonus + this.increase));
+    cardToUpgrade.updateName();
   }
 
   public void update() {
@@ -48,13 +49,13 @@ public class PermanentBuffWeaponAction extends AbstractGameAction {
     for (AbstractCard card : AbstractDungeon.player.masterDeck.group) {
       if (!card.cardID.equals(this.card.cardID)) continue;
 
-      this.upgradeBonus(card, currentBonus);
+      this.upgradeBonus((LegacyCard) card, currentBonus);
     }
 
     // Apply our enchantment to ALL instances of the card in the current combat. This will handle permanently buffing
     // duplicates.
     for (AbstractCard card : CardUtils.getAllInstancesOfCardInCombat(this.card.cardID)) {
-      this.upgradeBonus(card, currentBonus);
+      this.upgradeBonus((LegacyCard) card, currentBonus);
     }
 
     // We want to make sure we re-apply powers for our cads that have been modified in hand.

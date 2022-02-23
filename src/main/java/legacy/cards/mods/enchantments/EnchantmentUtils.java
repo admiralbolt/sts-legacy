@@ -1,10 +1,18 @@
 package legacy.cards.mods.enchantments;
 
+import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardBorderGlowManager;
 import basemod.helpers.CardModifierManager;
+import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.CardModifierPatches;
+import basemod.patches.com.megacrit.cardcrawl.saveAndContinue.SaveFile.ModSaves;
 import com.badlogic.gdx.graphics.Color;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.reflect.TypeToken;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import legacy.LegacyMod;
 import legacy.cards.LegacyCard;
 import legacy.cards.equipment.weapons.LegacyWeapon;
 
@@ -24,6 +32,9 @@ public class EnchantmentUtils {
   public static Map<LegacyCard.LegacyCardType, EnchantmentPool> enchantmentPools;
 
   public static Map<AbstractCard.CardRarity, Integer> MAX_ENCHANTMENTS_BY_RARITY;
+
+  // Enchantments that have been saved permanently to the config file.
+  public static Map<String, List<AbstractCardModifier>> PERSISTED_ENCHANTMENTS;
 
   public static void addEnchantment(Enchantment enchantment) {
     allEnchantments.add(enchantment);
@@ -114,6 +125,60 @@ public class EnchantmentUtils {
             .filter(EnchantmentUtils::canEnchant)
             .map(c -> (LegacyCard) c)
             .collect(Collectors.toList());
+  }
+
+  // Serialize the enchantments from the master deck, and saves them as a string property on the card enchantments
+  // spire field. We want our final form to be a mapping from a card id -> a list of enchantments on that card.
+  // Logic is *very* similar to the ConstructSaveFilePatch.java.
+  public static void commitEnchantments() {
+    ModSaves.HashMapOfJsonElement enchantmentMap = new ModSaves.HashMapOfJsonElement();
+
+    GsonBuilder builder = new GsonBuilder();
+    if (CardModifierPatches.modifierAdapter == null) {
+      CardModifierPatches.initializeAdapterFactory();
+    }
+    builder.registerTypeAdapterFactory(CardModifierPatches.modifierAdapter);
+    Gson gson = builder.create();
+
+    // Iterate through cards in the master deck, and find all modifiers that are enchantments.
+    for (AbstractCard card : AbstractDungeon.player.masterDeck.group) {
+      List<AbstractCardModifier> enchantmentMods = CardModifierManager.modifiers(card).stream()
+              .filter(mod -> mod instanceof Enchantment)
+              .collect(Collectors.toList());
+
+      if (enchantmentMods.isEmpty()) continue;
+
+      // Json black magic I don't need or want to understand.
+      enchantmentMap.put(card.cardID, gson.toJsonTree(enchantmentMods, new TypeToken<ArrayList<AbstractCardModifier>>(){}.getType()));
+    }
+
+    LegacyMod.CARD_ENCHANTMENTS.setString("cards", gson.toJson(enchantmentMap));
+  }
+
+  // Load our previously saved enchantments from the config file. Make sure CARD_ENCHANTMENTS is initialized first.
+  // These values get saved into the PERSISTED_ENCHANTMENTS hash map.
+  // Logic is *very* similar to the LoadPlayerSaves.java.
+  public static void loadEnchantments() {
+    PERSISTED_ENCHANTMENTS = new HashMap<>();
+    GsonBuilder builder = new GsonBuilder();
+    if (CardModifierPatches.modifierAdapter == null) {
+      CardModifierPatches.initializeAdapterFactory();
+    }
+
+    builder.registerTypeAdapterFactory(CardModifierPatches.modifierAdapter);
+    Gson gson = builder.create();
+
+    // Get raw enchantments string.
+    String rawEnchantments = LegacyMod.CARD_ENCHANTMENTS.getString("cards");
+    // Convert raw enchantments string to map of string -> json element.
+    ModSaves.HashMapOfJsonElement jsonMap = gson.fromJson(rawEnchantments, new TypeToken<ModSaves.HashMapOfJsonElement>() {
+    }.getType());
+    for (Map.Entry<String, JsonElement> entry : jsonMap.entrySet()) {
+      // For each json element convert to list of card modifier, and save in PERSISTED_ENCHANTMENTS.
+      ArrayList<AbstractCardModifier> cardMods = gson.fromJson(entry.getValue(), new TypeToken<ArrayList<AbstractCardModifier>>() {
+      }.getType());
+      PERSISTED_ENCHANTMENTS.put(entry.getKey(), cardMods);
+    }
   }
 
 }

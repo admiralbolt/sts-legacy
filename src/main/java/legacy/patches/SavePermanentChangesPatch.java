@@ -13,7 +13,7 @@ public class SavePermanentChangesPatch {
   public static class SaveGame {
     public static void Prefix() {
       LegacyMod.saveCharacterStats();
-      // LegacyMod.LEGACY_DB.commitChanges();
+      LegacyMod.saveCardEnchantments();
     }
   }
 

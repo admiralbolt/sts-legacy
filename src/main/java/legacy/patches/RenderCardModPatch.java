@@ -21,6 +21,7 @@ import legacy.cards.LegacyCard;
 import legacy.cards.mods.ModifierWithBadge;
 import legacy.cards.mods.SpellModifier;
 import legacy.cards.mods.traits.*;
+import legacy.util.TextureLoader;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,15 +49,16 @@ public class RenderCardModPatch {
     BADGE_MAP.put(GameDictionary.RETAIN.NAMES[0].toLowerCase(), StSLib.BADGE_RETAIN);
     BADGE_MAP.put("purge", StSLib.BADGE_PURGE);
 
-    // Custom Modifiers.
-    BADGE_MAP.put(FinesseTrait.ID, FinesseTrait.BADGE);
-    BADGE_MAP.put(FlurryTrait.ID, FlurryTrait.BADGE);
-    BADGE_MAP.put(HeavyArmorTrait.ID, HeavyArmorTrait.BADGE);
-    BADGE_MAP.put(LightArmorTrait.ID, LightArmorTrait.BADGE);
-    BADGE_MAP.put(MediumArmorTrait.ID, MediumArmorTrait.BADGE);
-    BADGE_MAP.put(RangedTrait.ID, RangedTrait.BADGE);
-    BADGE_MAP.put(TwoHandedTrait.ID, TwoHandedTrait.BADGE);
-    BADGE_MAP.put(SpellModifier.ID, SpellModifier.BADGE);
+    // Custom Modifiers. We load textures directly here because of some funny problems with including textures on
+    // the trait classes themselves. We run into problems loading them before the Gdx.files initialization happens.
+    BADGE_MAP.put(FinesseTrait.ID, TextureLoader.getTexture("legacy/images/cards/mods/traits/finesse.png"));
+    BADGE_MAP.put(FlurryTrait.ID, TextureLoader.getTexture("legacy/images/cards/mods/traits/flurry.png"));
+    BADGE_MAP.put(HeavyArmorTrait.ID, TextureLoader.getTexture("legacy/images/cards/mods/traits/heavy_armor.png"));
+    BADGE_MAP.put(LightArmorTrait.ID, TextureLoader.getTexture("legacy/images/cards/mods/traits/light_armor.png"));
+    BADGE_MAP.put(MediumArmorTrait.ID, TextureLoader.getTexture("legacy/images/cards/mods/traits/medium_armor.png"));
+    BADGE_MAP.put(RangedTrait.ID, TextureLoader.getTexture("legacy/images/cards/mods/traits/ranged.png"));
+    BADGE_MAP.put(TwoHandedTrait.ID, TextureLoader.getTexture("legacy/images/cards/mods/traits/two_handed.png"));
+    BADGE_MAP.put(SpellModifier.ID, TextureLoader.getTexture("legacy/images/cards/mods/spell.png"));
   }
 
   @SpirePatch(clz=AbstractCard.class, method="renderCard")

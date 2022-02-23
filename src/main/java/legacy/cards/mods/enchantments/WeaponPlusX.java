@@ -17,6 +17,8 @@ public class WeaponPlusX extends Enchantment {
 
   public WeaponPlusX(int amount) {
     super(ID, "+" + amount, "", LegacyCard.LegacyCardType.WEAPON, 0, 0);
+
+    this.amount = amount;
   }
 
   @Override

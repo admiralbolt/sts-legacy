@@ -1,6 +1,7 @@
 package legacy.cards.mods.enchantments;
 
 import basemod.abstracts.AbstractCardModifier;
+import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import legacy.cards.LegacyCard;
@@ -29,10 +30,6 @@ public abstract class Enchantment extends AbstractCardModifier {
     this.rarityMultiplier = rarityMultiplier;
   }
 
-  public String toDatabaseString() {
-    return String.format("('%s', '%s', '%s')", this.id, this.name, this.description);
-  }
-
   @Override
   public String modifyDescription(String rawDescription, AbstractCard card) {
     return rawDescription + " NL " + this.description;
@@ -55,6 +52,12 @@ public abstract class Enchantment extends AbstractCardModifier {
   @Override
   public int hashCode() {
     return this.id.hashCode();
+  }
+
+  @Override
+  public boolean shouldApply(AbstractCard card) {
+    // Only apply an enchantment if the card doesn't already have it.
+    return !CardModifierManager.hasModifier(card, this.id);
   }
 
   @Override

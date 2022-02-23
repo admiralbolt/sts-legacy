@@ -27,10 +27,7 @@ public class CampfireLevelUpPatch {
     try {
       Field field = instance.getClass().getDeclaredField("buttons");
       Object buttonArray = ReflectionUtil.getFieldValue(field, instance);
-      if (!(buttonArray instanceof ArrayList)) {
-        System.out.println("even wacker.");
-        return;
-      }
+      if (!(buttonArray instanceof ArrayList)) return;
 
       ArrayList<AbstractCampfireOption> buttons = (ArrayList<AbstractCampfireOption>) buttonArray;
       LevelUpCampfireOption option = new LevelUpCampfireOption();
@@ -41,7 +38,7 @@ public class CampfireLevelUpPatch {
       buttons.add(option);
 
     } catch (Exception exception) {
-      System.out.println("wack");
+      exception.printStackTrace();
     }
   }
 

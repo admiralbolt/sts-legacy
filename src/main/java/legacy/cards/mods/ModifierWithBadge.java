@@ -1,6 +1,7 @@
 package legacy.cards.mods;
 
 import basemod.abstracts.AbstractCardModifier;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 /**
@@ -18,5 +19,10 @@ public abstract class ModifierWithBadge extends AbstractCardModifier {
   @Override
   public String identifier(AbstractCard card) {
     return this.id;
+  }
+
+  @Override
+  public boolean shouldApply(AbstractCard card) {
+    return !CardModifierManager.hasModifier(card, this.id);
   }
 }

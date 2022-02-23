@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import legacy.actions.PiercingDamageAction;
 import legacy.cards.LegacyCard;
+import legacy.cards.mods.enchantments.EnchantmentUtils;
 import legacy.cards.mods.traits.FinesseTrait;
 import legacy.cards.mods.traits.FlurryTrait;
 import legacy.cards.mods.traits.RangedTrait;
@@ -47,6 +48,9 @@ public abstract class LegacyWeapon extends LegacyCard implements SpawnModificati
     this.baseMagicNumber = this.magicNumber = 1;
 
     // All enchantments for this card should be loaded.
+    for (AbstractCardModifier modifier : EnchantmentUtils.PERSISTED_ENCHANTMENTS.getOrDefault(this.cardID, new ArrayList<>())) {
+      CardModifierManager.addModifier(this, modifier);
+    }
 
     // All the weapon traits should be applied.
     for (AbstractCardModifier modifier : modifiers) {
