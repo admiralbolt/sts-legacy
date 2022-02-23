@@ -118,7 +118,7 @@ public class LegacyDb {
     this.changeSet.put(cardId, damage);
   }
 
-  // Commits changes that have been built up over the course of a single combat to the database.
+  // Commits changes that have been built up over the course of combats / events.
   public void commitChanges() {
     try (Connection connection = DriverManager.getConnection(CONNECTION_STRING)) {
       String sql = "UPDATE " + CARDS_TABLE + " SET damage = ? WHERE cardId = ?";
@@ -136,28 +136,6 @@ public class LegacyDb {
 
     // Sus.
     CardLibrary.add(new Anathema());
-  }
-
-  /**
-   * Returns a nicely formatted card name i.e. +2 Corrosive Rapier.
-   */
-  public String getName(String cardId, String baseName) {
-    StringBuilder builder = new StringBuilder();
-    DBCardInfo info = getCardInfo(cardId);
-    if (info.numUpgrades > 0) {
-      builder.append("+");
-      builder.append(info.numUpgrades);
-      builder.append(" ");
-    }
-
-    List<Enchantment> enchantments = loadCardEnchantments(cardId);
-    for (Enchantment enchantment : enchantments) {
-      builder.append(enchantment.name);
-      builder.append(" ");
-    }
-
-    builder.append(baseName);
-    return builder.toString();
   }
 
 }

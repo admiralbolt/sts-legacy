@@ -397,29 +397,4 @@ public class TheAdventurer extends CustomPlayer {
     return TEXT[2];
   }
 
-  // We need to commit changes to the database either when a fight is won OR when a player dies.
-  // This is to avoid cases where permanent DB changes get committed during a fight, allowing the player
-  // to save and quit while still retaining permanent buffs.
-  @Override
-  public void onVictory() {
-    super.onVictory();
-
-    commitStats();
-    LegacyMod.saveCharacterStats();
-    LEGACY_DB.commitChanges();
-  }
-
-  // I don't want to write a really ugly spire patch in order to make this work, so instead we slap some logic
-  // into the playDeathAnimation function().
-  //
-  // I'm sorry programming gods for my insolence, but I just want it to work.
-  @Override
-  public void playDeathAnimation() {
-    super.playDeathAnimation();
-
-    commitStats();
-    LegacyMod.saveCharacterStats();
-    LEGACY_DB.commitChanges();
-  }
-
 }

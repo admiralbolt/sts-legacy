@@ -12,6 +12,7 @@ import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
@@ -143,6 +144,9 @@ public class LegacyMod implements
   // Save permanent stats.
   public static void saveCharacterStats() {
     try {
+      if (AbstractDungeon.player instanceof TheAdventurer) {
+        ((TheAdventurer) AbstractDungeon.player).commitStats();
+      }
       CHARACTER_STATS.save();
     } catch (IOException e) {
       e.printStackTrace();
