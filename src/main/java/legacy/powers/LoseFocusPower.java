@@ -9,25 +9,15 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FocusPower;
 
-public class LoseFocusPower extends AbstractPower {
+/**
+ * Lose focus at end of turn.
+ */
+public class LoseFocusPower extends LegacyPower {
 
-  public static final String POWER_ID = "legacy:lose_focus_power";
-  public static final PowerStrings POWER_STRINGS = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-  public static final String[] DESCRIPTIONS = POWER_STRINGS.DESCRIPTIONS;
+  public static final String POWER_ID = "legacy:lose_focus";
 
   public LoseFocusPower(AbstractCreature owner, int amount) {
-    this.ID = POWER_ID;
-    this.name = POWER_STRINGS.NAME;
-    this.owner = owner;
-    this.amount = amount;
-    this.img = ImageMaster.loadImage("legacy/images/powers/placeholder_power32.png");
-    this.type = PowerType.DEBUFF;
-    this.updateDescription();
-  }
-
-  @Override
-  public void updateDescription() {
-    this.description = POWER_STRINGS.DESCRIPTIONS[0] + this.amount + POWER_STRINGS.DESCRIPTIONS[1];
+    super(POWER_ID, owner, amount, PowerType.DEBUFF);
   }
 
   @Override

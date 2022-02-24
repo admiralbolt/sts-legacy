@@ -12,22 +12,15 @@ import com.megacrit.cardcrawl.powers.PoisonPower;
 /**
  * Re-apply poison to an enemy at the end of the monsters turn.
  */
-public class DelayedPoison extends AbstractPower {
+public class DelayedPoison extends LegacyPower {
 
   public static final String POWER_ID = "legacy:delayed_poison";
-  public static final PowerStrings POWER_STRINGS = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-
   private final AbstractCreature source;
 
   public DelayedPoison(AbstractCreature owner, AbstractCreature source, int amount) {
-    this.ID = POWER_ID;
-    this.name = POWER_STRINGS.NAME;
-    this.owner = owner;
+    super(POWER_ID, owner, amount, PowerType.DEBUFF);
+
     this.source = source;
-    this.amount = amount;
-    this.img = ImageMaster.loadImage("legacy/images/powers/placeholder_power32.png");
-    this.type = PowerType.DEBUFF;
-    this.updateDescription();
   }
 
   @Override
@@ -43,11 +36,6 @@ public class DelayedPoison extends AbstractPower {
   public void stackPower(int stackAmount) {
     this.fontScale = 8.0F;
     this.amount += stackAmount;
-  }
-
-  @Override
-  public void updateDescription() {
-    this.description = POWER_STRINGS.DESCRIPTIONS[0] + this.amount + POWER_STRINGS.DESCRIPTIONS[1];
   }
 
 }

@@ -5,10 +5,7 @@ import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.beyond.GiantHead;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.SlowPower;
@@ -19,20 +16,12 @@ import com.megacrit.cardcrawl.powers.SlowPower;
  *
  * Reduces damage equal to stacks. The target also receives the Slow debuff while frost is applied.
  */
-public class FrostPower extends AbstractPower {
+public class FrostPower extends LegacyPower {
 
   public static final String POWER_ID = "legacy:frost";
-  public static final PowerStrings POWER_STRINGS = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-  public static final String[] DESCRIPTIONS = POWER_STRINGS.DESCRIPTIONS;
 
   public FrostPower(AbstractCreature owner, int amount) {
-    this.ID = POWER_ID;
-    this.name = POWER_STRINGS.NAME;
-    this.owner = owner;
-    this.amount = amount;
-    this.img = ImageMaster.loadImage("legacy/images/powers/placeholder_power32.png");
-    this.type = PowerType.DEBUFF;
-    this.updateDescription();
+    super(POWER_ID, owner, amount, PowerType.DEBUFF);
   }
 
   @Override
@@ -89,10 +78,11 @@ public class FrostPower extends AbstractPower {
     return type == DamageInfo.DamageType.NORMAL ? damage - (float)this.amount : damage;
   }
 
+  @Override
   public void updateDescription() {
     // On the last turn it should say "turn" instead of "turns". Hence the weird ternary operator accessing
     // descriptions.
-    this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1] + this.amount + DESCRIPTIONS[(this.amount == 1) ? 3 : 2];
+    this.description = this.powerStrings.DESCRIPTIONS[0] + this.amount + this.powerStrings.DESCRIPTIONS[1] + this.amount + this.powerStrings.DESCRIPTIONS[(this.amount == 1) ? 3 : 2];
   }
 
 }

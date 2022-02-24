@@ -35,7 +35,7 @@
       "turn."
     ]
   },
-  "legacy:lose_focus_power": {
+  "legacy:lose_focus": {
     "NAME": "Focus Down",
     "DESCRIPTIONS": [
       "At the end of this turn, lose #b",
