@@ -5,6 +5,16 @@
       "Whenever you play a legacy:Spell gain 1 Temporary Focus. NL Whenever you play a legacy:Spell gain [E]."
     ]
   },
+  "legacy:burn": {
+    "NAME": "Burn",
+    "DESCRIPTIONS": [
+      "At the start of your turn, lose #b",
+      "At the start of its turn, loses #b",
+      " HP. Fades in #b",
+      " turns",
+      " turn"
+    ]
+  },
   "legacy:cover_power": {
     "NAME": "Cover",
     "DESCRIPTIONS": [
@@ -41,11 +51,17 @@
       "turn."
     ]
   },
+  "legacy:lightning": {
+    "NAME": "Lightning",
+    "DESCRIPTIONS": [
+      "Stuns upon reaching 10 stacks."
+    ]
+  },
   "legacy:lose_focus": {
     "NAME": "Focus Down",
     "DESCRIPTIONS": [
       "At the end of this turn, lose #b",
-      " #yStrength."
+      " #yFocus."
     ]
   },
   "legacy:next_turn_tmp_strength": {
