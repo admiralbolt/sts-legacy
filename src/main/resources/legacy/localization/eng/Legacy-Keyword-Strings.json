@@ -75,7 +75,7 @@
       "Spell",
       "spell"
     ],
-    "DESCRIPTION": "Spells require a certain amount of focus to play, and scale with focus. The ignore physical powers like Strength, Dexterity, Frail, Weak, and Vulnerable."
+    "DESCRIPTION": "Spells require focus to play, and scale with focus. They are unaffected by phyical powers. Cannot be cast while in Wrath."s
   },
   {
     "PROPER_NAME": "Two Handed",

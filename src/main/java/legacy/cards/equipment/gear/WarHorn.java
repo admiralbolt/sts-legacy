@@ -46,7 +46,7 @@ public class WarHorn extends LegacyCard {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    this.addToBot(new VFXAction(p, new ShockWaveEffect(p.hb.cX, p.hb.cY, Color.ORANGE, ShockWaveEffect.ShockWaveType.CHAOTIC), 1.0F));
+    this.addToBot(new VFXAction(p, new ShockWaveEffect(p.hb.cX, p.hb.cY, Color.ORANGE, ShockWaveEffect.ShockWaveType.CHAOTIC), 0.25F));
     this.addToBot(new DrawCardAction(p, 1));
     this.addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, 1), 1));
     this.addToBot(new ApplyPowerAction(p, p, new LoseStrengthPower(p, 1), 1));

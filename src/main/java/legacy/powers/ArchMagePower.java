@@ -26,11 +26,6 @@ public class ArchMagePower extends PrestigeClassPower {
   }
 
   @Override
-  public void updateDescription() {
-    this.description = this.powerStrings.DESCRIPTIONS[0];
-  }
-
-  @Override
   public void atStartOfTurn() {
     this.spellPower = 0;
   }
