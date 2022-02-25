@@ -1,32 +1,25 @@
 package legacy.cards.equipment.armor;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import legacy.LegacyMod;
 import legacy.cards.mods.traits.MediumArmorTrait;
 
-public class SteelShield extends LegacyArmor {
+/**
+ * Medium armor that blocks twice!
+ */
+public class Chainmail extends LegacyArmor {
 
-  public static final String ID = LegacyMod.makeID("steel_shield");
+  public static final String ID = "legacy:chainmail";
   private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-  public static final int COST = 1;
+  public static final int COST = 2;
 
-  public SteelShield() {
+  public Chainmail() {
     super(ID, cardStrings, COST, CardRarity.UNCOMMON, new MediumArmorTrait());
 
     this.baseBlock = this.block = 4;
-    this.baseMagicNumber = this.magicNumber = 2;
-  }
-
-  @Override
-  public void use(AbstractPlayer p, AbstractMonster m) {
-    AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
-    AbstractDungeon.actionManager.addToBottom(new AddTemporaryHPAction(p, p, this.magicNumber));
   }
 
   @Override
@@ -35,7 +28,12 @@ public class SteelShield extends LegacyArmor {
 
     this.upgradeName();
     this.upgradeBlock(2);
-    this.upgradeMagicNumber(1);
     this.initializeDescription();
+  }
+
+  @Override
+  public void use(AbstractPlayer p, AbstractMonster m) {
+    this.addToBot(new GainBlockAction(p, this.block));
+    this.addToBot(new GainBlockAction(p, this.block));
   }
 }

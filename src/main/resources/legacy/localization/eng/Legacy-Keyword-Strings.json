@@ -1,5 +1,13 @@
 [
   {
+    "PROPER_NAME": "Cover",
+    "NAMES": [
+      "Cover",
+      "cover"
+    ],
+    "DESCRIPTION": "Deal and receive 50% damage."
+  },
+  {
     "PROPER_NAME": "Finesse",
     "NAMES": [
       "Finesse",
@@ -75,7 +83,7 @@
       "Spell",
       "spell"
     ],
-    "DESCRIPTION": "Spells require focus to play, and scale with focus. They are unaffected by phyical powers. Cannot be cast while in Wrath."s
+    "DESCRIPTION": "Spells require focus to play, and scale with focus. They are unaffected by phyical powers. Cannot be cast while in Wrath."
   },
   {
     "PROPER_NAME": "Two Handed",
@@ -83,7 +91,7 @@
       "Two Handed",
       "TwoHanded",
       "Two_Handed",
-      "two_handed",
+      "two_handed"
     ],
     "DESCRIPTION": "Damage scales +1x with Strength."
   },

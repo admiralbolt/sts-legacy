@@ -5,6 +5,12 @@
       "Whenever you play a legacy:Spell gain 1 Temporary Focus. NL Whenever you play a legacy:Spell gain [E]."
     ]
   },
+  "legacy:cover_power": {
+    "NAME": "Cover",
+    "DESCRIPTIONS": [
+      "Deal & receive 50% less damage."
+    ]
+  },
   "legacy:delayed_poison": {
     "NAME": "Delayed Poison",
     "DESCRIPTIONS": [

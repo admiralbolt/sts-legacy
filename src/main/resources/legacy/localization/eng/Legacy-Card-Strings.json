@@ -24,6 +24,14 @@
     "NAME": "Bone Armor",
     "DESCRIPTION": "Exhaust a card from your discard. NL Gain !B! Block."
   },
+  "legacy:chainmail": {
+    "NAME": "Chainmail",
+    "DESCRIPTION": "Gain !B! Block. NL Gain !B! Block."
+  },
+  "legacy:chain_shirt": {
+    "NAME": "Chain Shirt",
+    "DESCRIPTION": "Gain !B! Block."
+  },
   "legacy:dagger": {
     "NAME": "Dagger",
     "DESCRIPTION": "Deal !D! Damage."
@@ -44,6 +52,10 @@
   "legacy:greatsword": {
     "NAME": "Greatsword",
     "DESCRIPTION": "Deal !D! Damage."
+  },
+  "legacy:hide_armor": {
+    "NAME": "Hide Armor",
+    "DESCRIPTION": "Gain !B! Block. NL Gain !M! Block next turn."
   },
   "legacy:kukri": {
     "NAME": "Kukri",
@@ -101,6 +113,10 @@
   "legacy:ten_foot_pole": {
     "NAME": "Ten Foot Pole",
     "DESCRIPTION": "Remove all buffs from an enemy. NL Gain !M! Intangible."
+  },
+  "legacy:tower_shield": {
+    "NAME": "Tower Shield",
+    "DESCRIPTION": "Gain !B! Block. NL Gain !M! Blur. NL Gain !M2! Cover. NL Lose 2 Dexterity."
   },
   "legacy:treasure_map": {
     "NAME": "Treasure Map",

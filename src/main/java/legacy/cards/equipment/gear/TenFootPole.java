@@ -15,7 +15,7 @@ import legacy.cards.LegacyCard;
 /**
  * The most powerful piece of equipment in all of the game.
  *
- * Remove all buffs from an enemy, gain 1 intagible.
+ * Remove all buffs from an enemy, gain 1 intangible.
  */
 public class TenFootPole extends LegacyCard {
 

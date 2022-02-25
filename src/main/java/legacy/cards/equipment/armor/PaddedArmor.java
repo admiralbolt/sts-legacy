@@ -12,6 +12,9 @@ import com.megacrit.cardcrawl.powers.LoseDexterityPower;
 import legacy.LegacyMod;
 import legacy.cards.mods.traits.LightArmorTrait;
 
+/**
+ * 0 cost light armor that also gives temporary dexterity.
+ */
 public class PaddedArmor extends LegacyArmor {
 
   public static final String ID = LegacyMod.makeID("padded_armor");
@@ -21,7 +24,7 @@ public class PaddedArmor extends LegacyArmor {
   public PaddedArmor() {
     super(ID, cardStrings, COST, CardRarity.COMMON, new LightArmorTrait());
 
-    this.baseBlock = this.block = 3;
+    this.baseBlock = this.block = 2;
     this.baseMagicNumber = this.magicNumber = 1;
   }
 
