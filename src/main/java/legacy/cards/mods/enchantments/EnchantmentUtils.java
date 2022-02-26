@@ -125,10 +125,6 @@ public class EnchantmentUtils {
     }
   }
 
-  public static Enchantment getEnchantment(String enchantmentId) {
-    return enchantmentMap.getOrDefault(enchantmentId, null);
-  }
-
   // Get all the enchantments currently on a card.
   public static List<Enchantment> getCardEnchantments(AbstractCard card) {
     return CardModifierManager.modifiers(card).stream()

@@ -46,7 +46,8 @@ public class EnchantmentPool {
     // Calculate the splits for rolling for an enchantment. These are the points at which we should get a given
     // enchantment. For example, if we have splits [8, 11, 16] this means we get enchantment #0 if we roll a 0-7,
     // enchantment #1 if we roll an 8-10, and enchantment #2 if we roll an 11-15.
-    List<Integer> splits = new ArrayList<>(this.enchantments.size());
+    List<Integer> splits = new ArrayList<>();
+    List<Enchantment> potentialEnchantments = new ArrayList<>();
     int totalWeight = 0;
     for (Enchantment enchantment : this.enchantments) {
       // Make sure our card doesn't already have this enchantment.
@@ -57,12 +58,17 @@ public class EnchantmentPool {
 
       totalWeight += enchantment.weight + enchantment.rarityMultiplier * rarityMultiplier;
       splits.add(totalWeight);
+      potentialEnchantments.add(enchantment);
     }
 
     int roll = this.random.nextInt(totalWeight);
+    System.out.println("Rolling Enchantment For Card: " + card.name);
+    System.out.println("Potential Enchantments: " + Arrays.toString(potentialEnchantments.toArray()));
+    System.out.println("Splits: " + Arrays.toString(splits.toArray()));
+    System.out.println("roll: " + roll);
 
     // Bisect the splits, and find our enchantment.
-    return this.enchantments.get(bisect(splits, roll, 0, splits.size()));
+    return potentialEnchantments.get(bisect(splits, roll, 0, splits.size()));
   }
 
   private int bisect(List<Integer> splits, int roll, int left, int right) {
