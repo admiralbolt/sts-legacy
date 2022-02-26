@@ -6,20 +6,25 @@ import basemod.helpers.CardModifierManager;
 import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.CardModifierPatches;
 import basemod.patches.com.megacrit.cardcrawl.saveAndContinue.SaveFile.ModSaves;
 import com.badlogic.gdx.graphics.Color;
+import com.evacipated.cardcrawl.modthespire.Loader;
+import com.evacipated.cardcrawl.modthespire.ModInfo;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
+import javassist.ClassPool;
+import javassist.CtClass;
 import legacy.LegacyMod;
 import legacy.cards.LegacyCard;
 import legacy.cards.equipment.weapons.LegacyWeapon;
+import org.clapper.util.classutil.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.File;
+import java.net.URISyntaxException;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -36,11 +41,10 @@ public class EnchantmentUtils {
   // Enchantments that have been saved permanently to the config file.
   public static Map<String, List<AbstractCardModifier>> PERSISTED_ENCHANTMENTS;
 
-  public static void addEnchantment(Enchantment enchantment) {
-    allEnchantments.add(enchantment);
-    enchantmentMap.put(enchantment.id, enchantment);
-    enchantmentPools.get(enchantment.type).addEnchantment(enchantment);
-  }
+  public static Set<String> EXCLUDE_ENCHANTMENTS = new HashSet<>(Arrays.asList(
+          ArmorPlusX.class.getName(),
+          WeaponPlusX.class.getName())
+  );
 
   public static void initialize() {
     allEnchantments = new ArrayList<>();
@@ -50,17 +54,57 @@ public class EnchantmentUtils {
     enchantmentPools.put(LegacyCard.LegacyCardType.WEAPON, new EnchantmentPool());
     // Each rarity can have a certain number of enchantments.
     MAX_ENCHANTMENTS_BY_RARITY = new HashMap<>();
-    MAX_ENCHANTMENTS_BY_RARITY.put(AbstractCard.CardRarity.RARE, 4);
     MAX_ENCHANTMENTS_BY_RARITY.put(AbstractCard.CardRarity.UNCOMMON, 3);
+    MAX_ENCHANTMENTS_BY_RARITY.put(AbstractCard.CardRarity.RARE, 4);
 
-    // DON'T FORGET TO ADD ENCHANTMENTS HERE!
-    addEnchantment(new Corrosive());
-    addEnchantment(new Icy());
+    // Probably overkill, but I'm lazy and would rather dynamically load enchantments.
+    // Don't want abstract classes or interfaces.
+    List<ClassFilter> filters = new ArrayList<>(Arrays.asList(new NotClassFilter(new InterfaceOnlyClassFilter()), new NotClassFilter(new AbstractClassFilter()), new ClassModifiersClassFilter(1)));
+    ClassFilter filter = new AndClassFilter(filters.toArray(new ClassFilter[0]));
+    Collection<ClassInfo> foundClasses = new ArrayList<>();
+    ClassFinder finder = new ClassFinder();
+    // Make sure we actually add a file to search for enchantments.
+    for (ModInfo info : Loader.MODINFOS) {
+      if (info == null || info.jarURL == null || !LegacyMod.MOD_ID.equals(info.ID)) continue;
+
+      try {
+        finder.add(new File(info.jarURL.toURI()));
+      } catch (URISyntaxException e) {
+        e.printStackTrace();
+      }
+    }
+
+    finder.findClasses(foundClasses, filter);
+    ClassPool pool = Loader.getClassPool();
+    String className = Enchantment.class.getName();
+
+    for (ClassInfo info : foundClasses) {
+      if (!className.equals(info.getClassName()) && !className.equals(info.getSuperClassName())) continue;
+      if (EXCLUDE_ENCHANTMENTS.contains(info.getClassName())) continue;
+
+      try {
+        Enchantment e = (Enchantment) pool.getClassLoader().loadClass(info.getClassName()).newInstance();
+        allEnchantments.add(e);
+        enchantmentMap.put(e.id, e);
+        enchantmentPools.get(e.type).addEnchantment(e);
+      } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+        e.printStackTrace();
+      }
+    }
+  }
+
+  public static void enchantCard(LegacyCard card, Enchantment enchantment) {
+    CardModifierManager.addModifier(card, enchantment);
+    card.updateName();
+    // Need to update the card in the card library.
+    CardLibrary.add(card);
   }
 
   // We want our enchanted cards to glow to match their enchantments color :)
   public static void postInitialize() {
     for (Enchantment enchantment : allEnchantments) {
+      if (enchantment.getColor() == null) continue;
+
       CardBorderGlowManager.addGlowInfo(new CardBorderGlowManager.GlowInfo() {
 
         @Override

@@ -1,7 +1,6 @@
 package legacy.cards.mods.enchantments;
 
 import basemod.abstracts.AbstractCardModifier;
-import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -16,7 +15,7 @@ public class WeaponPlusX extends Enchantment {
   public int amount;
 
   public WeaponPlusX(int amount) {
-    super(ID, "+" + amount, "", LegacyCard.LegacyCardType.WEAPON, 0, 0);
+    super(ID, "+" + amount, "", LegacyCard.LegacyCardType.WEAPON, AbstractCard.CardRarity.SPECIAL, 0, 0);
 
     this.amount = amount;
   }
@@ -29,11 +28,6 @@ public class WeaponPlusX extends Enchantment {
   @Override
   public AbstractCardModifier makeCopy() {
     return new WeaponPlusX(this.amount);
-  }
-
-  @Override
-  public Color getColor() {
-    return Color.valueOf("#aaaaaa");
   }
 
 }

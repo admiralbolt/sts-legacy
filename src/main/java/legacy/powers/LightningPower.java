@@ -1,9 +1,12 @@
 package legacy.powers;
 
 import com.evacipated.cardcrawl.mod.stslib.actions.common.StunMonsterAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 /**
  * Build up charge until we hit 10 stacks, then stun the enemy.
@@ -30,5 +33,13 @@ public class LightningPower extends LegacyPower {
   @Override
   public void updateDescription() {
     this.description = this.powerStrings.DESCRIPTIONS[0];
+  }
+
+  @Override
+  public void atStartOfTurn() {
+    if (AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.COMBAT || AbstractDungeon.getMonsters().areMonstersBasicallyDead()) return;
+
+    this.flashWithoutSound();
+    this.addToBot(new ReducePowerAction(this.owner, this.owner, this, 1));
   }
 }

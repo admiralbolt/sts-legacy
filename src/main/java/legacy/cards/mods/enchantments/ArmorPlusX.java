@@ -1,7 +1,6 @@
 package legacy.cards.mods.enchantments;
 
 import basemod.abstracts.AbstractCardModifier;
-import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import legacy.cards.LegacyCard;
 
@@ -14,7 +13,7 @@ public class ArmorPlusX extends Enchantment {
   public int amount;
 
   public ArmorPlusX(int amount) {
-    super(ID, "+" + amount, "", LegacyCard.LegacyCardType.ARMOR, 0, 0);
+    super(ID, "+" + amount, "", LegacyCard.LegacyCardType.ARMOR, AbstractCard.CardRarity.SPECIAL, 0, 0);
   }
 
   @Override
@@ -25,11 +24,6 @@ public class ArmorPlusX extends Enchantment {
   @Override
   public AbstractCardModifier makeCopy() {
     return new ArmorPlusX(this.amount);
-  }
-
-  @Override
-  public Color getColor() {
-    return Color.valueOf("#aaaaaa");
   }
 
 }

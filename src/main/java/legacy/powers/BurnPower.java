@@ -16,7 +16,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
  */
 public class BurnPower extends LegacyTwoAmountPower implements HealthBarRenderPower {
 
-  public static final String POWER_ID = "legacy:burn_power";
+  public static final String POWER_ID = "legacy:burn";
   public static final Color HEALTH_BAR_COLOR = Color.valueOf("#cc5500");
   public static final int BURN_TURNS = 3;
 
@@ -40,15 +40,15 @@ public class BurnPower extends LegacyTwoAmountPower implements HealthBarRenderPo
 
   @Override
   public void stackPower(int stackAmount) {
-    super.stackPower(stackAmount);
-
+    this.fontScale = 8.0F;
+    this.amount2 += stackAmount;
     // Refresh burn duration when we re-apply.
     this.amount = BURN_TURNS;
   }
 
   @Override
   public int getHealthBarAmount() {
-    return this.amount;
+    return this.amount2;
   }
 
   @Override
@@ -61,7 +61,7 @@ public class BurnPower extends LegacyTwoAmountPower implements HealthBarRenderPo
     this.description =
             // Choose between player text & monster text.
             this.powerStrings.DESCRIPTIONS[(this.owner != null && this.owner.isPlayer) ? 0 : 1] +
-            this.amount2 + this.powerStrings.DESCRIPTIONS[2] +
+            this.amount2 + this.powerStrings.DESCRIPTIONS[2] + this.amount +
             // Choose between "turns" and "turn".
             this.powerStrings.DESCRIPTIONS[(this.amount > 1) ? 3 : 4];
   }

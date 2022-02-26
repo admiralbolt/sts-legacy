@@ -1,5 +1,13 @@
 [
   {
+    "PROPER_NAME": "Burn",
+    "NAMES": [
+      "BURN",
+      "burn"
+    ],
+    "DESCRIPTION": "Burned creatures take damage at the start of the turn. Flames are extinguished after 3 turns unless reapplied."
+  },
+  {
     "PROPER_NAME": "Cover",
     "NAMES": [
       "Cover",
@@ -40,6 +48,14 @@
       "heavy_armor"
     ],
     "DESCRIPTION": "Doesn't scale with Dexterity."
+  },
+  {
+    "PROPER_NAME": "Lightning",
+    "NAMES": [
+      "Lightning",
+      "lightning"
+    ],
+    "DESCRIPTION": "Upon reaching 10 stacks of Lightning, the target is stunned."
   },
   {
     "PROPER_NAME": "Medium Armor",

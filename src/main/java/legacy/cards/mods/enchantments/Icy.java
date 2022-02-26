@@ -19,12 +19,12 @@ public class Icy extends Enchantment {
   private static final int FROST_AMOUNT = 2;
 
   public Icy() {
-    super(ID, "Icy", "Apply " + FROST_AMOUNT + " legacy:Frost.", LegacyCard.LegacyCardType.WEAPON, 10, -2);
+    super(ID, "Icy", "Apply " + FROST_AMOUNT + " legacy:Frost.", LegacyCard.LegacyCardType.WEAPON, AbstractCard.CardRarity.COMMON, 10, -2);
   }
 
   @Override
   public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(target, AbstractDungeon.player, new FrostPower(target, FROST_AMOUNT), FROST_AMOUNT));
+    this.addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new FrostPower(target, FROST_AMOUNT), FROST_AMOUNT));
   }
 
   @Override
