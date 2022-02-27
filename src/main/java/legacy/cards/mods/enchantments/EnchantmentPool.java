@@ -62,10 +62,6 @@ public class EnchantmentPool {
     }
 
     int roll = this.random.nextInt(totalWeight);
-    System.out.println("Rolling Enchantment For Card: " + card.name);
-    System.out.println("Potential Enchantments: " + Arrays.toString(potentialEnchantments.toArray()));
-    System.out.println("Splits: " + Arrays.toString(splits.toArray()));
-    System.out.println("roll: " + roll);
 
     // Bisect the splits, and find our enchantment.
     return potentialEnchantments.get(bisect(splits, roll, 0, splits.size()));
