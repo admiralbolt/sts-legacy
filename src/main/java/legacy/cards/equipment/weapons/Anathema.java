@@ -23,6 +23,7 @@ public class Anathema extends LegacyWeapon {
 
     this.baseDamage = this.damage = 15;
     this.enchantable = false;
+    this.exhaust = true;
   }
 
   @Override
@@ -37,7 +38,7 @@ public class Anathema extends LegacyWeapon {
     if (this.upgraded) return;
 
     this.upgradeName();
-    this.upgradeDamage(10);
+    this.upgradeMagicNumber(1);
     this.initializeDescription();
   }
 
