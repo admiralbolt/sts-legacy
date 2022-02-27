@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 import legacy.cards.LegacyCard;
 
 /**
@@ -77,4 +78,12 @@ public abstract class Enchantment extends AbstractCardModifier {
   public void addToBot(AbstractGameAction action) {
     AbstractDungeon.actionManager.addToBottom(action);
   }
+
+  @Override
+  public void onInitialApplication(AbstractCard card) {
+    if (card instanceof LegacyCard) ((LegacyCard) card).updateName();
+    // Need to update the card in the card library.
+    CardLibrary.add(card);
+  }
+
 }

@@ -58,7 +58,7 @@ public class EnchantmentShrine extends AbstractImageEvent {
         (AbstractDungeon.getCurrRoom()).phase = AbstractRoom.RoomPhase.COMPLETE;
         LegacyCard card = this.enchantableCards.get(CardUtils.RANDOM.nextInt(this.enchantableCards.size()));
         List<Enchantment> enchantments = EnchantmentUtils.randomEnchantments(card, 1);
-        EnchantmentUtils.enchantCard(card, enchantments.get(0));
+        CardModifierManager.addModifier(card, enchantments.get(0));
         AbstractDungeon.player.bottledCardUpgradeCheck(card);
         AbstractDungeon.effectList.add(new ShowCardBrieflyEffect(card.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F - 190.0F * Settings.scale, (float)Settings.HEIGHT / 2.0F));
 

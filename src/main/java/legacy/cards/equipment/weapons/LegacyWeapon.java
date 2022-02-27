@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import legacy.actions.PiercingDamageAction;
 import legacy.cards.LegacyCard;
+import legacy.cards.mods.enchantments.Cleaving;
 import legacy.cards.mods.enchantments.EnchantmentUtils;
 import legacy.cards.mods.traits.FinesseTrait;
 import legacy.cards.mods.traits.FlurryTrait;
@@ -44,12 +45,15 @@ public abstract class LegacyWeapon extends LegacyCard implements SpawnModificati
 
     this.cardStrings = cardStrings;
     this.enchantable = true;
-
     this.baseMagicNumber = this.magicNumber = 1;
 
     // All enchantments for this card should be loaded.
     for (AbstractCardModifier modifier : EnchantmentUtils.PERSISTED_ENCHANTMENTS.getOrDefault(this.cardID, new ArrayList<>())) {
       CardModifierManager.addModifier(this, modifier);
+      // Cleaving should target all instead of just one.
+      if (modifier.identifier(this).equals(Cleaving.ID)) {
+        this.target = CardTarget.ALL_ENEMY;
+      }
     }
 
     // All the weapon traits should be applied.
@@ -62,7 +66,8 @@ public abstract class LegacyWeapon extends LegacyCard implements SpawnModificati
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    // NOTE: Enchantment effects are automatically added via their onUse() hook, so no need to do anything here.
+    // NOTE: Enchantment effects are automatically added via their onUse() hook, with the exception of Cleaving
+    // which needs our damage to hit all enemies.
     if (CardModifierManager.hasModifier(this, FlurryTrait.ID)) {
       AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new FlurryPower(p, 1)));
     }

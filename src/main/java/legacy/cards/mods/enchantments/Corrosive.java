@@ -9,6 +9,8 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import legacy.cards.LegacyCard;
+import legacy.util.CardUtils;
+import legacy.util.ReallyMisc;
 
 /**
  * Enchantment that causes weapons to apply poison.
@@ -19,11 +21,17 @@ public class Corrosive extends Enchantment {
   private static final int POISON_AMOUNT = 4;
 
   public Corrosive() {
-    super(ID, "Corrosive", "Apply " + POISON_AMOUNT + " Poison.", LegacyCard.LegacyCardType.WEAPON, AbstractCard.CardRarity.COMMON, 12, -2);
+    super(ID, "Corrosive", "Apply " + POISON_AMOUNT + " Poison.", LegacyCard.LegacyCardType.WEAPON, AbstractCard.CardRarity.COMMON, 20, -4);
   }
 
   @Override
   public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
+    if (CardUtils.isAOE(card)) {
+      ReallyMisc.getAllEnemies().forEach(m -> {
+        this.addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new PoisonPower(target, AbstractDungeon.player, POISON_AMOUNT), POISON_AMOUNT));
+      });
+      return;
+    }
     this.addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new PoisonPower(target, AbstractDungeon.player, POISON_AMOUNT), POISON_AMOUNT));
   }
 

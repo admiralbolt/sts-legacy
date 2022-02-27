@@ -9,6 +9,8 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import legacy.cards.LegacyCard;
 import legacy.powers.FrostPower;
+import legacy.util.CardUtils;
+import legacy.util.ReallyMisc;
 
 /**
  * Enchantment that causes weapons to apply frost.
@@ -19,11 +21,17 @@ public class Icy extends Enchantment {
   private static final int FROST_AMOUNT = 2;
 
   public Icy() {
-    super(ID, "Icy", "Apply " + FROST_AMOUNT + " legacy:Frost.", LegacyCard.LegacyCardType.WEAPON, AbstractCard.CardRarity.COMMON, 10, -2);
+    super(ID, "Icy", "Apply " + FROST_AMOUNT + " legacy:Frost.", LegacyCard.LegacyCardType.WEAPON, AbstractCard.CardRarity.COMMON, 16, -3);
   }
 
   @Override
   public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
+    if (CardUtils.isAOE(card)) {
+      ReallyMisc.getAllEnemies().forEach(m -> {
+        this.addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new FrostPower(target, FROST_AMOUNT), FROST_AMOUNT));
+      });
+      return;
+    }
     this.addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new FrostPower(target, FROST_AMOUNT), FROST_AMOUNT));
   }
 
@@ -34,7 +42,7 @@ public class Icy extends Enchantment {
 
   @Override
   public Color getColor() {
-    return Color.valueOf("#d6ecef");
+    return Color.valueOf("#91faf9");
   }
 
 }

@@ -16,7 +16,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import javassist.ClassPool;
-import javassist.CtClass;
 import legacy.LegacyMod;
 import legacy.cards.LegacyCard;
 import legacy.cards.equipment.weapons.LegacyWeapon;
@@ -91,13 +90,6 @@ public class EnchantmentUtils {
         e.printStackTrace();
       }
     }
-  }
-
-  public static void enchantCard(LegacyCard card, Enchantment enchantment) {
-    CardModifierManager.addModifier(card, enchantment);
-    card.updateName();
-    // Need to update the card in the card library.
-    CardLibrary.add(card);
   }
 
   // We want our enchanted cards to glow to match their enchantments color :)

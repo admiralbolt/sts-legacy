@@ -3,6 +3,7 @@ package legacy.util;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
+import java.lang.reflect.Field;
 import java.util.*;
 
 /**
@@ -48,5 +49,17 @@ public class CardUtils {
     }
 
     return cards;
+  }
+
+  // I honestly have no clue why isMultiDamage is protected. I shouldn't have to write this reflection hack.
+  public static boolean isAOE(AbstractCard card) {
+    try {
+      Field field = card.getClass().getDeclaredField("isMultiDamage");
+      field.setAccessible(true);
+      return (boolean) field.get(card);
+    } catch (NoSuchFieldException | IllegalAccessException e) {
+      e.printStackTrace();
+    }
+    return false;
   }
 }
