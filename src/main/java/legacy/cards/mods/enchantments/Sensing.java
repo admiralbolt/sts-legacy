@@ -3,36 +3,39 @@ package legacy.cards.mods.enchantments;
 import basemod.abstracts.AbstractCardModifier;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.utility.ScryAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
+import com.megacrit.cardcrawl.powers.ThornsPower;
 import legacy.cards.LegacyCard;
+import legacy.powers.LoseThornsPower;
 
 /**
- * Enchantment that gives armor artifact.
+ * Enchantment that gives armor scry 2.
  */
-public class HexGuard extends Enchantment {
+public class Sensing extends Enchantment {
 
-  public static String ID = "legacy:hex_guard";
+  public static String ID = "legacy:Sensing";
+  public static int SCRY_AMOUNT = 2;
 
-  public HexGuard() {
-    super(ID, "Hex Guard", "Gain 1 Artifact.", LegacyCard.LegacyCardType.ARMOR, AbstractCard.CardRarity.RARE, 4, 4);
+  public Sensing() {
+    super(ID, "Sensing", "Scry " + SCRY_AMOUNT + ".", LegacyCard.LegacyCardType.ARMOR, AbstractCard.CardRarity.COMMON, 20, -4);
   }
 
   @Override
   public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
-    this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ArtifactPower(AbstractDungeon.player,1), 1));
+    this.addToBot(new ScryAction(SCRY_AMOUNT));
   }
 
   @Override
   public AbstractCardModifier makeCopy() {
-    return new HexGuard();
+    return new Sensing();
   }
 
   @Override
   public Color getColor() {
-    return Color.valueOf("#050649");
+    return Color.valueOf("#179ea8");
   }
 }
