@@ -1,6 +1,7 @@
 package legacy.util;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import java.lang.reflect.Field;
@@ -61,5 +62,12 @@ public class CardUtils {
       e.printStackTrace();
     }
     return false;
+  }
+
+  // Create a card group from a collection of cards.
+  public static CardGroup makeCardGroup(Collection<? extends AbstractCard> cards) {
+    CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+    cards.forEach(group::addToBottom);
+    return group;
   }
 }

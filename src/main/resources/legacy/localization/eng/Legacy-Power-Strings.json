@@ -64,6 +64,13 @@
       " #yFocus."
     ]
   },
+  "legacy:lose_thorns": {
+    "NAME": "Thorns Down",
+    "DESCRIPTIONS": [
+      "At the end of this turn, lose #b",
+      " #yThorns."
+    ]
+  },
   "legacy:next_turn_tmp_strength": {
     "NAME": "Embolden",
     "DESCRIPTIONS": [

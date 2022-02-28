@@ -22,6 +22,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import legacy.cards.mods.enchantments.EnchantmentChoice;
 import legacy.cards.mods.enchantments.EnchantmentUtils;
 import legacy.cards.vars.MagicNumberTwoVariable;
 import legacy.characters.TheAdventurer;
@@ -237,7 +238,7 @@ public class LegacyMod implements
 
   @Override
   public void receiveEditCards() {
-    new AutoAdd(LegacyMod.MOD_ID).setDefaultSeen(true).cards();
+    new AutoAdd(LegacyMod.MOD_ID).notPackageFilter(EnchantmentChoice.class).setDefaultSeen(true).cards();
 
     // Add card vars.
     BaseMod.addDynamicVariable(new MagicNumberTwoVariable());

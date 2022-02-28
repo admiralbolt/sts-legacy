@@ -13,7 +13,7 @@ public class Expeditious extends Enchantment {
   public static String ID = "legacy:expeditious";
 
   public Expeditious() {
-    super(ID, "Expeditious", "Costs 1 less & exhausts.", LegacyCard.LegacyCardType.ARMOR, AbstractCard.CardRarity.UNCOMMON, 8, 1);
+    super(ID, "Expeditious", "Costs [E] less & exhausts.", LegacyCard.LegacyCardType.ARMOR, AbstractCard.CardRarity.UNCOMMON, 8, 1);
   }
 
   @Override

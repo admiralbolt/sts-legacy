@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import javassist.ClassPool;
 import legacy.LegacyMod;
 import legacy.cards.LegacyCard;
+import legacy.cards.equipment.armor.LegacyArmor;
 import legacy.cards.equipment.weapons.LegacyWeapon;
 import org.clapper.util.classutil.*;
 
@@ -140,7 +141,7 @@ public class EnchantmentUtils {
     if (!((LegacyCard) card).enchantable) return false;
 
     // Temporary check since I only have weapon enchantments currently.
-    if (!(card instanceof LegacyWeapon)) return false;
+    if (!(card instanceof LegacyWeapon) && !(card instanceof LegacyArmor)) return false;
 
     // Make sure the card isn't fully enchanted.
     List<Enchantment> enchantments = getCardEnchantments(card);

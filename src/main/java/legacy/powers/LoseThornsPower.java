@@ -1,6 +1,6 @@
 package legacy.powers;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.ThornsPower;
@@ -17,9 +17,9 @@ public class LoseThornsPower extends LegacyPower {
   }
 
   @Override
-  public void atEndOfTurn(boolean isPlayer) {
+  public void atStartOfTurn() {
     this.flash();
-    this.addToBot(new ApplyPowerAction(this.owner, this.owner, new ThornsPower(this.owner, -this.amount), -this.amount));
+    this.addToBot(new ReducePowerAction(this.owner, this.owner, ThornsPower.POWER_ID, -this.amount));
     this.addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
   }
 

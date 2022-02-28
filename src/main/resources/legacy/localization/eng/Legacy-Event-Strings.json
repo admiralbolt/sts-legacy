@@ -7,9 +7,11 @@
       "You ignore the shrine."
     ],
     "OPTIONS": [
-      "[Pray] #gEnchant #ga #grandom #gcard.",
+      "[Pray] #gEnchant #ga #gcard.",
       "[Leave]",
-      "[Locked] Requires: Enchantable Cards."
+      "[Locked] Requires: Enchantable Cards.",
+      "Choose a card to enchant.",
+      "Choose an enchantment."
     ]
   }
 }
