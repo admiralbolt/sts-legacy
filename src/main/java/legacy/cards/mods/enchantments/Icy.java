@@ -28,7 +28,7 @@ public class Icy extends Enchantment {
   public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
     if (CardUtils.isAOE(card)) {
       ReallyMisc.getAllEnemies().forEach(m -> {
-        this.addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new FrostPower(target, FROST_AMOUNT), FROST_AMOUNT));
+        this.addToBot(new ApplyPowerAction(m, AbstractDungeon.player, new FrostPower(m, FROST_AMOUNT), FROST_AMOUNT));
       });
       return;
     }

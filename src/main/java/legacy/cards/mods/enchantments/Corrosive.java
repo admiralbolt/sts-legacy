@@ -28,7 +28,7 @@ public class Corrosive extends Enchantment {
   public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
     if (CardUtils.isAOE(card)) {
       ReallyMisc.getAllEnemies().forEach(m -> {
-        this.addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new PoisonPower(target, AbstractDungeon.player, POISON_AMOUNT), POISON_AMOUNT));
+        this.addToBot(new ApplyPowerAction(m, AbstractDungeon.player, new PoisonPower(m, AbstractDungeon.player, POISON_AMOUNT), POISON_AMOUNT));
       });
       return;
     }

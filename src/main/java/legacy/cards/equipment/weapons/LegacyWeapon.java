@@ -6,6 +6,7 @@ import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.SpawnModificationCar
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -75,7 +76,11 @@ public abstract class LegacyWeapon extends LegacyCard implements SpawnModificati
     if (CardModifierManager.hasModifier(this, RangedTrait.ID)) {
       AbstractDungeon.actionManager.addToBottom(new PiercingDamageAction(m, p, damage));
     } else {
-      AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+      if (this.isMultiDamage) {
+        this.addToBot(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE));
+      } else {
+        this.addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+      }
     }
   }
 

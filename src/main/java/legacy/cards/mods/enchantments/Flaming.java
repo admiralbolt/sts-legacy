@@ -28,7 +28,7 @@ public class Flaming extends Enchantment {
   public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
     if (CardUtils.isAOE(card)) {
       ReallyMisc.getAllEnemies().forEach(m -> {
-        this.addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new BurnPower(target, BURN_AMOUNT), BURN_AMOUNT));
+        this.addToBot(new ApplyPowerAction(m, AbstractDungeon.player, new BurnPower(m, BURN_AMOUNT), BURN_AMOUNT));
       });
       return;
     }

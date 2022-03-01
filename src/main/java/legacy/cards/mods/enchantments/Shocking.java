@@ -28,7 +28,7 @@ public class Shocking extends Enchantment {
   public void onUse(AbstractCard card, AbstractCreature target, UseCardAction action) {
     if (CardUtils.isAOE(card)) {
       ReallyMisc.getAllEnemies().forEach(m -> {
-        this.addToBot(new ApplyPowerAction(target, AbstractDungeon.player, new LightningPower(target, SHOCK_AMOUNT), SHOCK_AMOUNT));
+        this.addToBot(new ApplyPowerAction(m, AbstractDungeon.player, new LightningPower(m, SHOCK_AMOUNT), SHOCK_AMOUNT));
       });
       return;
     }
