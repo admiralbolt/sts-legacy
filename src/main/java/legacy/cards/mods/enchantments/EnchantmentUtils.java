@@ -14,7 +14,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
 import javassist.ClassPool;
 import legacy.LegacyMod;
 import legacy.cards.LegacyCard;
@@ -43,6 +42,7 @@ public class EnchantmentUtils {
 
   public static Set<String> EXCLUDE_ENCHANTMENTS = new HashSet<>(Arrays.asList(
           ArmorPlusX.class.getName(),
+          Bane.class.getName(),
           WeaponPlusX.class.getName())
   );
 

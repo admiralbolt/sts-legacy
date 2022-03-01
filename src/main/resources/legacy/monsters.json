@@ -1,0 +1,266 @@
+{
+  "AcidSlime_L": {
+    "xp": 30,
+    "types": ["SLIME"]
+  },
+  "AcidSlime_M": {
+    "xp": 13,
+    "types": ["SLIME"]
+  },
+  "AcidSlime_S": {
+    "xp": 5,
+    "types": ["SLIME"]
+  },
+  "Apology Slime": {
+    "xp": 0,
+    "types": ["SLIME"]
+  },
+  "AwakenedOne": {
+    "xp": 180,
+    "types": ["BEAST", "BIRD"]
+  },
+  "BanditBear": {
+    "xp": 18,
+    "types": ["HUMANOID"]
+  },
+  "BanditChild": {
+    "xp": 18,
+    "types": ["HUMANOID"]
+  },
+  "BanditLeader": {
+    "xp": 18,
+    "types": ["HUMANOID"]
+  },
+  "BookOfStabbing": {
+    "xp": 50,
+    "types": ["ABERRATION"]
+  },
+  "BronzeAutomaton": {
+    "xp": 145,
+    "types": ["CONSTRUCT"]
+  },
+  "BronzeOrb": {
+    "xp": 5,
+    "types": ["CONSTRUCT"]
+  },
+  "Byrd": {
+    "xp": 12,
+    "types": ["BIRD"]
+  },
+  "Centurion": {
+    "xp": 24,
+    "types": ["HUMANOID"]
+  },
+  "Champ": {
+    "xp": 150,
+    "types": ["HUMANOID"]
+  },
+  "Chosen": {
+    "xp": 22,
+    "types": ["BIRD", "HUMANOID"]
+  },
+  "CorruptHeart": {
+    "xp": 1000,
+    "types": ["ABERRATION"]
+  },
+  "Cultist": {
+    "xp": 16,
+    "types": ["BIRD", "HUMANOID"]
+  },
+  "Darkling": {
+    "xp": 100,
+    "types": ["SLIME"]
+  },
+  "Deca": {
+    "xp": 75,
+    "types": ["CONSTRUCT"]
+  },
+  "Donu": {
+    "xp": 75,
+    "types": ["CONSTRUCT"]
+  },
+  "Exploder": {
+    "xp": 20,
+    "types": ["CONSTRUCT"]
+  },
+  "Dagger": {
+    "xp": 5,
+    "types": ["CONSTRUCT"]
+  },
+  "Reptomancer": {
+    "xp": 150,
+    "types": ["BEAST", "HUMANOID"]
+  },
+  "FungiBeast": {
+    "xp": 14,
+    "types": ["BEAST", "ABERRATION"]
+  },
+  "FuzzyLouseDefensive": {
+    "xp": 6,
+    "types": ["BEAST"]
+  },
+  "FuzzyLouseNormal": {
+    "xp": 7,
+    "types": ["BEAST"]
+  },
+  "GiantHead": {
+    "xp": 150,
+    "types": ["ABERRATION", "HUMANOID"]
+  },
+  "GremlinFat": {
+    "xp": 8,
+    "types": ["GREMLIN"]
+  },
+  "GremlinLeader": {
+    "xp": 95,
+    "types": ["GREMLIN"]
+  },
+  "GremlinNob": {
+    "xp": 55,
+    "types": ["GREMLIN"]
+  },
+  "GremlinThief": {
+    "xp": 7,
+    "types": ["GREMLIN"]
+  },
+  "GremlinTsundere": {
+    "xp": 5,
+    "types": ["GREMLIN"]
+  },
+  "GremlinWarrior": {
+    "xp": 8,
+    "types": ["GREMLIN"]
+  },
+  "GremlinWizard": {
+    "xp": 9,
+    "types": ["GREMLIN"]
+  },
+  "Healer": {
+    "xp": 24,
+    "types": ["HUMANOID"]
+  },
+  "Hexaghost": {
+    "xp": 75,
+    "types": ["ABERRATION"]
+  },
+  "JawWorm": {
+    "xp": 19,
+    "types": ["BEAST"]
+  },
+  "Lagavulin": {
+    "xp": 55,
+    "types": ["BEAST"]
+  },
+  "Looter": {
+    "xp": 21,
+    "types": ["HUMANOID"]
+  },
+  "Maw": {
+    "xp": 99,
+    "types": ["BEAST"]
+  },
+  "Mugger": {
+    "xp": 22,
+    "types": ["HUMANOID"]
+  },
+  "Nemesis": {
+    "xp": 150,
+    "types": ["ABERRATION"]
+  },
+  "Orb Walker": {
+    "xp": 90,
+    "types": ["CONSTRUCT"]
+  },
+  "Repulsor": {
+    "xp": 14,
+    "types": ["CONSTRUCT"]
+  },
+  "Sentry": {
+    "xp": 45,
+    "types": ["CONSTRUCT"]
+  },
+  "Serpent": {
+    "xp": 100,
+    "types": ["ABERRATION"]
+  },
+  "Shelled Parasite": {
+    "xp": 28,
+    "types": ["ABERRATION"]
+  },
+  "SlaverBlue": {
+    "xp": 30,
+    "types": ["HUMANOID"]
+  },
+  "SlaverBoss": {
+    "xp": 45,
+    "types": ["HUMANOID"]
+  },
+  "SlaverRed": {
+    "xp": 45,
+    "types": ["HUMANOID"]
+  },
+  "SlimeBoss": {
+    "xp": 150,
+    "types": ["SLIME"]
+  },
+  "SnakePlant": {
+    "xp": 66,
+    "types": ["ABERRATION"]
+  },
+  "Snecko": {
+    "xp": 45,
+    "types": ["BEAST"]
+  },
+  "SphericGuardian": {
+    "xp": 36,
+    "types": ["CONSTRUCT"]
+  },
+  "SpikeSlime_L": {
+    "xp": 30,
+    "types": ["SLIME"]
+  },
+  "SpikeSlime_M": {
+    "xp": 13,
+    "types": ["SLIME"]
+  },
+  "SpikeSlime_S": {
+    "xp": 5,
+    "types": ["SLIME"]
+  },
+  "Spiker": {
+    "xp": 20,
+    "types": ["CONSTRUCT"]
+  },
+  "TheCollector": {
+    "xp": 150,
+    "types": ["ABERRATION", "HUMANOID"]
+  },
+  "TheGuardian": {
+    "xp": 75,
+    "types": ["CONSTRUCT"]
+  },
+  "TimeEater": {
+    "xp": 225,
+    "types": ["ABERRATION"]
+  },
+  "TorchHead": {
+    "xp": 5,
+    "types": ["ABERRATION", "HUMANOID"]
+  },
+  "Transient": {
+    "xp": 1000,
+    "types": ["ABERRATION"]
+  },
+  "SpireShield": {
+    "xp": 250,
+    "types": ["CONSTRUCT"]
+  },
+  "SpireSpear": {
+    "xp": 250,
+    "types": ["CONSTRUCT"]
+  },
+  "WrithingMass": {
+    "xp": 110,
+    "types": ["ABERRATION"]
+  }
+}

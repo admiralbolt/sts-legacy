@@ -5,22 +5,20 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.RestRoom;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import legacy.base_classes.FighterLevelUpChoice;
-import legacy.base_classes.RogueLevelUpChoice;
-import legacy.base_classes.WizardLevelUpChoice;
+import legacy.base_classes.Fighter;
+import legacy.base_classes.LevelUpChoiceCard;
+import legacy.base_classes.Rogue;
+import legacy.base_classes.Wizard;
 
 import java.util.ArrayList;
 
 public class CampfireLevelUpEffect extends AbstractGameEffect {
 
   public static final String ID = "legacy:level_up_effect";
-  public static final UIStrings UI_STRINGS = CardCrawlGame.languagePack.getUIString(ID);
   private final Color screenColor = AbstractDungeon.fadeColor.cpy();
 
   public CampfireLevelUpEffect() {
@@ -45,9 +43,9 @@ public class CampfireLevelUpEffect extends AbstractGameEffect {
     this.updateBlackScreenColor();
 
     ArrayList<AbstractCard> levelUpCards = new ArrayList<>();
-    levelUpCards.add(new FighterLevelUpChoice());
-    levelUpCards.add(new RogueLevelUpChoice());
-    levelUpCards.add(new WizardLevelUpChoice());
+    levelUpCards.add(new LevelUpChoiceCard(Fighter.ID, "Fighter"));
+    levelUpCards.add(new LevelUpChoiceCard(Rogue.ID, "Rogue"));
+    levelUpCards.add(new LevelUpChoiceCard(Wizard.ID, "Wizard"));
     AbstractDungeon.cardRewardScreen.chooseOneOpen(levelUpCards);
 
     this.isDone = true;

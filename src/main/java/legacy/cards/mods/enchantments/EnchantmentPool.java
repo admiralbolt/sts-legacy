@@ -61,6 +61,16 @@ public class EnchantmentPool {
       potentialEnchantments.add(enchantment);
     }
 
+    // Special handling for Bane enchantment. We don't want to add 6 copies of it to the pool, instead we add one
+    // copy with a random monster type.
+    if (!CardModifierManager.hasModifier(card, Bane.ID)) {
+      // Roll a random bane enchantment.
+      Enchantment enchantment = new Bane();
+      totalWeight += enchantment.weight + enchantment.rarityMultiplier * rarityMultiplier;
+      splits.add(totalWeight);
+      potentialEnchantments.add(enchantment);
+    }
+
     int roll = this.random.nextInt(totalWeight);
 
     // Bisect the splits, and find our enchantment.

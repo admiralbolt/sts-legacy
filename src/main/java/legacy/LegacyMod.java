@@ -3,11 +3,8 @@ package legacy;
 import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.ModPanel;
-import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
-import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.CardModifierPatches;
-import basemod.patches.com.megacrit.cardcrawl.saveAndContinue.SaveFile.ModSaves;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -15,13 +12,11 @@ import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import legacy.base_classes.LevelUpChoiceCard;
 import legacy.cards.mods.enchantments.EnchantmentChoice;
 import legacy.cards.mods.enchantments.EnchantmentUtils;
 import legacy.cards.vars.MagicNumberTwoVariable;
@@ -38,7 +33,6 @@ import legacy.util.TextureLoader;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.Properties;
 
 
@@ -153,7 +147,6 @@ public class LegacyMod implements
 
     loadCharacterStats();
     loadCardEnchantments();
-    MonsterUtils.initialize();
     EnchantmentUtils.initialize();
   }
 
@@ -207,6 +200,7 @@ public class LegacyMod implements
     BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
 
     EnchantmentUtils.postInitialize();
+    MonsterUtils.postInitialize();
 
     // Brand new display for XP!
     BaseMod.addTopPanelItem(new TopPanelXPItem());
@@ -238,7 +232,11 @@ public class LegacyMod implements
 
   @Override
   public void receiveEditCards() {
-    new AutoAdd(LegacyMod.MOD_ID).notPackageFilter(EnchantmentChoice.class).setDefaultSeen(true).cards();
+    new AutoAdd(LegacyMod.MOD_ID)
+            .notPackageFilter(EnchantmentChoice.class)
+            .notPackageFilter(LevelUpChoiceCard.class)
+            .setDefaultSeen(true)
+            .cards();
 
     // Add card vars.
     BaseMod.addDynamicVariable(new MagicNumberTwoVariable());

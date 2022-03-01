@@ -56,6 +56,7 @@ public class BaseClassBlight extends AbstractBlight {
       case "Focus":
         return new FocusPower(AbstractDungeon.player, this.counter);
       default:
+        // nice
         return new AccuracyPower(AbstractDungeon.player, 69);
     }
   }

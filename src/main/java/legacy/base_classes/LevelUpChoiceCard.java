@@ -5,11 +5,11 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import legacy.cards.LegacyCard;
 
-public abstract class LevelUpChoiceCard extends LegacyCard {
+public class LevelUpChoiceCard extends LegacyCard {
 
-  public LevelUpChoiceCard(String id, CardStrings cardStrings, String imgName) {
-    super(id, cardStrings.NAME, "legacy/images/cards/class_level_up_choices/" + imgName,
-            -2, cardStrings.DESCRIPTION, CardType.POWER, CardRarity.SPECIAL, CardTarget.NONE);
+  public LevelUpChoiceCard(String blightID, String name) {
+    super(blightID + "_choice", name, "legacy/images/cards/class_level_up_choices/" + name.toLowerCase() + ".png",
+            -2, "Gain 1 level of " + name + ".", CardType.POWER, CardRarity.SPECIAL, CardTarget.NONE);
   }
 
   @Override
