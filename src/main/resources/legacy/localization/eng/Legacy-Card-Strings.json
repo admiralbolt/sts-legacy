@@ -24,6 +24,10 @@
     "NAME": "Bone Armor",
     "DESCRIPTION": "Exhaust a card from your discard. NL Gain !B! Block."
   },
+  "legacy:cestus": {
+    "NAME": "Cestus",
+    "DESCRIPTION": "Deal !D! Damage, and consume all legacy:Flurry. NL 2 legacy:Flurry -> Apply !M! Weak and Vulnerable. NL 4 legacy:Flurry -> Draw !M2! cards. NL 6 legacy:Flurry -> Stun the target."
+  },
   "legacy:chainmail": {
     "NAME": "Chainmail",
     "DESCRIPTION": "Gain !B! Block. NL Gain !B! Block."

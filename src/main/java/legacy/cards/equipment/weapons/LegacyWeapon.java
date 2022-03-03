@@ -69,10 +69,6 @@ public abstract class LegacyWeapon extends LegacyCard implements SpawnModificati
   public void use(AbstractPlayer p, AbstractMonster m) {
     // NOTE: Enchantment effects are automatically added via their onUse() hook, with the exception of Cleaving
     // which needs our damage to hit all enemies.
-    if (CardModifierManager.hasModifier(this, FlurryTrait.ID)) {
-      AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new FlurryPower(p, 1)));
-    }
-
     if (CardModifierManager.hasModifier(this, RangedTrait.ID)) {
       AbstractDungeon.actionManager.addToBottom(new PiercingDamageAction(m, p, damage));
     } else {
@@ -81,6 +77,10 @@ public abstract class LegacyWeapon extends LegacyCard implements SpawnModificati
       } else {
         this.addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
       }
+    }
+
+    if (CardModifierManager.hasModifier(this, FlurryTrait.ID)) {
+      AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new FlurryPower(p, 1)));
     }
   }
 
@@ -109,7 +109,7 @@ public abstract class LegacyWeapon extends LegacyCard implements SpawnModificati
 
     // Paired weapons scale with flurry stacks.
     if (CardModifierManager.hasModifier(this, FlurryTrait.ID)) {
-      AbstractPower flurry = AbstractDungeon.player.getPower("legacy:flurry");
+      AbstractPower flurry = AbstractDungeon.player.getPower(FlurryPower.POWER_ID);
       if (flurry != null) addDamage(flurry.amount);
     }
 
