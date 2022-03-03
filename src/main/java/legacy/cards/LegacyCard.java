@@ -25,7 +25,7 @@ public abstract class LegacyCard extends CustomCard {
     ARMOR,
     GEAR,
     SPELL,
-    CLASS
+    MISC
   }
 
   public LegacyCard(String id, String name, int cost, String rawDescription, LegacyCardType legacyCardType, CardType type, CardRarity rarity, CardTarget target) {

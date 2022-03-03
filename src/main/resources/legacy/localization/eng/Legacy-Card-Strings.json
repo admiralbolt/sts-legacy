@@ -126,6 +126,11 @@
     "NAME": "Treasure Map",
     "DESCRIPTION": "Scry !M2!. NL Gain !M! Gold."
   },
+  "legacy:two_weapon_defense": {
+    "NAME": "Two Weapon Defense",
+    "DESCRIPTION": "Gain !B! Block. NL Affected by legacy:Flurry.",
+    "UPGRADE_DESCRIPTION": "Gain !B! Block. NL Affected by legacy:Flurry !M! times."
+  },
   "legacy:whip": {
     "NAME": "Whip",
     "DESCRIPTION": "Deal !D! Damage. Apply !M! Weak."
