@@ -40,10 +40,19 @@
     "NAME": "Dagger",
     "DESCRIPTION": "Deal !D! Damage."
   },
+  "legacy:five_foot_step": {
+    "NAME": "5ft. Step",
+    "DESCRIPTION": "Gain !B! Block. NL Draw !M! card."
+  },
   "legacy:frenzied_berserker": {
     "NAME": "Frenzied Berserker",
     "DESCRIPTION": "Double your Strength. NL Enter Wrath.",
     "UPGRADE_DESCRIPTION": "Triple your Strength. NL Enter Wrath."
+  },
+  "legacy:full_attack": {
+    "NAME": "Full Attack",
+    "DESCRIPTION": "Reduce the cost of all weapons in your hand by 1.",
+    "UPGRADE_DESCRIPTION": "Reduce the cost of all weapons in your hand by 1. NL Gain !M! Temporary Strength."
   },
   "legacy:full_plate": {
     "NAME": "Full Plate",
