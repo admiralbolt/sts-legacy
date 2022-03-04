@@ -10,8 +10,7 @@ import com.megacrit.cardcrawl.powers.PoisonPower;
 import legacy.powers.DelayedPoison;
 
 /**
- * Scry 7 then draw a card.
- * Upgrade: Scry 7 then draw 2 cards.
+ * Apply 3 poison this turn and next.
  */
 public class AcidArrow extends Spell {
 

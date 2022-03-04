@@ -40,6 +40,10 @@
     "NAME": "Dagger",
     "DESCRIPTION": "Deal !D! Damage."
   },
+  "legacy:fireball": {
+    "NAME": "Fireball",
+    "DESCRIPTION": "Deal !D! Damage to ALL enemies. !M! Apply !M! legacy:Burn to ALL enemies."
+  },
   "legacy:five_foot_step": {
     "NAME": "5ft. Step",
     "DESCRIPTION": "Gain !B! Block. NL Draw !M! card."
