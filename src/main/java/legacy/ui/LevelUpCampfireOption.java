@@ -22,6 +22,5 @@ public class LevelUpCampfireOption extends AbstractCampfireOption {
     if (!this.usable) return;
 
     AbstractDungeon.effectList.add(new CampfireLevelUpEffect());
-
   }
 }

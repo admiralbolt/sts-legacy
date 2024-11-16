@@ -144,10 +144,6 @@ public class LegacyMod implements
             ATTACK_DEFAULT_GRAY, SKILL_DEFAULT_GRAY, POWER_DEFAULT_GRAY, ENERGY_ORB_DEFAULT_GRAY,
             ATTACK_DEFAULT_GRAY_PORTRAIT, SKILL_DEFAULT_GRAY_PORTRAIT, POWER_DEFAULT_GRAY_PORTRAIT,
             ENERGY_ORB_DEFAULT_GRAY_PORTRAIT, CARD_ENERGY_ORB);
-
-    loadCharacterStats();
-    loadCardEnchantments();
-    EnchantmentUtils.initialize();
   }
 
   // Save permanent stats.
@@ -199,8 +195,9 @@ public class LegacyMod implements
 
     BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
 
-    EnchantmentUtils.postInitialize();
     MonsterUtils.postInitialize();
+
+    EnchantmentUtils.postInitialize();
 
     // Brand new display for XP!
     BaseMod.addTopPanelItem(new TopPanelXPItem());
@@ -232,6 +229,10 @@ public class LegacyMod implements
 
   @Override
   public void receiveEditCards() {
+    loadCharacterStats();
+    loadCardEnchantments();
+    EnchantmentUtils.initialize();
+
     new AutoAdd(LegacyMod.MOD_ID)
             .notPackageFilter(EnchantmentChoice.class)
             .notPackageFilter(LevelUpChoiceCard.class)

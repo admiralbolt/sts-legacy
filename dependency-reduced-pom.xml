@@ -118,7 +118,7 @@
   </dependencies>
   <properties>
     <Jar.path>common/SlayTheSpire/SlayTheSpire.app/Contents/Resources</Jar.path>
-    <ModTheSpire.version>3.24.0</ModTheSpire.version>
+    <ModTheSpire.version>3.30.0</ModTheSpire.version>
     <working_dir>/Users/admiralbolt/git/sts-legacy</working_dir>
     <Steam.path>/Users/admiralbolt/Library/Application Support/Steam/steamapps</Steam.path>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
