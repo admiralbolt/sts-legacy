@@ -14,7 +14,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
@@ -22,7 +21,6 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.Vajra;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import legacy.LegacyMod;
@@ -42,8 +40,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import static legacy.LegacyMod.*;
 import static legacy.characters.TheAdventurer.Enums.COLOR_GRAY;
@@ -56,7 +52,8 @@ public class TheAdventurer extends CustomPlayer {
     public static AbstractPlayer.PlayerClass THE_DEFAULT;
     @SpireEnum(name = "DEFAULT_GRAY_COLOR") // These two HAVE to have the same absolutely identical name.
     public static AbstractCard.CardColor COLOR_GRAY;
-    @SpireEnum(name = "DEFAULT_GRAY_COLOR") @SuppressWarnings("unused")
+    @SpireEnum(name = "DEFAULT_GRAY_COLOR")
+    @SuppressWarnings("unused")
     public static CardLibrary.LibraryType LIBRARY_COLOR;
   }
 
@@ -95,17 +92,17 @@ public class TheAdventurer extends CustomPlayer {
   // =============== TEXTURES OF BIG ENERGY ORB ===============
 
   public static final String[] orbTextures = {
-      "legacy/images/char/defaultCharacter/orb/layer1.png",
-      "legacy/images/char/defaultCharacter/orb/layer2.png",
-      "legacy/images/char/defaultCharacter/orb/layer3.png",
-      "legacy/images/char/defaultCharacter/orb/layer4.png",
-      "legacy/images/char/defaultCharacter/orb/layer5.png",
-      "legacy/images/char/defaultCharacter/orb/layer6.png",
-      "legacy/images/char/defaultCharacter/orb/layer1d.png",
-      "legacy/images/char/defaultCharacter/orb/layer2d.png",
-      "legacy/images/char/defaultCharacter/orb/layer3d.png",
-      "legacy/images/char/defaultCharacter/orb/layer4d.png",
-      "legacy/images/char/defaultCharacter/orb/layer5d.png",};
+    "legacy/images/char/defaultCharacter/orb/layer1.png",
+    "legacy/images/char/defaultCharacter/orb/layer2.png",
+    "legacy/images/char/defaultCharacter/orb/layer3.png",
+    "legacy/images/char/defaultCharacter/orb/layer4.png",
+    "legacy/images/char/defaultCharacter/orb/layer5.png",
+    "legacy/images/char/defaultCharacter/orb/layer6.png",
+    "legacy/images/char/defaultCharacter/orb/layer1d.png",
+    "legacy/images/char/defaultCharacter/orb/layer2d.png",
+    "legacy/images/char/defaultCharacter/orb/layer3d.png",
+    "legacy/images/char/defaultCharacter/orb/layer4d.png",
+    "legacy/images/char/defaultCharacter/orb/layer5d.png",};
 
   // =============== /TEXTURES OF BIG ENERGY ORB/ ===============
 
@@ -153,19 +150,19 @@ public class TheAdventurer extends CustomPlayer {
 
   public TheAdventurer(String name, PlayerClass setClass) {
     super(name, setClass, orbTextures,
-        "legacy/images/char/defaultCharacter/orb/vfx.png", null,
-        new SpriterAnimation(
-            "legacy/images/char/defaultCharacter/Spriter/theDefaultAnimation.scml"));
+      "legacy/images/char/defaultCharacter/orb/vfx.png", null,
+      new SpriterAnimation(
+        "legacy/images/char/defaultCharacter/Spriter/theDefaultAnimation.scml"));
 
 
     // =============== TEXTURES, ENERGY, LOADOUT =================  
 
     initializeClass(null, // required call to load textures and setup energy/loadout.
-        // I left these in DefaultMod.java (Ctrl+click them to see where they are, Ctrl+hover to see what they read.)
-        THE_DEFAULT_SHOULDER_2, // campfire pose
-        THE_DEFAULT_SHOULDER_1, // another campfire pose
-        THE_DEFAULT_CORPSE, // dead corpse
-        getLoadout(), 20.0F, -10.0F, 220.0F, 290.0F, new EnergyManager(ENERGY_PER_TURN)); // energy manager
+      // I left these in DefaultMod.java (Ctrl+click them to see where they are, Ctrl+hover to see what they read.)
+      THE_DEFAULT_SHOULDER_2, // campfire pose
+      THE_DEFAULT_SHOULDER_1, // another campfire pose
+      THE_DEFAULT_CORPSE, // dead corpse
+      getLoadout(), 20.0F, -10.0F, 220.0F, 290.0F, new EnergyManager(ENERGY_PER_TURN)); // energy manager
 
     // =============== /TEXTURES, ENERGY, LOADOUT/ =================
 
@@ -173,9 +170,9 @@ public class TheAdventurer extends CustomPlayer {
     // =============== ANIMATIONS =================  
 
     loadAnimation(
-        THE_DEFAULT_SKELETON_ATLAS,
-        THE_DEFAULT_SKELETON_JSON,
-        1.0f);
+      THE_DEFAULT_SKELETON_ATLAS,
+      THE_DEFAULT_SKELETON_JSON,
+      1.0f);
     AnimationState.TrackEntry e = state.setAnimation(0, "animation", true);
     e.setTime(e.getEndTime() * MathUtils.random());
 
@@ -206,8 +203,8 @@ public class TheAdventurer extends CustomPlayer {
   @Override
   public CharSelectInfo getLoadout() {
     return new CharSelectInfo(NAMES[0], TEXT[0],
-        getMaxHp(), getMaxHp(), ORB_SLOTS, STARTING_GOLD, CARD_DRAW, this, getStartingRelics(),
-        getStartingDeck(), false);
+      getMaxHp(), getMaxHp(), ORB_SLOTS, STARTING_GOLD, CARD_DRAW, this, getStartingRelics(),
+      getStartingDeck(), false);
   }
 
   // Max HP is a base of 35 + 2hp/lvl.
@@ -228,7 +225,8 @@ public class TheAdventurer extends CustomPlayer {
     }
   }
 
-  // Surprisingly, you can't save scum this. I don't really understand why though.
+  // We need to be careful here to avoid save scumming from happening.
+  // Permanently saving these values is handled by the SavePermanentChangesPatch.
   public void levelUp(String classId) {
     this.level++;
     this.nextLevelXp = this.getTotalXpForNextLevel();
@@ -245,7 +243,6 @@ public class TheAdventurer extends CustomPlayer {
     this.increaseBlight(classId);
 
     this.increaseMaxHp(2, true);
-    this.commitStats();
   }
 
   public int getTotalXpForNextLevel() {
@@ -298,7 +295,7 @@ public class TheAdventurer extends CustomPlayer {
   public void doCharSelectScreenSelectEffect() {
     CardCrawlGame.sound.playA("ATTACK_DAGGER_1", 1.25f); // Sound Effect
     CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.LOW, ScreenShake.ShakeDur.SHORT,
-        false); // Screen Effect
+      false); // Screen Effect
   }
 
   // character Select on-button-press sound effect
@@ -376,9 +373,9 @@ public class TheAdventurer extends CustomPlayer {
   @Override
   public AbstractGameAction.AttackEffect[] getSpireHeartSlashEffect() {
     return new AbstractGameAction.AttackEffect[]{
-        AbstractGameAction.AttackEffect.BLUNT_HEAVY,
-        AbstractGameAction.AttackEffect.BLUNT_HEAVY,
-        AbstractGameAction.AttackEffect.BLUNT_HEAVY};
+      AbstractGameAction.AttackEffect.BLUNT_HEAVY,
+      AbstractGameAction.AttackEffect.BLUNT_HEAVY,
+      AbstractGameAction.AttackEffect.BLUNT_HEAVY};
   }
 
   // Should return a string containing what text is shown when your character is

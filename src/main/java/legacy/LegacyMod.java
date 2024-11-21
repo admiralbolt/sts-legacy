@@ -38,18 +38,18 @@ import java.util.Properties;
 
 @SpireInitializer
 public class LegacyMod implements
-        EditCardsSubscriber,
-        EditRelicsSubscriber,
-        EditStringsSubscriber,
-        EditKeywordsSubscriber,
-        EditCharactersSubscriber,
-        PostInitializeSubscriber {
+  EditCardsSubscriber,
+  EditRelicsSubscriber,
+  EditStringsSubscriber,
+  EditKeywordsSubscriber,
+  EditCharactersSubscriber,
+  PostInitializeSubscriber {
   public static final String MOD_ID = "legacy";
 
   //This is for the in-game mod settings panel.
   private static final String MODNAME = "Legacy";
   private static final String AUTHOR = "Admiral Lightning Bolt";
-  private static final String DESCRIPTION = "Slay the Spire with no perma-death sort of.";
+  private static final String DESCRIPTION = "Slay the Spire with no perma-death. Sort of.";
 
   // Character stats! This is experience points and levels.
   public static SpireConfig CHARACTER_STATS;
@@ -140,10 +140,10 @@ public class LegacyMod implements
     BaseMod.subscribe(this);
 
     BaseMod.addColor(TheAdventurer.Enums.COLOR_GRAY, DEFAULT_GRAY, DEFAULT_GRAY, DEFAULT_GRAY,
-            DEFAULT_GRAY, DEFAULT_GRAY, DEFAULT_GRAY, DEFAULT_GRAY,
-            ATTACK_DEFAULT_GRAY, SKILL_DEFAULT_GRAY, POWER_DEFAULT_GRAY, ENERGY_ORB_DEFAULT_GRAY,
-            ATTACK_DEFAULT_GRAY_PORTRAIT, SKILL_DEFAULT_GRAY_PORTRAIT, POWER_DEFAULT_GRAY_PORTRAIT,
-            ENERGY_ORB_DEFAULT_GRAY_PORTRAIT, CARD_ENERGY_ORB);
+      DEFAULT_GRAY, DEFAULT_GRAY, DEFAULT_GRAY, DEFAULT_GRAY,
+      ATTACK_DEFAULT_GRAY, SKILL_DEFAULT_GRAY, POWER_DEFAULT_GRAY, ENERGY_ORB_DEFAULT_GRAY,
+      ATTACK_DEFAULT_GRAY_PORTRAIT, SKILL_DEFAULT_GRAY_PORTRAIT, POWER_DEFAULT_GRAY_PORTRAIT,
+      ENERGY_ORB_DEFAULT_GRAY_PORTRAIT, CARD_ENERGY_ORB);
   }
 
   // Save permanent stats.
@@ -175,7 +175,7 @@ public class LegacyMod implements
   @Override
   public void receiveEditCharacters() {
     BaseMod.addCharacter(new TheAdventurer("the Default", TheAdventurer.Enums.THE_DEFAULT),
-            THE_DEFAULT_BUTTON, THE_DEFAULT_PORTRAIT, TheAdventurer.Enums.THE_DEFAULT);
+      THE_DEFAULT_BUTTON, THE_DEFAULT_PORTRAIT, TheAdventurer.Enums.THE_DEFAULT);
 
     receiveEditPotions();
   }
@@ -234,10 +234,10 @@ public class LegacyMod implements
     EnchantmentUtils.initialize();
 
     new AutoAdd(LegacyMod.MOD_ID)
-            .notPackageFilter(EnchantmentChoice.class)
-            .notPackageFilter(LevelUpChoiceCard.class)
-            .setDefaultSeen(true)
-            .cards();
+      .notPackageFilter(EnchantmentChoice.class)
+      .notPackageFilter(LevelUpChoiceCard.class)
+      .setDefaultSeen(true)
+      .cards();
 
     // Add card vars.
     BaseMod.addDynamicVariable(new MagicNumberTwoVariable());
@@ -247,35 +247,35 @@ public class LegacyMod implements
   public void receiveEditStrings() {
     // CardStrings
     BaseMod.loadCustomStringsFile(CardStrings.class,
-            MOD_ID + "/localization/eng/Legacy-Card-Strings.json");
+      MOD_ID + "/localization/eng/Legacy-Card-Strings.json");
 
     // PowerStrings
     BaseMod.loadCustomStringsFile(PowerStrings.class,
-            MOD_ID + "/localization/eng/Legacy-Power-Strings.json");
+      MOD_ID + "/localization/eng/Legacy-Power-Strings.json");
 
     // RelicStrings
     BaseMod.loadCustomStringsFile(RelicStrings.class,
-            MOD_ID + "/localization/eng/Legacy-Relic-Strings.json");
+      MOD_ID + "/localization/eng/Legacy-Relic-Strings.json");
 
     // Event Strings
     BaseMod.loadCustomStringsFile(EventStrings.class,
-            MOD_ID + "/localization/eng/Legacy-Event-Strings.json");
+      MOD_ID + "/localization/eng/Legacy-Event-Strings.json");
 
     // PotionStrings
     BaseMod.loadCustomStringsFile(PotionStrings.class,
-            MOD_ID + "/localization/eng/Legacy-Potion-Strings.json");
+      MOD_ID + "/localization/eng/Legacy-Potion-Strings.json");
 
     // CharacterStrings
     BaseMod.loadCustomStringsFile(CharacterStrings.class,
-            MOD_ID + "/localization/eng/Legacy-Character-Strings.json");
+      MOD_ID + "/localization/eng/Legacy-Character-Strings.json");
 
     // OrbStrings
     BaseMod.loadCustomStringsFile(OrbStrings.class,
-            MOD_ID + "/localization/eng/Legacy-Orb-Strings.json");
+      MOD_ID + "/localization/eng/Legacy-Orb-Strings.json");
 
     // UIStrings.
     BaseMod.loadCustomStringsFile(UIStrings.class,
-            MOD_ID + "/localization/eng/Legacy-UI-Strings.json");
+      MOD_ID + "/localization/eng/Legacy-UI-Strings.json");
 
     // BlightStrings.
     BaseMod.loadCustomStringsFile(BlightStrings.class, MOD_ID + "/localization/eng/Legacy-Blight-Strings.json");
@@ -300,6 +300,7 @@ public class LegacyMod implements
       BaseMod.addKeyword(MOD_ID.toLowerCase(), keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
     }
   }
+
 
   // ================ /LOAD THE KEYWORDS/ ===================  
 

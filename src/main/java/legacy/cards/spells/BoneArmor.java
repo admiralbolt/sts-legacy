@@ -45,6 +45,6 @@ public class BoneArmor extends Spell {
   public boolean canUse(AbstractPlayer p, AbstractMonster m) {
     if (!super.canUse(p, m)) return false;
 
-    return p.discardPile.group.size() > 0;
+    return !p.discardPile.group.isEmpty();
   }
 }

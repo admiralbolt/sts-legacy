@@ -18,8 +18,8 @@ import java.util.List;
 public class PiercingDamageAction extends AbstractGameAction {
 
   private static final String[] IGNORED_POWERS = {
-          CurlUpPower.POWER_ID, FlameBarrierPower.POWER_ID,
-          MalleablePower.POWER_ID, ThornsPower.POWER_ID,
+    CurlUpPower.POWER_ID, FlameBarrierPower.POWER_ID,
+    MalleablePower.POWER_ID, ThornsPower.POWER_ID,
   };
 
   private final DamageInfo info;

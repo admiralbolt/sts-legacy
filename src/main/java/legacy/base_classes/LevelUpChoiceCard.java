@@ -29,9 +29,8 @@ public class LevelUpChoiceCard extends LegacyCard {
 
   @Override
   public void onChoseThisOption() {
-    if (!(AbstractDungeon.player instanceof TheAdventurer)) {
-      return;
-    }
+    if (!(AbstractDungeon.player instanceof TheAdventurer)) return;
+
     ((TheAdventurer) AbstractDungeon.player).levelUp(this.classID);
   }
 
