@@ -1,5 +1,6 @@
 package legacy.util;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -64,5 +65,15 @@ public class CardUtils {
     CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
     cards.forEach(group::addToBottom);
     return group;
+  }
+
+  // Reduce the cost of a card by X for the rest of combat.
+  public static void reduceCardCost(AbstractCard card, int amount) {
+    if (card.costForTurn > 0) {
+      card.cost = Math.max(card.cost - amount, 0);
+      card.costForTurn = Math.max(card.costForTurn - amount, 0);
+      card.isCostModified = true;
+      card.superFlash(Color.GOLD.cpy());
+    }
   }
 }

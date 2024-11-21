@@ -9,5 +9,10 @@
     "TEXT": [
       "Choose which class to gain a level in."
     ]
+  },
+  "legacy:magnifying_glass_action": {
+    "TEXT": [
+      "reduce cost by 1."
+    ]
   }
 }
