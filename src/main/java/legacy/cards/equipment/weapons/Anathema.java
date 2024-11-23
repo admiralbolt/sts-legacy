@@ -8,13 +8,12 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import legacy.LegacyMod;
 import legacy.actions.PermanentBuffWeaponAction;
 import legacy.cards.mods.traits.TwoHandedTrait;
 
 public class Anathema extends LegacyWeapon {
 
-  public static final String ID = LegacyMod.makeID("anathema");
+  public static final String ID = "legacy:anathema";
   private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
   public static final int COST = 2;
 

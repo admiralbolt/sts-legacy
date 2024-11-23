@@ -9,7 +9,7 @@ import legacy.cards.LegacyCard;
 import legacy.util.MonsterUtils;
 
 /**
- * Enchantment that causes weapons to apply frost.
+ * Enchantment that causes weapons to deal double damage to a particular enemy type.
  */
 public class Bane extends Enchantment {
 

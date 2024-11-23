@@ -2,7 +2,6 @@ package legacy.cards.equipment.weapons;
 
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
-import legacy.LegacyMod;
 import legacy.cards.mods.traits.FlurryTrait;
 
 /**
@@ -10,7 +9,7 @@ import legacy.cards.mods.traits.FlurryTrait;
  */
 public class Dagger extends LegacyWeapon {
 
-  public static final String ID = LegacyMod.makeID("dagger");
+  public static final String ID = "legacy:dagger";
   private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
   public static final int COST = 0;
 
