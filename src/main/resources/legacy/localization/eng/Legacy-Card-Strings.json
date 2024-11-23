@@ -55,8 +55,7 @@
   },
   "legacy:full_attack": {
     "NAME": "Full Attack",
-    "DESCRIPTION": "Reduce the cost of all weapons in your hand by 1.",
-    "UPGRADE_DESCRIPTION": "Reduce the cost of all weapons in your hand by 1. NL Gain !M! Temporary Strength."
+    "DESCRIPTION": "Discard all non Attack cards. NL Put !M! random Attacks from your draw pile into your hand. NL You cannot draw additional cards this turn. NL Reduce the cost of all cards in your hand to 0.",
   },
   "legacy:full_plate": {
     "NAME": "Full Plate",

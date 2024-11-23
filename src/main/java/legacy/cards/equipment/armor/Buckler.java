@@ -8,19 +8,16 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import legacy.cards.mods.traits.LightArmorTrait;
 
-/**
- * 0 cost light armor.
- */
-public class ChainShirt extends LegacyArmor {
+public class Buckler extends LegacyArmor {
 
-  public static final String ID = "legacy:chain_shirt";
+  public static final String ID = "legacy:buckler";
   private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-  public static final int COST = 0;
+  public static final int COST = 1;
 
-  public ChainShirt() {
-    super(ID, cardStrings, COST, CardRarity.UNCOMMON, new LightArmorTrait());
+  public Buckler() {
+    super(ID, cardStrings, COST, CardRarity.COMMON, new LightArmorTrait());
 
-    this.baseBlock = this.block = 4;
+    this.baseBlock = this.block = 5;
   }
 
   @Override
@@ -34,6 +31,5 @@ public class ChainShirt extends LegacyArmor {
 
     this.upgradeName();
     this.upgradeBlock(3);
-    this.initializeDescription();
   }
 }

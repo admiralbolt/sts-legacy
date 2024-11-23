@@ -4,17 +4,18 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import legacy.cards.mods.traits.FinesseTrait;
 import legacy.cards.mods.traits.RangedTrait;
+import legacy.cards.mods.traits.TwoHandedTrait;
 
-public class Shortbow extends LegacyWeapon {
+public class Greatbow extends LegacyWeapon {
 
-  public static final String ID = "legacy:shortbow";
+  public static final String ID = "legacy:greatbow";
   private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-  private static final int COST = 1;
+  public static final int COST = 2;
 
-  public Shortbow() {
-    super(ID, cardStrings, COST, CardRarity.COMMON, CardTarget.ENEMY, new FinesseTrait(), new RangedTrait());
+  public Greatbow() {
+    super(ID, cardStrings, COST, CardRarity.UNCOMMON, CardTarget.ENEMY, new TwoHandedTrait(), new FinesseTrait(), new RangedTrait());
 
-    this.baseDamage = this.damage = 5;
+    this.baseDamage = this.damage = 8;
   }
 
   @Override
@@ -22,7 +23,7 @@ public class Shortbow extends LegacyWeapon {
     if (this.upgraded) return;
 
     this.upgradeName();
-    this.upgradeDamage(3);
+    this.upgradeDamage(4);
     this.initializeDescription();
   }
 

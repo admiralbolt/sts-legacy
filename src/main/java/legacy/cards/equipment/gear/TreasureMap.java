@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.vfx.GainPennyEffect;
 import legacy.cards.LegacyCard;
 
 /**
- *
+ * Scry 1 and Gain 7 gold. Upgrades to Scry 2 and Gain 10 gold.
  */
 public class TreasureMap extends LegacyCard {
 

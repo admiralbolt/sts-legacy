@@ -1,19 +1,19 @@
 package legacy.cards.misc;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DiscardSpecificCardAction;
+import com.megacrit.cardcrawl.actions.utility.DrawPileToHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.LoseStrengthPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.NoDrawPower;
 import legacy.cards.LegacyCard;
-import legacy.cards.equipment.weapons.LegacyWeapon;
 
-/**s
- * Reduce the cost of all weapons in your hand by 1 for the turn.
+/**
+ * Discard all non attack cards, draw 3 attacks, set the cost of cards in hand to 0.
  */
 public class FullAttack extends LegacyCard {
 
@@ -24,7 +24,8 @@ public class FullAttack extends LegacyCard {
   public FullAttack() {
     super(ID, CARD_STRINGS.NAME, COST, CARD_STRINGS.DESCRIPTION, LegacyCardType.MISC, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
 
-    this.baseMagicNumber = this.magicNumber = -1;
+    this.baseMagicNumber = this.magicNumber = 3;
+    this.exhaust = true;
   }
 
   @Override
@@ -32,21 +33,22 @@ public class FullAttack extends LegacyCard {
     if (this.upgraded) return;
 
     this.upgradeName();
-    this.upgradeMagicNumber(3);
-    this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
-    this.initializeDescription();
+    this.upgradeMagicNumber(1);
   }
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    for (AbstractCard card : AbstractDungeon.player.hand.group) {
-      if (!(card instanceof LegacyWeapon)) continue;
+    for (AbstractCard card : p.hand.group) {
+      if (card.type == CardType.ATTACK) continue;
 
-      card.setCostForTurn(Math.max(0, card.cost - 1));
+      this.addToBot(new DiscardSpecificCardAction(card));
     }
+    this.addToBot(new DrawPileToHandAction(3, CardType.ATTACK));
+    this.addToBot(new ApplyPowerAction(p, p, new NoDrawPower(p), 1));
+    for (AbstractCard card : AbstractDungeon.player.hand.group) {
+      if (card.type != CardType.ATTACK) continue;
 
-    if (!this.upgraded) return;
-    this.addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, this.magicNumber), this.magicNumber));
-    this.addToBot(new ApplyPowerAction(p, p, new LoseStrengthPower(p, this.magicNumber), this.magicNumber));
+      card.setCostForTurn(0);
+    }
   }
 }
