@@ -30,5 +30,12 @@
       ".",
       "Select a card to bottle for "
     ]
+  },
+  "legacy:everburning_torch": {
+    "NAME": "Everburning Torch",
+    "FLAVOR": "Burn baby burn.",
+    "DESCRIPTIONS": [
+      "At the start of each combat #yScry X then draw 1 card, where X is the number of charges this has. NL Gain #b1 charge each time you defeat a boss."
+    ]
   }
 }

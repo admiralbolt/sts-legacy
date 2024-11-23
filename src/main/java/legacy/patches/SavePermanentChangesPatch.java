@@ -3,6 +3,7 @@ package legacy.patches;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.saveAndContinue.SaveAndContinue;
 import legacy.LegacyMod;
+import legacy.relics.RelicUtils;
 
 /**
  * Save permanent changes when we save the game.
@@ -14,6 +15,7 @@ public class SavePermanentChangesPatch {
     public static void Prefix() {
       LegacyMod.saveCharacterStats();
       LegacyMod.saveCardEnchantments();
+      RelicUtils.saveRelicCharges();
     }
   }
 

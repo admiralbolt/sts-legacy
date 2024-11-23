@@ -23,10 +23,7 @@ import legacy.cards.vars.MagicNumberTwoVariable;
 import legacy.characters.TheAdventurer;
 import legacy.events.EnchantmentShrine;
 import legacy.potions.PlaceholderPotion;
-import legacy.relics.BottledPlaceholderRelic;
-import legacy.relics.DefaultClickableRelic;
-import legacy.relics.PlaceholderRelic;
-import legacy.relics.PlaceholderRelic2;
+import legacy.relics.*;
 import legacy.ui.TopPanelXPItem;
 import legacy.util.MonsterUtils;
 import legacy.util.TextureLoader;
@@ -117,7 +114,7 @@ public class LegacyMod implements
     defaults.setProperty("wizard_level", "0");
 
     try {
-      CHARACTER_STATS = new SpireConfig("Legacy", "character_stats", defaults);
+      CHARACTER_STATS = new SpireConfig(MODNAME, "character_stats", defaults);
       CHARACTER_STATS.load();
     } catch (IOException e) {
       e.printStackTrace();
@@ -128,7 +125,7 @@ public class LegacyMod implements
     Properties defaults = new Properties();
     defaults.setProperty("cards", "{}");
     try {
-      CARD_ENCHANTMENTS = new SpireConfig("Legacy", "card_enchantments", defaults);
+      CARD_ENCHANTMENTS = new SpireConfig(MODNAME, "card_enchantments", defaults);
       CARD_ENCHANTMENTS.load();
       EnchantmentUtils.loadEnchantments();
     } catch (IOException e) {
@@ -219,6 +216,7 @@ public class LegacyMod implements
     BaseMod.addRelicToCustomPool(new PlaceholderRelic(), TheAdventurer.Enums.COLOR_GRAY);
     BaseMod.addRelicToCustomPool(new BottledPlaceholderRelic(), TheAdventurer.Enums.COLOR_GRAY);
     BaseMod.addRelicToCustomPool(new DefaultClickableRelic(), TheAdventurer.Enums.COLOR_GRAY);
+    BaseMod.addRelicToCustomPool(new EverburningTorch(), TheAdventurer.Enums.COLOR_GRAY);
 
     // This adds a relic to the Shared pool. Every character can find this relic.
     BaseMod.addRelic(new PlaceholderRelic2(), RelicType.SHARED);
@@ -231,6 +229,7 @@ public class LegacyMod implements
   public void receiveEditCards() {
     loadCharacterStats();
     loadCardEnchantments();
+    RelicUtils.initialize();
     EnchantmentUtils.initialize();
 
     new AutoAdd(LegacyMod.MOD_ID)

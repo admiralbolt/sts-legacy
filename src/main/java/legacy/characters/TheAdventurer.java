@@ -2,6 +2,7 @@ package legacy.characters;
 
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
+import basemod.devcommands.unlock.Unlock;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.MathUtils;
@@ -27,12 +28,12 @@ import legacy.LegacyMod;
 import legacy.base_classes.Fighter;
 import legacy.base_classes.Rogue;
 import legacy.base_classes.Wizard;
+import legacy.cards.equipment.armor.ChainShirt;
+import legacy.cards.equipment.armor.Chainmail;
 import legacy.cards.equipment.armor.PaddedArmor;
-import legacy.cards.equipment.weapons.Anathema;
-import legacy.cards.equipment.weapons.Dagger;
-import legacy.cards.equipment.weapons.Rapier;
-import legacy.cards.equipment.weapons.Spear;
+import legacy.cards.equipment.weapons.*;
 import legacy.relics.DefaultClickableRelic;
+import legacy.relics.EverburningTorch;
 import legacy.relics.PlaceholderRelic;
 import legacy.relics.PlaceholderRelic2;
 import legacy.util.MonsterUtils;
@@ -271,6 +272,11 @@ public class TheAdventurer extends CustomPlayer {
     deck.add(Dagger.ID);
     deck.add(Spear.ID);
     deck.add(PaddedArmor.ID);
+    deck.add(Greatsword.ID);
+    deck.add(Chainmail.ID);
+    deck.add(ChainShirt.ID);
+    deck.add(Kukri.ID);
+    deck.add(Longsword.ID);
 
     return deck;
   }
@@ -282,10 +288,12 @@ public class TheAdventurer extends CustomPlayer {
     retVal.add(PlaceholderRelic.ID);
     retVal.add(PlaceholderRelic2.ID);
     retVal.add(DefaultClickableRelic.ID);
+    retVal.add(EverburningTorch.RELIC_ID);
 
     UnlockTracker.markRelicAsSeen(PlaceholderRelic.ID);
     UnlockTracker.markRelicAsSeen(PlaceholderRelic2.ID);
     UnlockTracker.markRelicAsSeen(DefaultClickableRelic.ID);
+    UnlockTracker.markRelicAsSeen(EverburningTorch.RELIC_ID);
 
     return retVal;
   }
