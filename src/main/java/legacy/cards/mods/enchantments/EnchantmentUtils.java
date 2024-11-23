@@ -8,6 +8,7 @@ import basemod.patches.com.megacrit.cardcrawl.saveAndContinue.SaveFile.ModSaves;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.ModInfo;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
@@ -22,6 +23,7 @@ import legacy.cards.equipment.weapons.LegacyWeapon;
 import org.clapper.util.classutil.*;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -30,6 +32,9 @@ import java.util.stream.Collectors;
  * Tracks all enchantments.
  */
 public class EnchantmentUtils {
+
+  // Card enchantments! These are all enchantments applied to a card.
+  public static SpireConfig CARD_ENCHANTMENTS;
 
   public static List<Enchantment> allEnchantments;
   public static Map<String, Enchantment> enchantmentMap;
@@ -47,6 +52,16 @@ public class EnchantmentUtils {
   );
 
   public static void initialize() {
+    Properties defaults = new Properties();
+    defaults.setProperty("cards", "{}");
+    try {
+      CARD_ENCHANTMENTS = new SpireConfig(LegacyMod.MOD_ID, "card_enchantments", defaults);
+      CARD_ENCHANTMENTS.load();
+      loadEnchantments();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
     allEnchantments = new ArrayList<>();
     enchantmentMap = new HashMap<>();
     enchantmentPools = new HashMap<>();
@@ -185,7 +200,17 @@ public class EnchantmentUtils {
       enchantmentMap.put(card.cardID, gson.toJsonTree(enchantmentMods, new TypeToken<ArrayList<AbstractCardModifier>>(){}.getType()));
     }
 
-    LegacyMod.CARD_ENCHANTMENTS.setString("cards", gson.toJson(enchantmentMap));
+    CARD_ENCHANTMENTS.setString("cards", gson.toJson(enchantmentMap));
+  }
+
+  // Utilizes the above, but also persists the enchantments to disk.
+  public static void saveEnchantments() {
+    commitEnchantments();
+    try {
+      CARD_ENCHANTMENTS.save();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   // Load our previously saved enchantments from the config file. Make sure CARD_ENCHANTMENTS is initialized first.
@@ -202,7 +227,7 @@ public class EnchantmentUtils {
     Gson gson = builder.create();
 
     // Get raw enchantments string.
-    String rawEnchantments = LegacyMod.CARD_ENCHANTMENTS.getString("cards");
+    String rawEnchantments = CARD_ENCHANTMENTS.getString("cards");
     // Convert raw enchantments string to map of string -> json element.
     ModSaves.HashMapOfJsonElement jsonMap = gson.fromJson(rawEnchantments, new TypeToken<ModSaves.HashMapOfJsonElement>() {
     }.getType());

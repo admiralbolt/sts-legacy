@@ -50,8 +50,6 @@ public class LegacyMod implements
 
   // Character stats! This is experience points and levels.
   public static SpireConfig CHARACTER_STATS;
-  // Card enchantments! These are all enchantments applied to a card.
-  public static SpireConfig CARD_ENCHANTMENTS;
 
   // =============== INPUT TEXTURE LOCATION =================
 
@@ -121,18 +119,6 @@ public class LegacyMod implements
     }
   }
 
-  private static void loadCardEnchantments() {
-    Properties defaults = new Properties();
-    defaults.setProperty("cards", "{}");
-    try {
-      CARD_ENCHANTMENTS = new SpireConfig(MODNAME, "card_enchantments", defaults);
-      CARD_ENCHANTMENTS.load();
-      EnchantmentUtils.loadEnchantments();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
-
   public LegacyMod() {
     BaseMod.subscribe(this);
 
@@ -150,16 +136,6 @@ public class LegacyMod implements
         ((TheAdventurer) AbstractDungeon.player).commitStats();
       }
       CHARACTER_STATS.save();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
-
-  // Save card enchantments.
-  public static void saveCardEnchantments() {
-    try {
-      EnchantmentUtils.commitEnchantments();
-      CARD_ENCHANTMENTS.save();
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -228,7 +204,6 @@ public class LegacyMod implements
   @Override
   public void receiveEditCards() {
     loadCharacterStats();
-    loadCardEnchantments();
     RelicUtils.initialize();
     EnchantmentUtils.initialize();
 
