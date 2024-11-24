@@ -3,6 +3,7 @@ package legacy;
 import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.ModPanel;
+import basemod.abstracts.CustomRelic;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
@@ -188,17 +189,24 @@ public class LegacyMod implements
 
   @Override
   public void receiveEditRelics() {
+    new AutoAdd(LegacyMod.MOD_ID)
+      .packageFilter(LegacyRelic.class)
+        .any(CustomRelic.class, (info, relic) -> {
+          System.out.println("FOUND_RELIC: " + relic.name);
+          BaseMod.addRelicToCustomPool(relic, TheAdventurer.Enums.COLOR_GRAY);
+        });
+
     // This adds a character specific relic. Only when you play with the mentioned color, will you get this relic.
-    BaseMod.addRelicToCustomPool(new PlaceholderRelic(), TheAdventurer.Enums.COLOR_GRAY);
-    BaseMod.addRelicToCustomPool(new BottledPlaceholderRelic(), TheAdventurer.Enums.COLOR_GRAY);
-    BaseMod.addRelicToCustomPool(new DefaultClickableRelic(), TheAdventurer.Enums.COLOR_GRAY);
-    BaseMod.addRelicToCustomPool(new EverburningTorch(), TheAdventurer.Enums.COLOR_GRAY);
-
-    // This adds a relic to the Shared pool. Every character can find this relic.
-    BaseMod.addRelic(new PlaceholderRelic2(), RelicType.SHARED);
-
-    // Mark relics as seen (the others are all starters so they're marked as seen in the character file
-    UnlockTracker.markRelicAsSeen(BottledPlaceholderRelic.ID);
+//    BaseMod.addRelicToCustomPool(new PlaceholderRelic(), TheAdventurer.Enums.COLOR_GRAY);
+//    BaseMod.addRelicToCustomPool(new BottledPlaceholderRelic(), TheAdventurer.Enums.COLOR_GRAY);
+//    BaseMod.addRelicToCustomPool(new DefaultClickableRelic(), TheAdventurer.Enums.COLOR_GRAY);
+//    BaseMod.addRelicToCustomPool(new EverburningTorch(), TheAdventurer.Enums.COLOR_GRAY);
+//
+//    // This adds a relic to the Shared pool. Every character can find this relic.
+//    BaseMod.addRelic(new PlaceholderRelic2(), RelicType.SHARED);
+//
+//    // Mark relics as seen (the others are all starters so they're marked as seen in the character file
+//    UnlockTracker.markRelicAsSeen(BottledPlaceholderRelic.ID);
   }
 
   @Override

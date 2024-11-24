@@ -10,6 +10,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import legacy.powers.BurnPower;
 import legacy.util.ReallyMisc;
 
+import java.util.Arrays;
+
 /**
  * Deal damage and apply burn to all enemies.
  */
@@ -43,6 +45,7 @@ public class Fireball extends Spell {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
+    System.out.println("player: " + p.name + ", multiDamage: " + Arrays.toString(this.multiDamage) + ", damageForTurn: " + this.damageTypeForTurn);
     this.addToBot(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE));
     ReallyMisc.getAllEnemies().forEach(monster -> {
       this.addToBot(new ApplyPowerAction(monster, p, new BurnPower(monster, this.magicNumber), this.magicNumber));

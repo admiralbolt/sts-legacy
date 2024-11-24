@@ -31,6 +31,13 @@
       "Select a card to bottle for "
     ]
   },
+  "legacy:black_heart": {
+    "NAME": "Black Heart",
+    "FLAVOR": "You can still hear their whispers...",
+    "DESCRIPTIONS": [
+      "Upon pickup, raise your Max HP by X, where X is the number of charges this has. NL Gain #b1 charge AND 1 max hp each time you defeat an elite or a boss."
+    ]
+  },
   "legacy:everburning_torch": {
     "NAME": "Everburning Torch",
     "FLAVOR": "Burn baby burn.",

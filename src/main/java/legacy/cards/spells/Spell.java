@@ -3,6 +3,7 @@ package legacy.cards.spells;
 import basemod.helpers.CardModifierManager;
 import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.SpawnModificationCard;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -51,6 +52,8 @@ public abstract class Spell extends LegacyCard implements SpawnModificationCard 
     CardModifierManager.addModifier(this, new SpellModifier());
     this.focusRequirement = focusRequirement;
     this.school = school;
+    this.damageTypeForTurn = DamageInfo.DamageType.NORMAL;
+    this.isMultiDamage = (target == CardTarget.ALL_ENEMY);
   }
 
   // Spells have a required amount of focus in order to play them. Also, you can't cast spells while in wrath, duh.

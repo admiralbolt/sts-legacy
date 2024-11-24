@@ -34,7 +34,6 @@ public class EverburningTorch extends LegacyRelic {
 
     this.incrementCharge();
     this.description = this.getUpdatedDescription();
-    this.initializeTips();
   }
 
 

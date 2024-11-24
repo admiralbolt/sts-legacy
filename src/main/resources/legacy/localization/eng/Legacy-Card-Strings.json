@@ -24,6 +24,14 @@
     "NAME": "Bone Armor",
     "DESCRIPTION": "Exhaust a card from your discard. NL Gain !B! Block."
   },
+  "legacy:buckler": {
+    "NAME": "Buckler",
+    "DESCRIPTION": "Gain !B! Block."
+  },
+  "legacy:bull_rush": {
+    "NAME": "Bullrush",
+    "DESCRIPTION": "Deal !D! Damage. NL Apply !M! Vulnerable."
+  },
   "legacy:cestus": {
     "NAME": "Cestus",
     "DESCRIPTION": "Deal !D! Damage, and consume all legacy:Flurry. NL 2 legacy:Flurry -> Apply !M! Weak and Vulnerable. NL 4 legacy:Flurry -> Draw !M2! cards. NL 6 legacy:Flurry -> Stun the target."
@@ -40,9 +48,13 @@
     "NAME": "Dagger",
     "DESCRIPTION": "Deal !D! Damage."
   },
+  "legacy:disarm": {
+    "NAME": "Disarm",
+    "DESCRIPTION": "Deal !D! Damage. NL Apply !M! Weak."
+  },
   "legacy:fireball": {
     "NAME": "Fireball",
-    "DESCRIPTION": "Deal !D! Damage to ALL enemies. !M! Apply !M! legacy:Burn to ALL enemies."
+    "DESCRIPTION": "Deal !D! Damage to ALL enemies. Apply !M! legacy:Burn to ALL enemies."
   },
   "legacy:five_foot_step": {
     "NAME": "5ft. Step",
@@ -55,7 +67,7 @@
   },
   "legacy:full_attack": {
     "NAME": "Full Attack",
-    "DESCRIPTION": "Discard all non Attack cards. NL Put !M! random Attacks from your draw pile into your hand. NL You cannot draw additional cards this turn. NL Reduce the cost of all cards in your hand to 0.",
+    "DESCRIPTION": "Discard all non Attack cards. NL Put !M! random Attacks from your draw pile into your hand. NL You cannot draw additional cards this turn. NL Reduce the cost of all cards in your hand to 0."
   },
   "legacy:full_plate": {
     "NAME": "Full Plate",
@@ -64,6 +76,10 @@
   "legacy:grave_storm": {
     "NAME": "Grave Storm",
     "DESCRIPTION": "Exhaust your discard pile. NL Deal !D! damage for each card Exhausted."
+  },
+  "legacy:greatbow": {
+    "NAME": "Greatbow",
+    "DESCRIPTION": "Deal !D! Damage."
   },
   "legacy:greatsword": {
     "NAME": "Greatsword",
