@@ -4,7 +4,6 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import legacy.LegacyMod;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Properties;
 
 public class RelicUtils {

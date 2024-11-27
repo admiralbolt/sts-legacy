@@ -18,7 +18,7 @@ public class Bedroll extends LegacyCard {
 
   public static final String ID = "legacy:bedroll";
   private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-  public static final int COST = 2;
+  public static final int COST = 1;
 
   public Bedroll() {
     super(ID, cardStrings.NAME, COST, cardStrings.DESCRIPTION, LegacyCardType.GEAR, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);

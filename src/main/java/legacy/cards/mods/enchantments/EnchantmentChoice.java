@@ -25,7 +25,7 @@ public class EnchantmentChoice extends CustomCard {
 
   @Override
   public void onChoseThisOption() {
-    CardModifierManager.addModifier(this.targetCard, enchantment);
+    EnchantmentUtils.enchantCard(this.targetCard, enchantment);
   }
 
   @Override

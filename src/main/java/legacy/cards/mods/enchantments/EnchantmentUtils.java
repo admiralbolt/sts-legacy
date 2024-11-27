@@ -37,7 +37,6 @@ public class EnchantmentUtils {
   public static SpireConfig CARD_ENCHANTMENTS;
 
   public static List<Enchantment> allEnchantments;
-  public static Map<String, Enchantment> enchantmentMap;
   public static Map<LegacyCard.LegacyCardType, EnchantmentPool> enchantmentPools;
 
   public static Map<AbstractCard.CardRarity, Integer> MAX_ENCHANTMENTS_BY_RARITY;
@@ -63,7 +62,6 @@ public class EnchantmentUtils {
     }
 
     allEnchantments = new ArrayList<>();
-    enchantmentMap = new HashMap<>();
     enchantmentPools = new HashMap<>();
     enchantmentPools.put(LegacyCard.LegacyCardType.ARMOR, new EnchantmentPool());
     enchantmentPools.put(LegacyCard.LegacyCardType.WEAPON, new EnchantmentPool());
@@ -100,7 +98,6 @@ public class EnchantmentUtils {
       try {
         Enchantment e = (Enchantment) pool.getClassLoader().loadClass(info.getClassName()).newInstance();
         allEnchantments.add(e);
-        enchantmentMap.put(e.id, e);
         enchantmentPools.get(e.type).addEnchantment(e);
       } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
         e.printStackTrace();
@@ -109,7 +106,7 @@ public class EnchantmentUtils {
   }
 
   // We want our enchanted cards to glow to match their enchantments color :)
-  public static void postInitialize() {
+  public static void updateGlows() {
     for (Enchantment enchantment : allEnchantments) {
       if (enchantment.getColor() == null) continue;
 
@@ -201,6 +198,11 @@ public class EnchantmentUtils {
     }
 
     CARD_ENCHANTMENTS.setString("cards", gson.toJson(enchantmentMap));
+  }
+
+  public static void enchantCard(AbstractCard card, Enchantment enchantment) {
+    CardModifierManager.addModifier(card, enchantment);
+    commitEnchantments();
   }
 
   // Utilizes the above, but also persists the enchantments to disk.

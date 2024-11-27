@@ -171,7 +171,7 @@ public class LegacyMod implements
 
     MonsterUtils.postInitialize();
 
-    EnchantmentUtils.postInitialize();
+    EnchantmentUtils.updateGlows();
 
     // Brand new display for XP!
     BaseMod.addTopPanelItem(new TopPanelXPItem());
