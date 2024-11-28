@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import legacy.cards.LegacyCard;
+import legacy.patches.LegacyCardTags;
 import legacy.powers.FlurryPower;
 
 /**s
@@ -22,6 +23,7 @@ public class TwoWeaponDefense extends LegacyCard {
   public TwoWeaponDefense() {
     super(ID, CARD_STRINGS.NAME, COST, CARD_STRINGS.DESCRIPTION, LegacyCardType.MISC, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
+    this.tags.add(LegacyCardTags.FLURRY);
     this.baseBlock = this.block = 5;
     this.baseMagicNumber = this.magicNumber = 1;
   }

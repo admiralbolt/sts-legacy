@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import legacy.LegacyMod;
 import legacy.cards.mods.traits.FlurryTrait;
+import legacy.patches.LegacyCardTags;
 
 /**
  * A 0 cost flurry weapon.
@@ -25,6 +26,7 @@ public class Nunchaku extends LegacyWeapon {
   public Nunchaku() {
     super(ID, cardStrings, COST, CardRarity.UNCOMMON, CardTarget.ENEMY, new FlurryTrait());
 
+    this.tags.add(LegacyCardTags.FLURRY);
     this.baseDamage = this.damage = 3;
   }
 

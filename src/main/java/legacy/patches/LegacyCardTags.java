@@ -11,5 +11,7 @@ public class LegacyCardTags {
   @SpireEnum
   public static AbstractCard.CardTags ENTERS_STEALTH;
 
+  @SpireEnum
+  public static AbstractCard.CardTags FLURRY;
 
 }

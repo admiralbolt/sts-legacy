@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import legacy.cards.mods.traits.FlurryTrait;
+import legacy.patches.LegacyCardTags;
 import legacy.powers.FlurryPower;
 
 /**
@@ -28,6 +29,7 @@ public class Cestus extends LegacyWeapon {
   public Cestus() {
     super(ID, cardStrings, COST, CardRarity.RARE, CardTarget.ENEMY, new FlurryTrait());
 
+    this.tags.add(LegacyCardTags.FLURRY);
     this.baseDamage = this.damage = 5;
     this.baseMagicNumber = this.magicNumber = 2;
     this.baseMagicNumberTwo = this.magicNumberTwo = 1;

@@ -3,6 +3,7 @@ package legacy.cards.equipment.weapons;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import legacy.cards.mods.traits.FlurryTrait;
+import legacy.patches.LegacyCardTags;
 
 /**
  * A 0 cost flurry weapon.
@@ -16,6 +17,7 @@ public class Dagger extends LegacyWeapon {
   public Dagger() {
     super(ID, cardStrings, COST, CardRarity.COMMON, CardTarget.ENEMY, new FlurryTrait());
 
+    this.tags.add(LegacyCardTags.FLURRY);
     this.baseDamage = this.damage = 2;
   }
 

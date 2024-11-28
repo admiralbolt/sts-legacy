@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import legacy.cards.mods.traits.FinesseTrait;
 import legacy.cards.mods.traits.FlurryTrait;
+import legacy.patches.LegacyCardTags;
 
 public class Kukri extends LegacyWeapon {
 
@@ -14,6 +15,7 @@ public class Kukri extends LegacyWeapon {
   public Kukri() {
     super(ID, cardStrings, COST, CardRarity.COMMON, CardTarget.ENEMY, new FlurryTrait(), new FinesseTrait());
 
+    this.tags.add(LegacyCardTags.FLURRY);
     this.baseDamage = this.damage = 2;
   }
 
