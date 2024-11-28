@@ -2,8 +2,6 @@ package legacy.cards.prestige_classes;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import legacy.powers.WhirlingDervishPower;
 
@@ -16,11 +14,10 @@ import legacy.powers.WhirlingDervishPower;
 public class WhirlingDervish extends PrestigeClass {
 
   public static final String ID = "legacy:whirling_dervish";
-  public static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
   public static final int COST = 2;
 
   public WhirlingDervish() {
-    super(ID, cardStrings, COST, CardRarity.RARE, 2, 4, 0);
+    super(ID, COST, CardRarity.RARE, new StatRequirements(2, 4, 0));
 
     this.magicNumber = this.baseMagicNumber = 5;
   }

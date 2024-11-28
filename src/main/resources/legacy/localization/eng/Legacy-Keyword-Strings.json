@@ -112,6 +112,15 @@
     "DESCRIPTION": "Damage scales +1x with Strength."
   },
   {
+    "PROPER_NAME": "Prestige Class",
+    "NAMES": [
+      "Prestige Class",
+      "prestige_class",
+      "prestigeclass"
+    ],
+    "DESCRIPTION": "A unique power. Only one Prestige Class can be active at a time."
+  },
+  {
     "PROPER_NAME": "Multiword Keyword",
     "NAMES": [
       "Multiword Keyword",

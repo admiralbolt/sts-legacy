@@ -21,7 +21,7 @@ public class FiveFootStep extends LegacyCard {
     super(ID, CARD_STRINGS.NAME, COST, CARD_STRINGS.DESCRIPTION, LegacyCardType.MISC, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
 
     this.baseBlock = this.block = 3;
-    this.magicNumber = this.baseMagicNumberTwo = 1;
+    this.magicNumber = this.baseMagicNumber = 1;
     this.exhaust = true;
   }
 

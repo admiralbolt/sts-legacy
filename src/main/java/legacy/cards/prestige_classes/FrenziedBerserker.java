@@ -20,7 +20,7 @@ public class FrenziedBerserker extends PrestigeClass {
   public static final int COST = 2;
 
   public FrenziedBerserker() {
-    super(ID, cardStrings, COST, CardRarity.RARE, 6, 0, 0);
+    super(ID, COST, CardRarity.RARE, new StatRequirements(6, 0, 0));
 
     this.baseMagicNumber = this.magicNumber = 2;
   }
@@ -31,7 +31,7 @@ public class FrenziedBerserker extends PrestigeClass {
 
     this.upgradeName();
     this.upgradeMagicNumber(1);
-    this.rawDescription = requirementsString(this.strengthRequirement, this.dexterityRequirement, this.focusRequirement) + cardStrings.UPGRADE_DESCRIPTION;
+    this.rawDescription = this.statRequirements.requirementsString() + cardStrings.UPGRADE_DESCRIPTION;
     this.initializeDescription();
   }
 

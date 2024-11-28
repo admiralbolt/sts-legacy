@@ -57,7 +57,7 @@
     "DESCRIPTION": "Deal !D! Damage to ALL enemies. Apply !M! legacy:Burn to ALL enemies."
   },
   "legacy:five_foot_step": {
-    "NAME": "5ft. Step",
+    "NAME": "Five Foot Step",
     "DESCRIPTION": "Gain !B! Block. NL Draw !M! card."
   },
   "legacy:frenzied_berserker": {
