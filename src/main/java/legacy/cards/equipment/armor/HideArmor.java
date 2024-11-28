@@ -3,9 +3,7 @@ package legacy.cards.equipment.armor;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
@@ -17,11 +15,10 @@ import legacy.cards.mods.traits.MediumArmorTrait;
 public class HideArmor extends LegacyArmor {
 
   public static final String ID = "legacy:hide_armor";
-  private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
   public static final int COST = 1;
 
   public HideArmor() {
-    super(ID, cardStrings, COST, CardRarity.COMMON, new MediumArmorTrait());
+    super(ID, COST, CardRarity.COMMON, new MediumArmorTrait());
 
     this.baseBlock = this.block = 5;
     this.baseMagicNumber = this.magicNumber = 2;

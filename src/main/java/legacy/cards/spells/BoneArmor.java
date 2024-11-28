@@ -3,8 +3,6 @@ package legacy.cards.spells;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.MoveCardsAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 /**
@@ -13,11 +11,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 public class BoneArmor extends Spell {
 
   public static final String ID = "legacy:bone_armor";
-  public static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
   public static final int COST = 1;
 
   public BoneArmor() {
-    super(ID, cardStrings, COST, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF, SpellSchool.NECROMANCY, 1);
+    super(ID, COST, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF, SpellSchool.NECROMANCY, 1);
 
     this.baseBlock = this.block = 6;
   }

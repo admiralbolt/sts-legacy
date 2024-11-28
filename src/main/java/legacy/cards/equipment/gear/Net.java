@@ -7,9 +7,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.FlightPower;
+import com.megacrit.cardcrawl.powers.GainStrengthPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.combat.EntangleEffect;
 import legacy.cards.LegacyCard;
 
@@ -21,11 +23,10 @@ import legacy.cards.LegacyCard;
 public class Net extends LegacyCard {
 
   public static final String ID = "legacy:net";
-  private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
   public static final int COST = 2;
 
   public Net() {
-    super(ID, cardStrings.NAME, COST, cardStrings.DESCRIPTION, LegacyCardType.GEAR, CardType.SKILL, CardRarity.COMMON, CardTarget.ENEMY);
+    super(ID,  COST, LegacyCardType.GEAR, CardType.SKILL, CardRarity.COMMON, CardTarget.ENEMY);
 
     this.baseMagicNumber = this.magicNumber = 2;
   }
@@ -36,7 +37,7 @@ public class Net extends LegacyCard {
 
     this.target = CardTarget.ALL_ENEMY;
     this.upgradeName();
-    this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+    this.rawDescription = this.cardStrings.UPGRADE_DESCRIPTION;
     this.initializeDescription();
   }
 

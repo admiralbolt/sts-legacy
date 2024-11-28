@@ -14,11 +14,10 @@ import legacy.cards.mods.traits.TwoHandedTrait;
 public class Anathema extends LegacyWeapon {
 
   public static final String ID = "legacy:anathema";
-  private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
   public static final int COST = 2;
 
   public Anathema() {
-    super(ID, cardStrings, COST, CardRarity.RARE, CardTarget.ENEMY, new TwoHandedTrait());
+    super(ID, COST, CardRarity.RARE, CardTarget.ENEMY, new TwoHandedTrait());
 
     this.baseDamage = this.damage = 15;
     this.enchantable = false;

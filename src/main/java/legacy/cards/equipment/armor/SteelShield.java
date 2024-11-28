@@ -3,9 +3,7 @@ package legacy.cards.equipment.armor;
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import legacy.LegacyMod;
 import legacy.cards.mods.traits.MediumArmorTrait;
@@ -13,11 +11,10 @@ import legacy.cards.mods.traits.MediumArmorTrait;
 public class SteelShield extends LegacyArmor {
 
   public static final String ID = LegacyMod.makeID("steel_shield");
-  private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
   public static final int COST = 1;
 
   public SteelShield() {
-    super(ID, cardStrings, COST, CardRarity.UNCOMMON, new MediumArmorTrait());
+    super(ID, COST, CardRarity.UNCOMMON, new MediumArmorTrait());
 
     this.baseBlock = this.block = 4;
     this.baseMagicNumber = this.magicNumber = 2;

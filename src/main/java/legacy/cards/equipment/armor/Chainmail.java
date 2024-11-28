@@ -2,8 +2,6 @@ package legacy.cards.equipment.armor;
 
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import legacy.cards.mods.traits.MediumArmorTrait;
 
@@ -13,11 +11,10 @@ import legacy.cards.mods.traits.MediumArmorTrait;
 public class Chainmail extends LegacyArmor {
 
   public static final String ID = "legacy:chainmail";
-  private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
   public static final int COST = 2;
 
   public Chainmail() {
-    super(ID, cardStrings, COST, CardRarity.UNCOMMON, new MediumArmorTrait());
+    super(ID, COST, CardRarity.UNCOMMON, new MediumArmorTrait());
 
     this.baseBlock = this.block = 4;
   }

@@ -1,10 +1,6 @@
 package legacy.cards.equipment.gear;
 
-import basemod.cardmods.EtherealMod;
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import legacy.actions.MagnifyingGlassAction;
 import legacy.cards.LegacyCard;
@@ -16,11 +12,10 @@ import legacy.cards.LegacyCard;
 public class MagnifyingGlass extends LegacyCard {
 
   public static final String ID = "legacy:magnifying_glass";
-  private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
   public static final int COST = 1;
 
   public MagnifyingGlass() {
-    super(ID, cardStrings.NAME, COST, cardStrings.DESCRIPTION, LegacyCardType.GEAR, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+    super(ID, COST, LegacyCardType.GEAR, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
     this.baseMagicNumber = this.magicNumber = 1;
   }
@@ -31,7 +26,7 @@ public class MagnifyingGlass extends LegacyCard {
 
     this.upgradeMagicNumber(1);
     this.upgradeName();
-    this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+    this.rawDescription = this.cardStrings.UPGRADE_DESCRIPTION;
     this.initializeDescription();
   }
 

@@ -1,16 +1,12 @@
 package legacy.cards.misc;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.WeakPower;
 import legacy.cards.LegacyCard;
 import legacy.patches.LegacyCardTags;
 import legacy.powers.StealthPower;
@@ -21,11 +17,10 @@ import legacy.powers.StealthPower;
 public class Backstab extends LegacyCard {
 
   public static final String ID = "legacy:backstab";
-  private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
   public static final int COST = 0;
 
   public Backstab() {
-    super(ID, CARD_STRINGS.NAME, COST, CARD_STRINGS.DESCRIPTION, LegacyCardType.MISC, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
+    super(ID, COST, LegacyCardType.MISC, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
     this.tags.add(LegacyCardTags.REQUIRES_STEALTH);
     this.baseDamage = this.damage = 7;

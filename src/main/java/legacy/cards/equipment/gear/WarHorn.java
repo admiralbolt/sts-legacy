@@ -5,8 +5,6 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import com.megacrit.cardcrawl.powers.LoseStrengthPower;
@@ -25,11 +23,10 @@ import legacy.powers.GainTemporaryStrengthNextTurnPower;
 public class WarHorn extends LegacyCard {
 
   public static final String ID = "legacy:war_horn";
-  private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
   public static final int COST = 1;
 
   public WarHorn() {
-    super(ID, cardStrings.NAME, COST, cardStrings.DESCRIPTION, LegacyCardType.GEAR, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+    super(ID, COST, LegacyCardType.GEAR, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
     this.baseMagicNumber = this.magicNumber = 1;
   }
@@ -40,7 +37,7 @@ public class WarHorn extends LegacyCard {
 
     this.upgradeName();
     this.upgradeMagicNumber(1);
-    this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+    this.rawDescription = this.cardStrings.UPGRADE_DESCRIPTION;
     this.initializeDescription();
   }
 

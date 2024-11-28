@@ -3,8 +3,6 @@ package legacy.cards.spells;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import legacy.powers.DelayedPoison;
@@ -15,11 +13,10 @@ import legacy.powers.DelayedPoison;
 public class AcidArrow extends Spell {
 
   public static final String ID = "legacy:acid_arrow";
-  public static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
   public static final int COST = 1;
 
   public AcidArrow() {
-    super(ID, cardStrings, COST, CardType.SKILL, CardRarity.COMMON, CardTarget.ENEMY, SpellSchool.CONJURATION, 2);
+    super(ID, COST, CardType.SKILL, CardRarity.COMMON, CardTarget.ENEMY, SpellSchool.CONJURATION, 2);
 
     this.baseMagicNumber = this.magicNumber = 3;
   }

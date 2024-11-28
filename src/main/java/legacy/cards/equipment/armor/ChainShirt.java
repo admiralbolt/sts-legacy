@@ -2,9 +2,7 @@ package legacy.cards.equipment.armor;
 
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import legacy.cards.mods.traits.LightArmorTrait;
 
@@ -14,11 +12,10 @@ import legacy.cards.mods.traits.LightArmorTrait;
 public class ChainShirt extends LegacyArmor {
 
   public static final String ID = "legacy:chain_shirt";
-  private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
   public static final int COST = 0;
 
   public ChainShirt() {
-    super(ID, cardStrings, COST, CardRarity.UNCOMMON, new LightArmorTrait());
+    super(ID, COST, CardRarity.UNCOMMON, new LightArmorTrait());
 
     this.baseBlock = this.block = 4;
   }

@@ -3,8 +3,6 @@ package legacy.cards.spells;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.utility.ScryAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 /**
@@ -14,11 +12,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 public class Augury extends Spell {
 
   public static final String ID = "legacy:augury";
-  public static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
   public static final int COST = 1;
 
   public Augury() {
-    super(ID, cardStrings, COST, CardType.SKILL, CardRarity.COMMON, CardTarget.NONE, SpellSchool.DIVINATION, 3);
+    super(ID, COST, CardType.SKILL, CardRarity.COMMON, CardTarget.NONE, SpellSchool.DIVINATION, 3);
 
     this.baseMagicNumber = this.magicNumber = 3;
     this.baseMagicNumberTwo = this.magicNumberTwo = 1;

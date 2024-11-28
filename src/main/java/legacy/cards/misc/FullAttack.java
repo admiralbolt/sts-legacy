@@ -5,9 +5,7 @@ import com.megacrit.cardcrawl.actions.common.DiscardSpecificCardAction;
 import com.megacrit.cardcrawl.actions.utility.DrawPileToHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.NoDrawPower;
 import legacy.cards.LegacyCard;
@@ -18,11 +16,10 @@ import legacy.cards.LegacyCard;
 public class FullAttack extends LegacyCard {
 
   public static final String ID = "legacy:full_attack";
-  private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
   public static final int COST = 2;
 
   public FullAttack() {
-    super(ID, CARD_STRINGS.NAME, COST, CARD_STRINGS.DESCRIPTION, LegacyCardType.MISC, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
+    super(ID, COST, LegacyCardType.MISC, CardType.SKILL, CardRarity.RARE, CardTarget.SELF, new StatRequirements(4, 0, 0));
 
     this.baseMagicNumber = this.magicNumber = 3;
     this.exhaust = true;

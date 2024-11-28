@@ -4,8 +4,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import legacy.powers.BurnPower;
 import legacy.util.ReallyMisc;
@@ -18,11 +16,10 @@ import java.util.Arrays;
 public class Fireball extends Spell {
 
   public static final String ID = "legacy:fireball";
-  public static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
   public static final int COST = 2;
 
   public Fireball() {
-    super(ID, cardStrings, COST, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY, SpellSchool.EVOCATION, 3);
+    super(ID, COST, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY, SpellSchool.EVOCATION, 3);
 
     this.baseDamage = this.damage = 8;
     this.baseMagicNumber = this.magicNumber = 3;

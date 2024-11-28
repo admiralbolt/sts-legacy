@@ -4,8 +4,6 @@ import basemod.cardmods.EtherealMod;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
@@ -20,11 +18,10 @@ import legacy.cards.LegacyCard;
 public class TenFootPole extends LegacyCard {
 
   public static final String ID = "legacy:ten_foot_pole";
-  private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
   public static final int COST = 3;
 
   public TenFootPole() {
-    super(ID, cardStrings.NAME, COST, cardStrings.DESCRIPTION, LegacyCardType.GEAR, CardType.SKILL, CardRarity.RARE, CardTarget.ENEMY);
+    super(ID, COST, LegacyCardType.GEAR, CardType.SKILL, CardRarity.RARE, CardTarget.ENEMY);
 
     this.baseMagicNumber = this.magicNumber = 1;
     this.exhaust = true;

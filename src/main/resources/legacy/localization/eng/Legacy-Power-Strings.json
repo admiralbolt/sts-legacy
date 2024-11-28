@@ -84,6 +84,13 @@
       "At the end of turn, gain Block equal to your Dexterity and lose 1 stack of Stealth."
     ]
   },
+  "legacy:weapon_training_power": {
+    "NAME": "Weapon Training",
+    "DESCRIPTIONS": [
+      "Whenever you play a legacy:Weapon, increase its damage by ",
+      " this combat."
+    ]
+  },
   "legacy:whirling_dervish_power": {
     "NAME": "Whirling Dervish",
     "DESCRIPTIONS": [

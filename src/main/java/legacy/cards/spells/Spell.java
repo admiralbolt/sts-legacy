@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FocusPower;
@@ -45,9 +44,8 @@ public abstract class Spell extends LegacyCard implements SpawnModificationCard 
     return (focusRequirement > 0) ? "Requires " + focusRequirement + " Focus. NL " : "";
   }
 
-  public Spell(String id, CardStrings cardStrings, int cost, CardType type, CardRarity rarity, CardTarget target, SpellSchool school, int focusRequirement) {
-    super(id, cardStrings.NAME, cost, requirementsString(focusRequirement) + cardStrings.DESCRIPTION,
-            LegacyCardType.SPELL, type, rarity, target);
+  public Spell(String id, int cost, CardType type, CardRarity rarity, CardTarget target, SpellSchool school, int focusRequirement) {
+    super(id, cost, LegacyCardType.SPELL, type, rarity, target);
 
     CardModifierManager.addModifier(this, new SpellModifier());
     this.focusRequirement = focusRequirement;

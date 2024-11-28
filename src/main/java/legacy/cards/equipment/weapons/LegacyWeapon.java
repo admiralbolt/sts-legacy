@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import legacy.actions.PiercingDamageAction;
@@ -38,13 +37,9 @@ import java.util.ArrayList;
  */
 public abstract class LegacyWeapon extends LegacyCard implements SpawnModificationCard {
 
-  public final CardStrings cardStrings;
+  public LegacyWeapon(String id, int cost, CardRarity rarity, CardTarget target, AbstractCardModifier ...modifiers) {
+    super(id, cost, LegacyCardType.WEAPON, CardType.ATTACK, rarity, target);
 
-  public LegacyWeapon(String id, CardStrings cardStrings, int cost, CardRarity rarity, CardTarget target, AbstractCardModifier ...modifiers) {
-    super(id, cardStrings.NAME, cost,
-            cardStrings.DESCRIPTION, LegacyCardType.WEAPON, CardType.ATTACK, rarity, target);
-
-    this.cardStrings = cardStrings;
     this.enchantable = true;
     this.baseMagicNumber = this.magicNumber = 1;
 

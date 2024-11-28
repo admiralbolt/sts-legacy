@@ -4,7 +4,9 @@ import basemod.abstracts.CustomCard;
 import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.SpawnModificationCard;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import legacy.LegacyMod;
@@ -58,6 +60,7 @@ public abstract class LegacyCard extends CustomCard implements SpawnModification
 
   public LegacyCardType legacyCardType;
   public boolean enchantable = false;
+  public CardStrings cardStrings;
 
   public enum LegacyCardType {
     WEAPON,
@@ -68,19 +71,21 @@ public abstract class LegacyCard extends CustomCard implements SpawnModification
     MISC
   }
 
-  public LegacyCard(String id, String name, int cost, String rawDescription, LegacyCardType legacyCardType, CardType type, CardRarity rarity, CardTarget target) {
-    this(id, name, cost, rawDescription, legacyCardType, type, rarity, target, new StatRequirements(0, 0, 0));
-
-    this.legacyCardType = legacyCardType;
-  }
-
+  // This constructor is used for non playable card options, like level ups & enchantment choices.
   public LegacyCard(String id, String name, String image, int cost, String rawDescription, CardType type, CardRarity rarity, CardTarget target) {
     super(id, name, image, cost, rawDescription, type, TheAdventurer.Enums.COLOR_GRAY, rarity, target);
   }
 
-  public LegacyCard(String id, String name, int cost, String rawDescription, LegacyCardType legacyCardType, CardType type, CardRarity rarity, CardTarget target, StatRequirements statRequirements) {
-    super(id, name, getImagePath(legacyCardType, id), cost, ((legacyCardType == LegacyCardType.PRESTIGE_CLASS) ? "legacy:Prestige_Class NL " : "") + statRequirements.requirementsString() + rawDescription, type, TheAdventurer.Enums.COLOR_GRAY, rarity, target);
+  public LegacyCard(String id, int cost, LegacyCardType legacyCardType, CardType type, CardRarity rarity, CardTarget target) {
+    this(id, cost, legacyCardType, type, rarity, target, new StatRequirements(0, 0, 0));
 
+    this.legacyCardType = legacyCardType;
+  }
+
+  public LegacyCard(String id, int cost, LegacyCardType legacyCardType, CardType type, CardRarity rarity, CardTarget target, StatRequirements statRequirements) {
+    super(id, CardCrawlGame.languagePack.getCardStrings(id).NAME, getImagePath(legacyCardType, id), cost, ((legacyCardType == LegacyCardType.PRESTIGE_CLASS) ? "legacy:Prestige_Class NL " : "") + statRequirements.requirementsString() + CardCrawlGame.languagePack.getCardStrings(id).DESCRIPTION, type, TheAdventurer.Enums.COLOR_GRAY, rarity, target);
+
+    this.cardStrings = CardCrawlGame.languagePack.getCardStrings(id);
     this.statRequirements = statRequirements;
     this.legacyCardType = legacyCardType;
   }

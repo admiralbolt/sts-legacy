@@ -1,18 +1,8 @@
 package legacy.cards.prestige_classes;
 
-import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.SpawnModificationCard;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import legacy.LegacyMod;
 import legacy.cards.LegacyCard;
-import legacy.characters.TheAdventurer;
-
-import java.util.ArrayList;
 
 /**
  * Power cards that grant powerful buffs but require certain amounts of strength, dexterity, and focus to play.
@@ -30,7 +20,7 @@ import java.util.ArrayList;
 public abstract class PrestigeClass extends LegacyCard {
 
   public PrestigeClass(String id, int cost, CardRarity rarity, StatRequirements statRequirements) {
-    super(id, CardCrawlGame.languagePack.getCardStrings(id).NAME, cost, CardCrawlGame.languagePack.getCardStrings(id).DESCRIPTION, LegacyCardType.PRESTIGE_CLASS, CardType.POWER, rarity, CardTarget.SELF, statRequirements);
+    super(id, cost, LegacyCardType.PRESTIGE_CLASS, CardType.POWER, rarity, CardTarget.SELF, statRequirements);
   }
 
   @Override

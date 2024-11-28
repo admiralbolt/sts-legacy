@@ -5,8 +5,6 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import legacy.cards.LegacyCard;
@@ -17,11 +15,10 @@ import legacy.cards.LegacyCard;
 public class Disarm extends LegacyCard {
 
   public static final String ID = "legacy:disarm";
-  private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
   public static final int COST = 1;
 
   public Disarm() {
-    super(ID, CARD_STRINGS.NAME, COST, CARD_STRINGS.DESCRIPTION, LegacyCardType.MISC, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
+    super(ID, COST, LegacyCardType.MISC, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
     this.baseDamage = this.damage = 3;
     this.magicNumber = this.baseMagicNumber = 1;

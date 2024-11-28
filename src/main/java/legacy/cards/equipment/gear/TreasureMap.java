@@ -3,9 +3,7 @@ package legacy.cards.equipment.gear;
 import com.megacrit.cardcrawl.actions.common.GainGoldAction;
 import com.megacrit.cardcrawl.actions.utility.ScryAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.GainPennyEffect;
 import legacy.cards.LegacyCard;
@@ -16,11 +14,10 @@ import legacy.cards.LegacyCard;
 public class TreasureMap extends LegacyCard {
 
   public static final String ID = "legacy:treasure_map";
-  private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
   public static final int COST = 1;
 
   public TreasureMap() {
-    super(ID, cardStrings.NAME, COST, cardStrings.DESCRIPTION, LegacyCardType.GEAR, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+    super(ID, COST, LegacyCardType.GEAR, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
     this.baseMagicNumber = this.magicNumber = 7;
     this.baseMagicNumberTwo = this.magicNumberTwo = 1;

@@ -1,12 +1,7 @@
 package legacy.cards.spells;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.common.MoveCardsAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.actions.unique.FiendFireAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import legacy.actions.GraveStormAction;
 
@@ -16,11 +11,10 @@ import legacy.actions.GraveStormAction;
 public class GraveStorm extends Spell {
 
   public static final String ID = "legacy:grave_storm";
-  public static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
   public static final int COST = 3;
 
   public GraveStorm() {
-    super(ID, cardStrings, COST, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, SpellSchool.NECROMANCY, 5);
+    super(ID, COST, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, SpellSchool.NECROMANCY, 5);
 
     this.baseDamage = 5;
     this.exhaust = true;
@@ -45,6 +39,6 @@ public class GraveStorm extends Spell {
   public boolean canUse(AbstractPlayer p, AbstractMonster m) {
     if (!super.canUse(p, m)) return false;
 
-    return p.discardPile.group.size() > 0;
+    return !p.discardPile.group.isEmpty();
   }
 }

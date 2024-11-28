@@ -28,13 +28,10 @@ public abstract class LegacyArmor extends LegacyCard implements SpawnModificatio
   }
 
   public List<Enchantment> enchantments;
-  public final CardStrings cardStrings;
 
-  public LegacyArmor(String id, CardStrings cardStrings, int cost, CardRarity rarity, AbstractCardModifier ...modifiers) {
-    super(id, cardStrings.NAME, cost,
-            cardStrings.DESCRIPTION, LegacyCardType.ARMOR, CardType.SKILL, rarity, CardTarget.SELF);
+  public LegacyArmor(String id, int cost, CardRarity rarity, AbstractCardModifier ...modifiers) {
+    super(id, cost, LegacyCardType.ARMOR, CardType.SKILL, rarity, CardTarget.SELF);
 
-    this.cardStrings = cardStrings;
     this.enchantable = true;
 
     this.baseMagicNumber = this.magicNumber = 1;

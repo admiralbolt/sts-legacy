@@ -5,9 +5,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
@@ -23,11 +21,10 @@ import legacy.powers.FlurryPower;
 public class Cestus extends LegacyWeapon {
 
   public static final String ID = "legacy:cestus";
-  private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
   public static final int COST = 1;
 
   public Cestus() {
-    super(ID, cardStrings, COST, CardRarity.RARE, CardTarget.ENEMY, new FlurryTrait());
+    super(ID, COST, CardRarity.RARE, CardTarget.ENEMY, new FlurryTrait());
 
     this.tags.add(LegacyCardTags.FLURRY);
     this.baseDamage = this.damage = 5;

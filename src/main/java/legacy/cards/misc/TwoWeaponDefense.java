@@ -2,9 +2,7 @@ package legacy.cards.misc;
 
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import legacy.cards.LegacyCard;
@@ -17,11 +15,10 @@ import legacy.powers.FlurryPower;
 public class TwoWeaponDefense extends LegacyCard {
 
   public static final String ID = "legacy:two_weapon_defense";
-  private static final CardStrings CARD_STRINGS = CardCrawlGame.languagePack.getCardStrings(ID);
   public static final int COST = 1;
 
   public TwoWeaponDefense() {
-    super(ID, CARD_STRINGS.NAME, COST, CARD_STRINGS.DESCRIPTION, LegacyCardType.MISC, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+    super(ID, COST, LegacyCardType.MISC, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
 
     this.tags.add(LegacyCardTags.FLURRY);
     this.baseBlock = this.block = 5;
@@ -34,7 +31,7 @@ public class TwoWeaponDefense extends LegacyCard {
 
     this.upgradeName();
     this.upgradeMagicNumber(1);
-    this.rawDescription = CARD_STRINGS.UPGRADE_DESCRIPTION;
+    this.rawDescription = this.cardStrings.UPGRADE_DESCRIPTION;
     this.initializeDescription();
   }
 

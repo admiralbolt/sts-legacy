@@ -3,8 +3,6 @@ package legacy.cards.equipment.gear;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.watcher.PressEndTurnButtonAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import legacy.cards.LegacyCard;
 
@@ -17,11 +15,10 @@ import legacy.cards.LegacyCard;
 public class Bedroll extends LegacyCard {
 
   public static final String ID = "legacy:bedroll";
-  private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
   public static final int COST = 1;
 
   public Bedroll() {
-    super(ID, cardStrings.NAME, COST, cardStrings.DESCRIPTION, LegacyCardType.GEAR, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+    super(ID, COST, LegacyCardType.GEAR, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
 
     this.baseMagicNumber = this.magicNumber = 7;
     this.exhaust = true;
