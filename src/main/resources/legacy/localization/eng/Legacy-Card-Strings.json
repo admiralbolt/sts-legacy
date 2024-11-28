@@ -16,6 +16,10 @@
     "DESCRIPTION": "Scry !M!. NL Draw !M2! card.",
     "UPGRADE_DESCRIPTION": "Scry !M!. NL Draw !M2! cards."
   },
+  "legacy:backstab": {
+    "NAME": "Backstab",
+    "DESCRIPTION": "Requires legacy:Stealth. NL Deal !D! Damage. NL Draw !M! card."
+  },
   "legacy:bedroll": {
     "NAME": "Bedroll",
     "DESCRIPTION": "Heal !M!% of your max hp. NL End your turn."
@@ -142,6 +146,10 @@
   "legacy:spear": {
     "NAME": "Spear",
     "DESCRIPTION": "Deal !D! Damage."
+  },
+  "legacy:hide": {
+    "NAME": "Hide",
+    "DESCRIPTION": "Gain !M! legacy:Stealth."
   },
   "legacy:steel_shield": {
     "NAME": "Steel Shield",

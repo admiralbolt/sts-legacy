@@ -78,6 +78,12 @@
       " Temporary strength next turn."
     ]
   },
+  "legacy:stealth_power": {
+    "NAME": "Stealth",
+    "DESCRIPTIONS": [
+      "At the end of turn, gain Block equal to your Dexterity and lose 1 stack of Stealth."
+    ]
+  },
   "legacy:whirling_dervish_power": {
     "NAME": "Whirling Dervish",
     "DESCRIPTIONS": [

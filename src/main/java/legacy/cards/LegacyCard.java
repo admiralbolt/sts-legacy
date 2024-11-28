@@ -11,6 +11,7 @@ import legacy.LegacyMod;
 import legacy.cards.mods.enchantments.Enchantment;
 import legacy.cards.mods.enchantments.EnchantmentUtils;
 import legacy.characters.TheAdventurer;
+import legacy.patches.LegacyCardTags;
 
 import java.util.ArrayList;
 
@@ -142,6 +143,16 @@ public abstract class LegacyCard extends CustomCard implements SpawnModification
     if (adventurer.fighterLevel < (this.statRequirements.strength - 1)) return false;
     if (adventurer.rogueLevel < (this.statRequirements.dexterity - 1)) return false;
     if (adventurer.wizardLevel < (this.statRequirements.focus - 1)) return false;
+
+    // Additionally, we want to check if it's a card that depends on stealth.
+    // We don't want to offer any cards that require stealth until a player
+    // can actually enter it.
+    if (this.hasTag(LegacyCardTags.REQUIRES_STEALTH)) {
+      for (AbstractCard card : AbstractDungeon.player.masterDeck.group) {
+        if (card.hasTag(LegacyCardTags.ENTERS_STEALTH)) return true;
+      }
+      return false;
+    }
 
     return true;
   }

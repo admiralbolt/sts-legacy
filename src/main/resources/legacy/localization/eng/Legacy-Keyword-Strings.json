@@ -99,7 +99,15 @@
       "Spell",
       "spell"
     ],
-    "DESCRIPTION": "Spells require focus to play, and scale with focus. They are unaffected by phyical powers. Cannot be cast while in Wrath."
+    "DESCRIPTION": "Spells require focus to play, and scale with focus. They are unaffected by physical powers. Cannot be cast while in Wrath."
+  },
+  {
+    "PROPER_NAME": "Stealth",
+    "NAMES": [
+      "Stealth",
+      "stealth"
+    ],
+    "DESCRIPTION": "Stealth is a power that grants Block equal to your Dexterity at end of turn. NL It is used as a requirement for various Rogue cards."
   },
   {
     "PROPER_NAME": "Two Handed",

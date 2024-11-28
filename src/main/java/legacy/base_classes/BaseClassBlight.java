@@ -30,6 +30,7 @@ public class BaseClassBlight extends AbstractBlight {
     this.updateDescription();
   }
 
+  @Override
   public void updateDescription() {
     this.description = this.blightStrings.DESCRIPTION[0] + this.counter + this.blightStrings.DESCRIPTION[1];
     this.tips.clear();
