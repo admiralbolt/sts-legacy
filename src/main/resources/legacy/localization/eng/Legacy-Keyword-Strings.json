@@ -1,5 +1,13 @@
 [
   {
+    "PROPER_NAME": "Armor",
+    "NAMES": [
+      "Armor",
+      "armor"
+    ],
+    "DESCRIPTION": "Coverings worn by soldiers to protect the body in battle."
+  },
+  {
     "PROPER_NAME": "Burn",
     "NAMES": [
       "BURN",
@@ -86,6 +94,15 @@
     "DESCRIPTION": "Subsequent Paired weapons deal bonus damage."
   },
   {
+    "PROPER_NAME": "Prestige Class",
+    "NAMES": [
+      "Prestige Class",
+      "prestige_class",
+      "prestigeclass"
+    ],
+    "DESCRIPTION": "A unique power. Only one Prestige Class can be active at a time."
+  },
+  {
     "PROPER_NAME": "Ranged",
     "NAMES": [
       "Ranged",
@@ -120,13 +137,12 @@
     "DESCRIPTION": "Damage scales +1x with Strength."
   },
   {
-    "PROPER_NAME": "Prestige Class",
+    "PROPER_NAME": "Weapon",
     "NAMES": [
-      "Prestige Class",
-      "prestige_class",
-      "prestigeclass"
+      "Weapon",
+      "weapon"
     ],
-    "DESCRIPTION": "A unique power. Only one Prestige Class can be active at a time."
+    "DESCRIPTION": "A thing designed for inflicting bodily harm or physical damage."
   },
   {
     "PROPER_NAME": "Multiword Keyword",

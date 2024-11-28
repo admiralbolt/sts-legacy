@@ -16,7 +16,6 @@ import legacy.powers.FrenziedBerserkerPower;
 public class FrenziedBerserker extends PrestigeClass {
 
   public static final String ID = "legacy:frenzied_berserker";
-  public static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
   public static final int COST = 2;
 
   public FrenziedBerserker() {
@@ -31,7 +30,7 @@ public class FrenziedBerserker extends PrestigeClass {
 
     this.upgradeName();
     this.upgradeMagicNumber(1);
-    this.rawDescription = this.statRequirements.requirementsString() + cardStrings.UPGRADE_DESCRIPTION;
+    this.rawDescription = this.cardStrings.UPGRADE_DESCRIPTION;
     this.initializeDescription();
   }
 

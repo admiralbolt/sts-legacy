@@ -17,11 +17,6 @@ public class WeaponTrainingPower extends LegacyPower {
   }
 
   @Override
-  public void updateDescription() {
-    this.description = this.powerStrings.DESCRIPTIONS[0];
-  }
-
-  @Override
   public void onPlayCard(AbstractCard card, AbstractMonster m) {
     if (!(card instanceof LegacyWeapon)) return;
 

@@ -80,9 +80,16 @@ public class FrostPower extends LegacyPower {
 
   @Override
   public void updateDescription() {
-    // On the last turn it should say "turn" instead of "turns". Hence the weird ternary operator accessing
-    // descriptions.
-    this.description = this.powerStrings.DESCRIPTIONS[0] + this.amount + this.powerStrings.DESCRIPTIONS[1] + this.amount + this.powerStrings.DESCRIPTIONS[(this.amount == 1) ? 3 : 2];
+    StringBuilder builder = new StringBuilder();
+    builder.append(this.powerStrings.DESCRIPTIONS[0]);
+    builder.append(this.amount);
+    builder.append(this.powerStrings.DESCRIPTIONS[1]);
+    if (this.amount > 5) {
+      builder.append(this.powerStrings.DESCRIPTIONS[2]);
+      builder.append(this.amount - 5);
+      // On the last turn it should say "turn" instead of "turns", hence this weirdness.
+      builder.append(this.powerStrings.DESCRIPTIONS[(this.amount - 5 == 1) ? 3 : 4]);
+    }
+    this.description = builder.toString();
   }
-
 }

@@ -23,6 +23,10 @@ import java.util.ArrayList;
 public abstract class LegacyCard extends CustomCard implements SpawnModificationCard {
 
   public static class StatRequirements {
+    public static String STRENGTH = "strength";
+    public static String DEXTERITY = "dexterity";
+    public static String FOCUS = "focus";
+
     public int strength = 0;
     public int dexterity = 0;
     public int focus = 0;
@@ -31,23 +35,6 @@ public abstract class LegacyCard extends CustomCard implements SpawnModification
       this.strength = strength;
       this.dexterity = dexterity;
       this.focus = focus;
-    }
-
-    // Construct a description string with the proper stats requirements.
-    // i.e. "Requires 2 Strength NL Requires 2 Dexterity NL"
-    // This is static because it gets prepended in the constructor.
-    public String requirementsString() {
-      StringBuilder builder = new StringBuilder();
-      if (this.strength > 0) {
-        builder.append("Requires ").append(this.strength).append(" Strength. NL ");
-      }
-      if (this.dexterity > 0) {
-        builder.append("Requires ").append(this.dexterity).append(" Dexterity. NL ");
-      }
-      if (this.focus > 0) {
-        builder.append("Requires ").append(this.focus).append(" Focus. NL ");
-      }
-      return builder.toString();
     }
   }
 
@@ -83,7 +70,7 @@ public abstract class LegacyCard extends CustomCard implements SpawnModification
   }
 
   public LegacyCard(String id, int cost, LegacyCardType legacyCardType, CardType type, CardRarity rarity, CardTarget target, StatRequirements statRequirements) {
-    super(id, CardCrawlGame.languagePack.getCardStrings(id).NAME, getImagePath(legacyCardType, id), cost, ((legacyCardType == LegacyCardType.PRESTIGE_CLASS) ? "legacy:Prestige_Class NL " : "") + statRequirements.requirementsString() + CardCrawlGame.languagePack.getCardStrings(id).DESCRIPTION, type, TheAdventurer.Enums.COLOR_GRAY, rarity, target);
+    super(id, CardCrawlGame.languagePack.getCardStrings(id).NAME, getImagePath(legacyCardType, id), cost, ((legacyCardType == LegacyCardType.PRESTIGE_CLASS) ? "legacy:Prestige_Class NL " : "") + CardCrawlGame.languagePack.getCardStrings(id).DESCRIPTION, type, TheAdventurer.Enums.COLOR_GRAY, rarity, target);
 
     this.cardStrings = CardCrawlGame.languagePack.getCardStrings(id);
     this.statRequirements = statRequirements;

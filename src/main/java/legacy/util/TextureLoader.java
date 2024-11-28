@@ -15,7 +15,8 @@ import java.util.HashMap;
 
 
 public class TextureLoader {
-    private static HashMap<String, Texture> textures = new HashMap<String, Texture>();
+
+    private static HashMap<String, Texture> TEXTURE_MAP = new HashMap<>();
     public static final Logger logger = LogManager.getLogger(TextureLoader.class.getName());
 
     /**
@@ -24,7 +25,7 @@ public class TextureLoader {
      * @return <b>com.badlogic.gdx.graphics.Texture</b> - The texture from the path provided
      */
     public static Texture getTexture(final String textureString) {
-        if (textures.get(textureString) == null) {
+        if (TEXTURE_MAP.get(textureString) == null) {
             try {
                 loadTexture(textureString);
             } catch (GdxRuntimeException e) {
@@ -32,7 +33,7 @@ public class TextureLoader {
                 return getTexture("legacy/images/ui/missing_texture.png");
             }
         }
-        return textures.get(textureString);
+        return TEXTURE_MAP.get(textureString);
     }
 
     /**
@@ -46,6 +47,6 @@ public class TextureLoader {
         logger.info("DefaultMod | Loading Texture: " + textureString);
         Texture texture = new Texture(textureString);
         texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-        textures.put(textureString, texture);
+        TEXTURE_MAP.put(textureString, texture);
     }
 }

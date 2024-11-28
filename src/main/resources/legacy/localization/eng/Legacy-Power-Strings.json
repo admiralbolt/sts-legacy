@@ -46,7 +46,8 @@
     "NAME": "Frost",
     "DESCRIPTIONS": [
       "Decreases attack damage by #b",
-      ". Loses slow upon thawing in #b",
+      ".",
+      " NL Loses slow upon thawing in #b",
       "turns.",
       "turn."
     ]
