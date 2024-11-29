@@ -1,14 +1,13 @@
 Runestones for enchanting -- maybe in addition to normal relics. Runestone + shop to enchant something.
 
 Opportunistic Strike - 0 Cost retain attack that makes you lose energy next turn.
+Palading - 2 strength / 2 focus. Playing a spell heals 1 hp, playing a weapon gives armor +1 block, playing armor gives vigor.
 
 Maybe a new map node?
 
 Definitely want to implement a skill / perk system somehow. I think a new UI element,
 probably a circle spreading outwards to have crossovers between each pair of classes.
 Need to think about this some more, think it will help give some more identity to the classes.
-
-Want to add stat requirements as badges like the animator.
 
 After stunning an enemy from electricty, the amount required to stun again should increase.
 

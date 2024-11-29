@@ -34,21 +34,12 @@ public abstract class Spell extends LegacyCard implements SpawnModificationCard 
     TRANSMUTATION
   }
 
-  public final int focusRequirement;
   public final SpellSchool school;
 
-  // Construct a description string with the proper stats requirements.
-  // i.e. "Requires 2 Focus NL "
-  // This is static because it gets prepended in the constructor.
-  public static String requirementsString(int focusRequirement) {
-    return (focusRequirement > 0) ? "Requires " + focusRequirement + " Focus. NL " : "";
-  }
-
   public Spell(String id, int cost, CardType type, CardRarity rarity, CardTarget target, SpellSchool school, int focusRequirement) {
-    super(id, cost, LegacyCardType.SPELL, type, rarity, target);
+    super(id, cost, LegacyCardType.SPELL, type, rarity, target, new StatRequirements(0, 0, focusRequirement));
 
     CardModifierManager.addModifier(this, new SpellModifier());
-    this.focusRequirement = focusRequirement;
     this.school = school;
     this.damageTypeForTurn = DamageInfo.DamageType.NORMAL;
     this.isMultiDamage = (target == CardTarget.ALL_ENEMY);
@@ -58,11 +49,8 @@ public abstract class Spell extends LegacyCard implements SpawnModificationCard 
   @Override
   public boolean canUse(AbstractPlayer p, AbstractMonster m) {
     if (!super.canUse(p, m)) return false;
-    if (p.stance.ID.equals(WrathStance.STANCE_ID)) return false;
 
-    AbstractPower focus = p.getPower(FocusPower.POWER_ID);
-    int focusAmount = (focus == null) ? 0 : focus.amount;
-    return focusAmount >= this.focusRequirement;
+    return !p.stance.ID.equals(WrathStance.STANCE_ID);
   }
 
   // We only want to spawn spell cards if the player can play them.
@@ -72,7 +60,7 @@ public abstract class Spell extends LegacyCard implements SpawnModificationCard 
     if (!(AbstractDungeon.player instanceof TheAdventurer)) return false;
 
     TheAdventurer adventurer = (TheAdventurer) AbstractDungeon.player;
-    return adventurer.wizardLevel >= (this.focusRequirement - 1);
+    return adventurer.wizardLevel >= (this.statRequirements.focus - 1);
   }
 
   // Spells should scale with focus instead of Strength or Dexterity.

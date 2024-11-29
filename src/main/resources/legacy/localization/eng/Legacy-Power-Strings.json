@@ -79,10 +79,27 @@
       " Temporary strength next turn."
     ]
   },
+  "legacy:paladin_power": {
+    "NAME": "Paladin",
+    "DESCRIPTIONS": [
+      "Whenever you cast a spell, heal 1 hp. NL ",
+      "Whenever you play a legacy:Weapon, gain #b ",
+      " legacy:Steadfast. NL ",
+      "Whenever you play an legacy:Armor, gain #b ",
+      " Vigor."
+    ]
+  },
   "legacy:stealth_power": {
     "NAME": "Stealth",
     "DESCRIPTIONS": [
       "At the end of turn, gain Block equal to your Dexterity and lose 1 stack of Stealth."
+    ]
+  },
+  "legacy:steadfast_power": {
+    "NAME": "Steadfast",
+    "DESCRIPTIONS": [
+      "The next time you block, gain #b ",
+      " additional block."
     ]
   },
   "legacy:weapon_training_power": {

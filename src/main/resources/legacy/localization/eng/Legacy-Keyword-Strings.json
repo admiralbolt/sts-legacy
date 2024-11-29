@@ -119,6 +119,14 @@
     "DESCRIPTION": "Spells require focus to play, and scale with focus. They are unaffected by physical powers. Cannot be cast while in Wrath."
   },
   {
+    "PROPER_NAME": "Steadfast",
+    "NAMES": [
+      "Steadfast",
+      "steadfast"
+    ],
+    "DESCRIPTION": "Gain additional block the next time you block."
+  },
+  {
     "PROPER_NAME": "Stealth",
     "NAMES": [
       "Stealth",

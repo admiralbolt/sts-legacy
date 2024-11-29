@@ -151,6 +151,10 @@
     "NAME": "Hide",
     "DESCRIPTION": "Gain !M! legacy:Stealth."
   },
+  "legacy:paladin": {
+    "NAME": "Paladin",
+    "DESCRIPTION": "Whenever you play a spell heal 1 HP. NL Whenever you play a legacy:Weapon gain !M! legacy:Steadfast. NL Whenever you play an legacy:Armor gain !M! Vigor."
+  },
   "legacy:steel_shield": {
     "NAME": "Steel Shield",
     "DESCRIPTION": "Gain !B! Block. NL Gain !M! Temporary HP."

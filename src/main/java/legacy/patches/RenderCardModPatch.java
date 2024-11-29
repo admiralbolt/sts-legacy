@@ -211,7 +211,7 @@ public class RenderCardModPatch {
     private static int drawStatRequirement(SpriteBatch sb, AbstractCard card, Hitbox hb, Texture texture, int offset, int value, Color backgroundColor) {
       final Texture circle = TextureLoader.getTexture("legacy/images/ui/common/circle.png");
       float targetX = hb.x;
-      float targetY = hb.y + hb.height - (hb.height * 0.8f) - (circle.getHeight() * Settings.scale) + ((offset * (circle.getHeight() * Settings.scale) * 0.62f));
+      float targetY = hb.y + hb.height - (hb.height * 0.08f) - (circle.getHeight() * Settings.scale) + ((offset * (circle.getHeight() * Settings.scale) * 0.62f));
 
       DrawOnCardNoScale(sb, card, circle, new Vector2(targetX, targetY), circle.getWidth(), circle.getHeight(), backgroundColor, 1, Settings.scale);
       DrawOnCardNoScale(sb, card, texture, new Vector2(targetX, targetY), texture.getWidth(), texture.getHeight(), Color.WHITE, 1, Settings.scale * 1.2f);
