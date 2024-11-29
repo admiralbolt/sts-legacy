@@ -9,7 +9,7 @@ import legacy.characters.TheAdventurer;
 
 public class LevelUpChoiceCard extends LegacyCard {
 
-  private String classID;
+  private final String classID;
 
   public LevelUpChoiceCard(String blightID, String name) {
     super(blightID + "_choice", name, "legacy/images/cards/class_level_up_choices/" + name.toLowerCase() + ".png",

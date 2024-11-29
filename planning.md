@@ -1,8 +1,5 @@
 Runestones for enchanting -- maybe in addition to normal relics. Runestone + shop to enchant something.
 
-Opportunistic Strike - 0 Cost retain attack that makes you lose energy next turn.
-Palading - 2 strength / 2 focus. Playing a spell heals 1 hp, playing a weapon gives armor +1 block, playing armor gives vigor.
-
 Maybe a new map node?
 
 Definitely want to implement a skill / perk system somehow. I think a new UI element,

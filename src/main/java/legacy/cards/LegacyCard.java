@@ -55,12 +55,15 @@ public abstract class LegacyCard extends CustomCard implements SpawnModification
     GEAR,
     SPELL,
     PRESTIGE_CLASS,
-    MISC
+    MISC,
+    UNPLAYABLE
   }
 
   // This constructor is used for non playable card options, like level ups & enchantment choices.
   public LegacyCard(String id, String name, String image, int cost, String rawDescription, CardType type, CardRarity rarity, CardTarget target) {
     super(id, name, image, cost, rawDescription, type, TheAdventurer.Enums.COLOR_GRAY, rarity, target);
+
+    this.statRequirements = new StatRequirements(0, 0, 0);
   }
 
   public LegacyCard(String id, int cost, LegacyCardType legacyCardType, CardType type, CardRarity rarity, CardTarget target) {
