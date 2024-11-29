@@ -48,8 +48,8 @@
       "Decreases attack damage by #b",
       ".",
       " NL Loses slow upon thawing in #b",
-      "turns.",
-      "turn."
+      " turns.",
+      " turn."
     ]
   },
   "legacy:lightning": {

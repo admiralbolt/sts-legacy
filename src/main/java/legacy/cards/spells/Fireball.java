@@ -23,6 +23,7 @@ public class Fireball extends Spell {
 
     this.baseDamage = this.damage = 8;
     this.baseMagicNumber = this.magicNumber = 3;
+    this.isMultiDamage = true;
   }
 
   @Override

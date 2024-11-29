@@ -88,7 +88,7 @@ public class FrostPower extends LegacyPower {
       builder.append(this.powerStrings.DESCRIPTIONS[2]);
       builder.append(this.amount - 5);
       // On the last turn it should say "turn" instead of "turns", hence this weirdness.
-      builder.append(this.powerStrings.DESCRIPTIONS[(this.amount - 5 == 1) ? 3 : 4]);
+      builder.append(this.powerStrings.DESCRIPTIONS[(this.amount - 5 > 1) ? 3 : 4]);
     }
     this.description = builder.toString();
   }

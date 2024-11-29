@@ -2,6 +2,7 @@ package legacy.cards.misc;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DiscardSpecificCardAction;
+import com.megacrit.cardcrawl.actions.unique.ApplyBulletTimeAction;
 import com.megacrit.cardcrawl.actions.utility.DrawPileToHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -42,10 +43,6 @@ public class FullAttack extends LegacyCard {
     }
     this.addToBot(new DrawPileToHandAction(3, CardType.ATTACK));
     this.addToBot(new ApplyPowerAction(p, p, new NoDrawPower(p), 1));
-    for (AbstractCard card : AbstractDungeon.player.hand.group) {
-      if (card.type != CardType.ATTACK) continue;
-
-      card.setCostForTurn(0);
-    }
+    this.addToBot(new ApplyBulletTimeAction());
   }
 }

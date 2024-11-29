@@ -44,5 +44,12 @@
     "DESCRIPTIONS": [
       "At the start of each combat #yScry X then draw 1 card, where X is the number of charges this has. NL Gain #b1 charge each time you defeat a boss."
     ]
+  },
+  "legacy:spellbook": {
+    "NAME": "Spellbook",
+    "FLAVOR": "A book. Full of spells.",
+    "DESCRIPTIONS": [
+      "Start each combat with #b1 Focus."
+    ]
   }
 }

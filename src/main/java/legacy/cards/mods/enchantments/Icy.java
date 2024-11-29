@@ -42,7 +42,7 @@ public class Icy extends Enchantment {
 
   @Override
   public Color getColor() {
-    return Color.valueOf("#91faf9");
+    return Color.valueOf("#71aaf9");
   }
 
 }

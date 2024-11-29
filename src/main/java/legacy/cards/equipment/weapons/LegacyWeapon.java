@@ -135,10 +135,6 @@ public abstract class LegacyWeapon extends LegacyCard implements SpawnModificati
   // Weapon cards are unique! If you already have a copy in your deck, you can't get more.
   @Override
   public boolean canSpawn(ArrayList<AbstractCard> currentRewardCards) {
-    for (AbstractCard card : AbstractDungeon.player.masterDeck.group) {
-      if (card.cardID.equals(this.cardID)) return false;
-    }
-
-    return true;
+    return AbstractDungeon.player.masterDeck.group.stream().noneMatch((card) -> card.cardID.equals(this.cardID));
   }
 }
