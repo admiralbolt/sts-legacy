@@ -2,9 +2,10 @@ package legacy.cards.spells;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import legacy.actions.RangedDamageAllEnemiesAction;
 import legacy.powers.BurnPower;
 import legacy.util.ReallyMisc;
 
@@ -43,8 +44,8 @@ public class Fireball extends Spell {
 
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
-    System.out.println("player: " + p.name + ", multiDamage: " + Arrays.toString(this.multiDamage) + ", damageForTurn: " + this.damageTypeForTurn);
-    this.addToBot(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE));
+    this.multiDamage = DamageInfo.createDamageMatrix(this.damage, true);
+    this.addToBot(new RangedDamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE, false));
     ReallyMisc.getAllEnemies().forEach(monster -> {
       this.addToBot(new ApplyPowerAction(monster, p, new BurnPower(monster, this.magicNumber), this.magicNumber));
     });

@@ -13,7 +13,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import legacy.actions.PiercingDamageAction;
+import legacy.actions.RangedDamageAction;
+import legacy.actions.RangedDamageAllEnemiesAction;
 import legacy.cards.LegacyCard;
 import legacy.cards.mods.enchantments.Cleaving;
 import legacy.cards.mods.enchantments.EnchantmentUtils;
@@ -37,11 +38,14 @@ import java.util.ArrayList;
  */
 public abstract class LegacyWeapon extends LegacyCard implements SpawnModificationCard {
 
+  public AbstractGameAction.AttackEffect attackEffect;
+
   public LegacyWeapon(String id, int cost, CardRarity rarity, CardTarget target, AbstractCardModifier ...modifiers) {
     super(id, cost, LegacyCardType.WEAPON, CardType.ATTACK, rarity, target);
 
     this.enchantable = true;
     this.baseMagicNumber = this.magicNumber = 1;
+    this.attackEffect = AbstractGameAction.AttackEffect.SLASH_HORIZONTAL;
 
     // All enchantments for this card should be loaded.
     for (AbstractCardModifier modifier : EnchantmentUtils.PERSISTED_ENCHANTMENTS.getOrDefault(this.cardID, new ArrayList<>())) {
@@ -64,11 +68,18 @@ public abstract class LegacyWeapon extends LegacyCard implements SpawnModificati
   public void use(AbstractPlayer p, AbstractMonster m) {
     // NOTE: Enchantment effects are automatically added via their onUse() hook, with the exception of Cleaving
     // which needs our damage to hit all enemies.
-    if (CardModifierManager.hasModifier(this, RangedTrait.ID)) {
-      AbstractDungeon.actionManager.addToBottom(new PiercingDamageAction(m, p, damage));
-    } else {
-      if (this.isMultiDamage) {
+    boolean isRanged = CardModifierManager.hasModifier(this, RangedTrait.ID);
+    if (this.isMultiDamage) {
+      // We use pure damage for multiDamage since we calculate all powers ourselves.
+      this.multiDamage = DamageInfo.createDamageMatrix(this.damage, true);
+      if (isRanged) {
+        this.addToBot(new RangedDamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, this.attackEffect, true));
+      } else {
         this.addToBot(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE));
+      }
+    } else {
+      if (isRanged) {
+        this.addToBot(new RangedDamageAction(m, p, this.damage));
       } else {
         this.addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
       }

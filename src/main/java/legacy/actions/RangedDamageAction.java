@@ -15,21 +15,27 @@ import java.util.List;
 /**
  * A clone of DamageAction that ignores block & thorns.
  */
-public class PiercingDamageAction extends AbstractGameAction {
+public class RangedDamageAction extends AbstractGameAction {
 
-  private static final String[] IGNORED_POWERS = {
+  public static final String[] IGNORED_POWERS = {
     CurlUpPower.POWER_ID, FlameBarrierPower.POWER_ID,
     MalleablePower.POWER_ID, ThornsPower.POWER_ID,
   };
 
   private final DamageInfo info;
+  private final boolean ignoreBlock;
 
-  public PiercingDamageAction(AbstractCreature target, AbstractCreature source, int damage) {
+  public RangedDamageAction(AbstractCreature target, AbstractCreature source, int damage) {
+    this(target, source, damage, AttackEffect.SLASH_HORIZONTAL, true);
+  }
+
+  public RangedDamageAction(AbstractCreature target, AbstractCreature source, int damage, AttackEffect attackEffect, boolean ignoreBlock) {
     this.info = new DamageInfo(source, damage, DamageInfo.DamageType.THORNS);
     this.setValues(target, info);
     this.source = source;
     this.actionType = ActionType.DAMAGE;
-    this.attackEffect = AttackEffect.SLASH_HORIZONTAL;
+    this.attackEffect = attackEffect;
+    this.ignoreBlock = ignoreBlock;
     this.duration = 0.1F;
   }
 
@@ -41,7 +47,9 @@ public class PiercingDamageAction extends AbstractGameAction {
   private void dealDamage() {
     // Remove block & all relevant powers before damaging.
     int block = target.currentBlock;
-    target.currentBlock = 0;
+    if (this.ignoreBlock) {
+      target.currentBlock = 0;
+    }
 
     List<AbstractPower> powers = new ArrayList<>();
     for (String powerID : IGNORED_POWERS) {
@@ -79,9 +87,10 @@ public class PiercingDamageAction extends AbstractGameAction {
     // Put everything back.
     if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead()) return;
 
-    target.currentBlock = block;
+    if (this.ignoreBlock) {
+      target.currentBlock = block;
+    }
     this.target.powers.addAll(powers);
-
   }
 
   /**
