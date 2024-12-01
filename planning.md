@@ -13,6 +13,5 @@ UI badge descriptions as a legend on card select screen.
 Should slightly altar banners for different card types to make it more obvious attack, armor, gear, spell, prestige class.
 
 Enchantment Ideas:
- - Energizing
  - Multishot
  - 
