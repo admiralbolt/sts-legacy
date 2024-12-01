@@ -167,6 +167,10 @@
     "NAME": "Ten Foot Pole",
     "DESCRIPTION": "Remove all buffs from an enemy. NL Gain !M! Intangible."
   },
+  "legacy:thievery": {
+    "NAME": "Thievery",
+    "DESCRIPTION": "Whenever you deal unblocked attack damage, gain !M! Gold."
+  },
   "legacy:tower_shield": {
     "NAME": "Tower Shield",
     "DESCRIPTION": "Gain !B! Block. NL Gain !M! Blur. NL Gain !M2! Cover. NL Lose 2 Dexterity."

@@ -28,6 +28,13 @@
       " poison at the start of next turn."
     ]
   },
+  "legacy:fatigue_power": {
+    "NAME": "Fatigue",
+    "DESCRIPTIONS": [
+      "Lose #b",
+      " [E] next turn."
+    ]
+  },
   "legacy:flurry": {
     "NAME": "Flurry",
     "DESCRIPTIONS": [
@@ -83,9 +90,9 @@
     "NAME": "Paladin",
     "DESCRIPTIONS": [
       "Whenever you cast a spell, heal 1 hp. NL ",
-      "Whenever you play a legacy:Weapon, gain #b ",
+      "Whenever you play a legacy:Weapon, gain #b",
       " legacy:Steadfast. NL ",
-      "Whenever you play an legacy:Armor, gain #b ",
+      "Whenever you play an legacy:Armor, gain #b",
       " Vigor."
     ]
   },
@@ -98,8 +105,15 @@
   "legacy:steadfast_power": {
     "NAME": "Steadfast",
     "DESCRIPTIONS": [
-      "The next time you block, gain #b ",
+      "The next time you block, gain #b",
       " additional block."
+    ]
+  },
+  "legacy:thievery_power": {
+    "NAME": "Thievery",
+    "DESCRIPTIONS": [
+      "Whenever you deal unblocked attack damage, gain #b",
+      " Gold."
     ]
   },
   "legacy:weapon_training_power": {
