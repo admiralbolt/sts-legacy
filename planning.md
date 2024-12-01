@@ -16,6 +16,3 @@ Enchantment Ideas:
  - Energizing
  - Multishot
  - 
-
-
-Thievery power should work when killing an enemy as well.
