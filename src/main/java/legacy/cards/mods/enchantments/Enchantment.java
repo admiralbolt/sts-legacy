@@ -8,6 +8,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import legacy.cards.LegacyCard;
+import legacy.cards.equipment.armor.LegacyArmor;
+import legacy.cards.equipment.weapons.LegacyWeapon;
 
 /**
  * Enchantments are a special type of modifier that gets applied only to weapons & armor.
@@ -72,6 +74,17 @@ public abstract class Enchantment extends AbstractCardModifier {
     if (!(obj instanceof Enchantment)) return false;
 
     return this.id.equals(((Enchantment) obj).id);
+  }
+
+  public boolean canApply(AbstractCard card) {
+    // Enchantments must match the type of the card.
+    if (this.type == LegacyCard.LegacyCardType.ARMOR && !(card instanceof LegacyArmor)) return false;
+    if (this.type == LegacyCard.LegacyCardType.WEAPON && !(card instanceof LegacyWeapon)) return false;
+
+    // Enchantments on a card should be unique.
+    if (CardModifierManager.hasModifier(card, this.id)) return false;
+
+    return true;
   }
 
   // Tiny bit o' short hand.

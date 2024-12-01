@@ -111,6 +111,14 @@
     "DESCRIPTION": "Damage ignores Block, Curl Up, Sharp Hide, Malleable, and Thorns."
   },
   {
+    "PROPER_NAME": "Reflection",
+    "NAMES": [
+      "Reflection",
+      "reflection"
+    ],
+    "DESCRIPTION": "Completely blocking Attack damage reflects it back at the attacker. Reduces by 1 at the start of your turn."
+  },
+  {
     "PROPER_NAME": "Spell",
     "NAMES": [
       "Spell",

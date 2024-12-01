@@ -96,6 +96,12 @@
       " Vigor."
     ]
   },
+  "legacy:reflection_power": {
+    "NAME": "Reflection",
+    "DESCRIPTIONS": [
+      "Whenever you completely block damage, deal that much damage to the attacker."
+    ]
+  },
   "legacy:stealth_power": {
     "NAME": "Stealth",
     "DESCRIPTIONS": [

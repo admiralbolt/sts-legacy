@@ -15,3 +15,8 @@ Should slightly altar banners for different card types to make it more obvious a
 Enchantment Ideas:
  - Multishot
  - 
+
+
+Card Ideas:
+ - Two weapon rend
+ - 

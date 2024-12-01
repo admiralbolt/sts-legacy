@@ -2,6 +2,7 @@ package legacy.cards.mods.enchantments;
 
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import legacy.cards.equipment.weapons.LegacyWeapon;
 
 import java.util.*;
 
@@ -50,8 +51,8 @@ public class EnchantmentPool {
     List<Enchantment> potentialEnchantments = new ArrayList<>();
     int totalWeight = 0;
     for (Enchantment enchantment : this.enchantments) {
-      // Make sure our card doesn't already have this enchantment.
-      if (CardModifierManager.hasModifier(card, enchantment.id)) continue;
+      // Make sure we can apply the enchantment.
+      if (!enchantment.canApply(card)) continue;
 
       // Make sure we haven't already rolled this enchantment.
       if (alreadyRolled.contains(enchantment)) continue;
@@ -63,7 +64,7 @@ public class EnchantmentPool {
 
     // Special handling for Bane enchantment. We don't want to add 6 copies of it to the pool, instead we add one
     // copy with a random monster type.
-    if (!CardModifierManager.hasModifier(card, Bane.ID)) {
+    if (!CardModifierManager.hasModifier(card, Bane.ID) && (card instanceof LegacyWeapon)) {
       // Roll a random bane enchantment.
       Enchantment enchantment = new Bane();
       totalWeight += enchantment.weight + enchantment.rarityMultiplier * rarityMultiplier;
