@@ -16,7 +16,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 public class BleedPower extends LegacyPower implements HealthBarRenderPower {
 
   public static final String POWER_ID = "legacy:bleed_power";
-  public static final Color BLEED_POWER_COLOR = Color.valueOf("#a01111");
+  public static final Color BLEED_POWER_COLOR = Color.valueOf("#881111");
 
   public BleedPower(AbstractCreature owner, int amount) {
     super(POWER_ID, owner, amount, PowerType.DEBUFF);

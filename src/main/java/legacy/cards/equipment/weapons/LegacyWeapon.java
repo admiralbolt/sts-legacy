@@ -73,7 +73,7 @@ public abstract class LegacyWeapon extends LegacyCard implements SpawnModificati
       // We use pure damage for multiDamage since we calculate all powers ourselves.
       this.multiDamage = DamageInfo.createDamageMatrix(this.damage, true);
       if (isRanged) {
-        this.addToBot(new RangedDamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, this.attackEffect, true));
+        this.addToBot(new RangedDamageAllEnemiesAction(p, this.multiDamage, this.attackEffect, true));
       } else {
         this.addToBot(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE));
       }

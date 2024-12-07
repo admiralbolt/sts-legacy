@@ -45,7 +45,7 @@ public class Fireball extends Spell {
   @Override
   public void use(AbstractPlayer p, AbstractMonster m) {
     this.multiDamage = DamageInfo.createDamageMatrix(this.damage, true);
-    this.addToBot(new RangedDamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE, false));
+    this.addToBot(new RangedDamageAllEnemiesAction(p, this.multiDamage, AbstractGameAction.AttackEffect.FIRE, false));
     ReallyMisc.getAllEnemies().forEach(monster -> {
       this.addToBot(new ApplyPowerAction(monster, p, new BurnPower(monster, this.magicNumber), this.magicNumber));
     });

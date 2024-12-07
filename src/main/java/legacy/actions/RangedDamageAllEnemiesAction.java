@@ -3,6 +3,7 @@ package legacy.actions;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -10,6 +11,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.FlightPower;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 
 import java.util.ArrayList;
@@ -25,12 +27,12 @@ public class RangedDamageAllEnemiesAction extends AbstractGameAction {
   private boolean firstFrame;
   private boolean ignoreBlock;
 
-  public RangedDamageAllEnemiesAction(AbstractCreature source, int[] amount, DamageInfo.DamageType type, AbstractGameAction.AttackEffect effect, boolean ignoreBlock, boolean isFast) {
+  public RangedDamageAllEnemiesAction(AbstractCreature source, int[] amount, AbstractGameAction.AttackEffect effect, boolean ignoreBlock, boolean isFast) {
     this.firstFrame = true;
     this.source = source;
     this.damage = amount;
     this.actionType = ActionType.DAMAGE;
-    this.damageType = type;
+    this.damageType = DamageInfo.DamageType.THORNS;
     this.attackEffect = effect;
     if (isFast) {
       this.duration = Settings.ACTION_DUR_XFAST;
@@ -40,8 +42,8 @@ public class RangedDamageAllEnemiesAction extends AbstractGameAction {
     this.ignoreBlock = ignoreBlock;
   }
 
-  public RangedDamageAllEnemiesAction(AbstractCreature source, int[] amount, DamageInfo.DamageType type, AbstractGameAction.AttackEffect effect, boolean ignoreBlock) {
-    this(source, amount, type, effect, ignoreBlock, true);
+  public RangedDamageAllEnemiesAction(AbstractCreature source, int[] amount, AbstractGameAction.AttackEffect effect, boolean ignoreBlock) {
+    this(source, amount, effect, ignoreBlock, true);
   }
 
   /**
@@ -88,6 +90,10 @@ public class RangedDamageAllEnemiesAction extends AbstractGameAction {
 
     // Damage 'em.
     target.damage(new DamageInfo(this.source, damage, this.damageType));
+    // If the target has flight, remove one stack.
+    if (target.hasPower(FlightPower.POWER_ID)) {
+      this.addToBot(new ReducePowerAction(target, this.source, FlightPower.POWER_ID, 1));
+    }
 
     // Put everything back.
     if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead()) return;

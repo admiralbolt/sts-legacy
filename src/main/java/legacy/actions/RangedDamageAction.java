@@ -3,6 +3,7 @@ package legacy.actions;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -83,6 +84,10 @@ public class RangedDamageAction extends AbstractGameAction {
 
     // Damage 'em.
     this.target.damage(this.info);
+    // If the target has flight, remove one stack.
+    if (this.target.hasPower(FlightPower.POWER_ID)) {
+      this.addToBot(new ReducePowerAction(this.target, this.source, FlightPower.POWER_ID, 1));
+    }
 
     // Put everything back.
     if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead()) return;
