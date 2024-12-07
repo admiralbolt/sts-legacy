@@ -71,7 +71,7 @@
       "Lightning",
       "lightning"
     ],
-    "DESCRIPTION": "Upon reaching 10 stacks of Lightning, the target is stunned."
+    "DESCRIPTION": "Upon reaching 10 stacks of Lightning, the target is stunned. NL Each time a target is stunned, it requires 5 more stacks of Lightning to stun them again."
   },
   {
     "PROPER_NAME": "Medium Armor",

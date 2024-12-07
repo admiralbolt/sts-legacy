@@ -60,13 +60,21 @@
     "NAME": "Frost",
     "DESCRIPTIONS": [
       "Decreases attack damage by #b",
-      ". NL Reduces by 1 at the end of turn."
+      ". NL Reduces by #b1 at the end of turn."
     ]
   },
   "legacy:lightning_power": {
     "NAME": "Lightning",
     "DESCRIPTIONS": [
-      "Stuns upon reaching 10 stacks."
+      "Stuns upon reaching #b",
+      " stacks. NL Reduces by #b1 at the start of turn."
+    ]
+  },
+  "legacy:lightning_resistance_power": {
+    "NAME": "Lightning Resistance",
+    "DESCRIPTIONS": [
+      "Stunning this enemy with #yLightning requires #b",
+      " more stacks."
     ]
   },
   "legacy:lose_focus": {

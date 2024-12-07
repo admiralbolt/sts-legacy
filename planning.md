@@ -1,6 +1,4 @@
 TODO:
- - Ranged attacks don't remove stacks of flight.
- - Electricity resistance
  - (from animator) UI badge descriptions as a legend on card select.
  - Slightly different card banners for different card types
  - xp should glow when you can level up.
