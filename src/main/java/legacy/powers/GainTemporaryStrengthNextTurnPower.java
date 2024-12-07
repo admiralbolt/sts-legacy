@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
  */
 public class GainTemporaryStrengthNextTurnPower extends LegacyPower {
 
-  public static final String POWER_ID = "legacy:next_turn_tmp_strength";
+  public static final String POWER_ID = "legacy:next_turn_tmp_strength_power";
 
   public GainTemporaryStrengthNextTurnPower(AbstractCreature owner, int amount) {
     super(POWER_ID, owner, amount, PowerType.BUFF);

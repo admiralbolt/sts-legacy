@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.powers.FocusPower;
  */
 public class LoseFocusPower extends LegacyPower {
 
-  public static final String POWER_ID = "legacy:lose_focus";
+  public static final String POWER_ID = "legacy:lose_focus_power";
 
   public LoseFocusPower(AbstractCreature owner, int amount) {
     super(POWER_ID, owner, amount, PowerType.DEBUFF);

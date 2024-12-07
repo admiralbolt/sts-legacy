@@ -15,7 +15,6 @@ Should slightly altar banners for different card types to make it more obvious a
 Enchantment Ideas:
  - Bloodthirsty -- Deals more damage to low health enemies.
 
-
 Card Ideas:
  - Two weapon rend -- ?
  - Gestalt - Two prestige classes
@@ -23,3 +22,7 @@ Card Ideas:
  - 
 
 Ranged attacks don't remove stacks of flight!!
+
+- Multihits depending on strength.
+- 
+

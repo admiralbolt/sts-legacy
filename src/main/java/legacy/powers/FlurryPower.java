@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
  */
 public class FlurryPower extends LegacyPower {
 
-  public static final String POWER_ID = "legacy:flurry";
+  public static final String POWER_ID = "legacy:flurry_power";
 
   public FlurryPower(AbstractCreature owner, int amount) {
     super(POWER_ID, owner, amount, PowerType.BUFF);

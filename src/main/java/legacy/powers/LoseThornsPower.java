@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.powers.ThornsPower;
  */
 public class LoseThornsPower extends LegacyPower {
 
-  public static final String POWER_ID = "legacy:lose_thorns";
+  public static final String POWER_ID = "legacy:lose_thorns_power";
 
   public LoseThornsPower(AbstractCreature owner, int amount) {
     super(POWER_ID, owner, amount, PowerType.DEBUFF);
