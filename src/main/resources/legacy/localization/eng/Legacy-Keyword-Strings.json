@@ -8,6 +8,14 @@
     "DESCRIPTION": "Coverings worn by soldiers to protect the body in battle."
   },
   {
+    "PROPER_NAME": "Bleed",
+    "NAMES": [
+      "Bleed",
+      "bleed"
+    ],
+    "DESCRIPTION": "Bleeding creatures take damage at the start of their turn and whenever they attack. Stacks are reduced by #b1 at the end of the turn."
+  },
+  {
     "PROPER_NAME": "Burn",
     "NAMES": [
       "BURN",

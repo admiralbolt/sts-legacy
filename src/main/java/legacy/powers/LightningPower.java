@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
  */
 public class LightningPower extends LegacyPower {
 
-  public static final String POWER_ID = "legacy:lightning";
+  public static final String POWER_ID = "legacy:lightning_power";
 
   public LightningPower(AbstractCreature owner, int amount) {
     super(POWER_ID, owner, amount, PowerType.DEBUFF);

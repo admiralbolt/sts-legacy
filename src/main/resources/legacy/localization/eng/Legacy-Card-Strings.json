@@ -89,6 +89,10 @@
     "NAME": "Greatsword",
     "DESCRIPTION": "Deal !D! Damage."
   },
+  "legacy:hamstring": {
+    "NAME": "Hamstring",
+    "DESCRIPTION": "Requires legacy:Stealth. NL Deal !D! Damage. NL Apply !M! legacy:Bleed NL Apply !M2! Slow."
+  },
   "legacy:hide_armor": {
     "NAME": "Hide Armor",
     "DESCRIPTION": "Gain !B! Block. NL Gain !M! Block next turn."

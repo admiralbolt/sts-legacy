@@ -16,7 +16,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
  */
 public class BurnPower extends LegacyTwoAmountPower implements HealthBarRenderPower {
 
-  public static final String POWER_ID = "legacy:burn";
+  public static final String POWER_ID = "legacy:burn_power";
   public static final Color HEALTH_BAR_COLOR = Color.valueOf("#cc5500");
   public static final int BURN_TURNS = 3;
 

@@ -5,14 +5,21 @@
       "Whenever you play a legacy:Spell gain 1 Temporary Focus. NL Whenever you play a legacy:Spell gain [E]."
     ]
   },
-  "legacy:burn": {
+  "legacy:bleed_power": {
+    "NAME": "Bleed",
+    "DESCRIPTIONS": [
+      "At the start of turn AND whenever this creature #yattacks, it takes #b",
+      " damage. NL Reduces by 1 at the end of turn."
+    ]
+  },
+  "legacy:burn_power": {
     "NAME": "Burn",
     "DESCRIPTIONS": [
       "At the start of your turn, lose #b",
       "At the start of its turn, loses #b",
       " HP. Fades in #b",
-      " turns",
-      " turn"
+      " turns if not reapplied.",
+      " turn if not reapplied."
     ]
   },
   "legacy:cover_power": {
@@ -49,17 +56,14 @@
       "Triple your strength. Enter Wrath."
     ]
   },
-  "legacy:frost": {
+  "legacy:frost_power": {
     "NAME": "Frost",
     "DESCRIPTIONS": [
       "Decreases attack damage by #b",
-      ".",
-      " NL Loses slow upon thawing in #b",
-      " turns.",
-      " turn."
+      ". NL Reduces by 1 at the end of turn."
     ]
   },
-  "legacy:lightning": {
+  "legacy:lightning_power": {
     "NAME": "Lightning",
     "DESCRIPTIONS": [
       "Stuns upon reaching 10 stacks."

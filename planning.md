@@ -13,12 +13,11 @@ UI badge descriptions as a legend on card select screen.
 Should slightly altar banners for different card types to make it more obvious attack, armor, gear, spell, prestige class.
 
 Enchantment Ideas:
- - 
+ - Bloodthirsty -- Deals more damage to low health enemies.
 
 
 Card Ideas:
- - Two weapon rend
- - Cripple - Rogue attack, reduce strength, vulnerable, bleed?
+ - Two weapon rend -- ?
  - Gestalt - Two prestige classes
  - Assassin - Stealth doesn't drop at end of turn. Each stealth is +1 damage for non spells.
  - 
