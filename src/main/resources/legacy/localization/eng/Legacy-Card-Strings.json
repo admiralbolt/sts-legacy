@@ -133,7 +133,7 @@
   },
   "legacy:padded_armor": {
     "NAME": "Padded Armor",
-    "DESCRIPTION": "Gain !B! Block.  NL Gain !M! Temporary Dexterity."
+    "DESCRIPTION": "Gain !B! Block. NL Gain !M! Temporary Dexterity."
   },
   "legacy:rapier": {
     "NAME": "Rapier",
@@ -142,6 +142,10 @@
   "legacy:shortbow": {
     "NAME": "Shortbow",
     "DESCRIPTION": "Deal !D! Damage."
+  },
+  "legacy:shuriken": {
+    "NAME": "Shuriken",
+    "DESCRIPTION": "Deal !D! Damage. NL Add a copy to hand that has Ethereal and Exhaust, costs 1 more, and deals !M! more damage."
   },
   "legacy:spear": {
     "NAME": "Spear",
