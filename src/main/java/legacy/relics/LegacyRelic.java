@@ -37,4 +37,10 @@ public abstract class LegacyRelic extends CustomRelic {
     RelicUtils.incrementCharge(this.relicId);
   }
 
+  public void incrementCharge(int amount) {
+    this.flash();
+    this.counter += amount;
+    RelicUtils.incrementCharge(this.relicId);
+  }
+
 }

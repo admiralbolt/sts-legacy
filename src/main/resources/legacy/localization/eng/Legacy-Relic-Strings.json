@@ -45,11 +45,25 @@
       "At the start of each combat #yScry X then draw 1 card, where X is the number of charges this has. NL Gain #b1 charge each time you defeat a boss."
     ]
   },
+  "legacy:omni_charm": {
+    "NAME": "Omni Charm",
+    "FLAVOR": "That's the neat part.",
+    "DESCRIPTIONS": [
+      "Start each combat with #b1 Strength, #b1 Dexterity, and #b1 Focus."
+    ]
+  },
   "legacy:spellbook": {
     "NAME": "Spellbook",
     "FLAVOR": "A book. Full of spells.",
     "DESCRIPTIONS": [
       "Start each combat with #b1 Focus."
+    ]
+  },
+  "legacy:timeless_vault": {
+    "NAME": "Timeless vault",
+    "FLAVOR": "Money money money money money motherfucker",
+    "DESCRIPTIONS": [
+      "Upon pickup, gain X gold, where X is the number of charges this has. NL Gain 5 charge whenever you climb a floor."
     ]
   }
 }

@@ -19,4 +19,5 @@ Enchantment Ideas:
 
 Card Ideas:
  - Two weapon rend
+ - Cripple - Rogue attack, reduce strength, vulnerable, bleed?
  - 
